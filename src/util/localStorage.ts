@@ -16,9 +16,10 @@ export const setStore = (name: string, content: any): void => {
 /**
  * 获取localStorage
  */
-export const getStore = (name: string): string | null | undefined => {
+export const getStore = (name: string): string=> {
   if (!name) {return '';}
-  return window.localStorage.getItem(name);
+  const result: string | null | undefined = window.localStorage.getItem(name);
+  return result ? result : '';
 };
 
 export const getStoreByKeys = (keyStr: string): string | null | undefined => {
@@ -28,7 +29,7 @@ export const getStoreByKeys = (keyStr: string): string | null | undefined => {
       return getStore(keyStrArr[0]);
     }
     const resetKey = keyStrArr.slice(1);
-    const obj = JSON.parse(_.isEmpty(getStore(keyStrArr[0])) ? '' : getStore(keyStrArr[0])  );
+    const obj = JSON.parse(getStore(keyStrArr[0]));
     return _.get(obj, resetKey, '');
   } return '';
 };
