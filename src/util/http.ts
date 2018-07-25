@@ -38,7 +38,7 @@ export default async (type = 'GET', url = '', data = {}, headers = {}, apiDomain
             value: JSON.stringify(data),
         });
     }
-    function _fetch(fetchPromise, timeout) {
+    function _fetch(fetchPromise: object, timeout: number) {
         // 这是一个可以被reject的promise
         const abortPromise = new Promise(((resolve, reject) => {
             setTimeout(()=>{

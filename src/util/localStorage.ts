@@ -1,7 +1,8 @@
+import * as _ from 'lodash';
 /**
  * 存储localStorage
  */
-export const setStore = (name: string, content: any): undefined => {
+export const setStore = (name: string, content: any): void => {
   let contentStr: string = '';
   if (!name) {
     return;
