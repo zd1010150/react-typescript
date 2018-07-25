@@ -1,12 +1,13 @@
 import { Checkbox } from 'antd';
 import * as React from 'react';
-
+import { TestComponent } from 'src/components/TestComponent';
 import './App.css';
 
 import logo from './logo.svg';
 
 class App extends React.Component {
   public render() {
+      debugger
     return (
       <div className="App">
         <header className="App-header">
@@ -15,6 +16,7 @@ class App extends React.Component {
         </header>
         <p className="App-intro">
           <Checkbox>Checkbox</Checkbox>
+            <TestComponent name="dan" framework="lili" />
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p>
       </div>
