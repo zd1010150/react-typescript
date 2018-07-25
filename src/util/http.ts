@@ -1,7 +1,9 @@
 
+import * as _ from 'lodash';
 import fetch from 'whatwg-fetch';
-import { baseUrl } from '../config/env.config';
+
 import { MAX_FETCH_TIMEOUT } from '../config/app.config';
+import { baseUrl } from '../config/env.config';
 import { getAuthorization } from './common';
 
 export default async (type = 'GET', url = '', data = {}, headers = {}, apiDomain = '') => {
@@ -9,17 +11,17 @@ export default async (type = 'GET', url = '', data = {}, headers = {}, apiDomain
     url = (apiDomain || baseUrl) + url;
     const langauge = window.__store__ && window.__store__.getState() && window.__store__.getState().global.language;
     const requestConfig = {
+        cache: 'default', // should set cache to 'no-cache'
         credentials: 'include',
-        method: type,
         headers: {
             Accept: 'application/json',
             'Accept-Language': langauge,
-            'Content-Type': 'application/json',
             Authorization: getAuthorization(),
+            'Content-Type': 'application/json',
             ...headers,
         },
+        method: type,
         mode: 'cors',
-        cache: 'default', // should set cache to 'no-cache'
     };
 
     if (type === 'GET') {

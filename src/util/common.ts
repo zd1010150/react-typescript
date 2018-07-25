@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import * as Enums from './EnumsManager';
 import { getStore } from './localStorage';
 /**
