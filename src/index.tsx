@@ -2,13 +2,17 @@
 import 'antd/dist/antd.less';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import 'src/assets/less/index.less';
 import App from './App';
 
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 declare global {
-    interface Window { __store__: any; }
+    interface Window {
+        __store__: any,
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any
+    }
 }
 window.__store__ = {};
 

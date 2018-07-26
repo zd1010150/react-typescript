@@ -1,0 +1,55 @@
+@import "../theme.less";
+.sidebar-main{
+  padding-right: 25px;
+
+  .ant-menu.ant-menu-inline{
+    & > .ant-menu-item-divider{
+      border-top: 1px solid #d1d1d1;
+      display: block;
+      margin: 10px 1.8rem 10px 60px;
+    }
+    .ant-menu-item{
+      color: #575757;
+      &>a{
+        color: #494949;
+      }
+      a:hover, a:active{
+        color: @primary-color;
+        background-color: transparent;
+      }
+
+    }
+     .ant-menu-submenu-title{
+       font-weight: 600;
+       color: #333;
+       &:hover{
+         color: #575757;
+       }
+
+     }
+    .ant-menu-item-selected{
+      background-color: transparent;
+      font-weight: 700;
+      font-size: 14px;
+      a{
+        color: @primary-color;
+        &:hover, &:active{
+          color: @primary-color;
+        }
+      }
+      &:after{
+        border-right: none;
+
+      }
+      &:before{
+        content: '';
+        position: absolute;
+        left: 20px;
+        top:5px;
+        bottom:5px;
+        border-left: 4px solid @primary-color;
+      }
+    }
+  }
+
+}

@@ -1,34 +1,25 @@
-/* eslint-disable no-case-declarations */
-import Enums from 'utils/EnumsManager';
-import { getStore, removeStore, setStore } from 'utils/localStorage';
-import { MY_SETTING_SET_AVATOR } from '../../MySetting/flow/actionType';
-import { LOGINOROUT_FAILURE, LOGIN_SUCCESS, LOGOUT_SUCCESS, DEREGISTER_LOGIN_USER } from './actionTypes';
 
-const { LocalStorageKeys } = Enums;
-const { User } = LocalStorageKeys;
+import { getStore, removeStore, setStore } from 'src/util/localStorage';
+import { DEREGISTER_LOGIN_USER, LOGIN_SUCCESS, LOGINOROUT_FAILURE, LOGOUT_SUCCESS } from './actionType';
+interface Iloginuser extends  Iaction{
+    payload: any,
+}
 
-const initialState = getStore(Enums.LocalStorageKey)
-    ? JSON.parse(getStore(Enums.LocalStorageKey))
+const initialState = getStore(localStorageKeys.loginUser as string)
+    ? JSON.parse(getStore(localStorageKeys.loginUser as string))
     : {};
 
-const loginUser = (state = initialState, action) => {
-    let user;
+const loginUser = (state = initialState, action: Iloginuser) => {
     switch (action.type) {
         case LOGIN_SUCCESS:
             const { data: userData } = action.payload;
-            setStore(User, userData);
+            setStore(localStorageKeys.loginUser, userData);
             return userData;
-        case MY_SETTING_SET_AVATOR:
-            user = Object.assign({}, state, { avatar: action.avatar });
-            setStore(User, JSON.stringify(user));
-            return user;
         case LOGOUT_SUCCESS:
         case LOGINOROUT_FAILURE:
         case DEREGISTER_LOGIN_USER:
-            removeStore(User);
+            removeStore(localStorageKeys.loginUser);
             return {};
-
-
         default:
             return state;
     }

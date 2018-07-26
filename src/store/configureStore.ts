@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore, compose } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { makeRootReducer } from './reducers';
 
@@ -20,7 +20,7 @@ export default function configureStore(initialState = {}) {
     enhancer,
 
   );
-  store.asyncReducers = {};
+  // store.asyncReducers = {}
 
   // if (module.hot) {
   //   module.hot.accept('./reducers', () => {

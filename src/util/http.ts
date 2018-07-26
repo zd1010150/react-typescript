@@ -4,7 +4,7 @@ import {MAX_FETCH_TIMEOUT} from '../config/app.config';
 import {baseUrl} from '../config/env.config';
 import {getAuthorization} from './common';
 
-export default async (type: string = 'GET', url: string = '', data: object = {}, headers: object = {}, apiDomain: string = '') => {
+export default async (type: string = 'GET', url: string = '', data: object = {}, headers: object = {}, apiDomain: string = ''):Promise<any>=> {
     url = (apiDomain || baseUrl) + url;
     const langauge = window.__store__ && window.__store__.getState() && window.__store__.getState().global.language;
     const objHeaders = new Headers({
@@ -51,17 +51,16 @@ export default async (type: string = 'GET', url: string = '', data: object = {},
         ]);
     }
 
-    _fetch(fetch(url, requestConfig), MAX_FETCH_TIMEOUT).then((res: Response)=>{
-        const respHeaders: Headers = res.headers;
-        const contentType: string | null = respHeaders.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-            res.json().then((responseData)=>{
-                return Promise.resolve({data: responseData, statusCode: res.status});
-            })
-        }
-    }).catch((err: any)=>{
-        window.console.log('error===', err);
-        return err;
-    });
-
+        _fetch(fetch(url, requestConfig), MAX_FETCH_TIMEOUT).then((res: Response)=>{
+            const respHeaders: Headers = res.headers;
+            const contentType: string | null = respHeaders.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                res.json().then((responseData)=>{
+                    return Promise.resolve({data: responseData, statusCode: res.status});
+                })
+            }
+        }).catch((err: any)=>{
+            window.console.log('error===', err);
+            return Promise.reject(err)
+        });
 };

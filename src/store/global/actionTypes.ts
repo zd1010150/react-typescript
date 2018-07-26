@@ -1,1 +1,4 @@
+
+export const TOGGLE_LANGUAGE = 'TOGGLE_LANGUAGE';
 export const SET_LOGIN_USER = 'SET_LOGIN_USER';
+export const SET_PAGE_TITLE = 'SET_PAGE_TITLE';

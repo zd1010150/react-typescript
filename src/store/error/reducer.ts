@@ -1,7 +1,13 @@
 import { combineReducers } from 'redux';
 import { ADD_ERROR, MARK_READED_ERROR } from './actionType';
+import { Ierror } from './types';
 
-const addError = (state, error) => {
+interface IerrorAction extends Iaction{
+  error?: string,
+    id?: number,
+}
+
+const addError = (state: Ierror[], error: string='') => {
   const id = state.length + 1;
   const newState = state.slice();
   newState.push({
@@ -11,13 +17,15 @@ const addError = (state, error) => {
   });
   return newState;
 };
-const markReadedError = (state, errorId) => state.map((item) => {
+
+const markReadedError = (state: Ierror[], errorId: number=-1) => state.map((item) => {
   if (item.id === errorId) {
     return Object.assign({}, item, { readed: true });
   }
   return item;
 });
-const errors = (state = [], action) => {
+
+const errors = (state: Ierror[] = [], action: IerrorAction) => {
   switch (action.type) {
     case ADD_ERROR:
       return addError(state, action.error);
