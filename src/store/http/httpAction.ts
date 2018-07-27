@@ -5,6 +5,7 @@ import allInfos from 'src/i18n/global/info';
 import http from 'src/util/http';
 import { getStore } from 'src/util/localStorage';
 import { deRegisterLoginUser } from 'src/views/auth/login/flow/actions';
+import { localStorageKeys} from "../../config/app.config";
 import { addError } from '../error/action';
 import {
   HTTP_ACTION_DOING,

@@ -1,6 +1,8 @@
 
 import { getStore, removeStore, setStore } from 'src/util/localStorage';
+import {Iaction, localStorageKeys} from "../../../../config/app.config";
 import { DEREGISTER_LOGIN_USER, LOGIN_SUCCESS, LOGINOROUT_FAILURE, LOGOUT_SUCCESS } from './actionType';
+
 interface Iloginuser extends  Iaction{
     payload: any,
 }

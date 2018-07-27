@@ -5,6 +5,7 @@ import { InjectedIntlProps, injectIntl } from 'react-intl';
 import zhIcon from 'src/assets/images/ch-language.png';
 import enIcon from 'src/assets/images/en-language.png';
 import { IloginUser } from 'src/store/global/types';
+import { LANGUAGE } from "../../../config/app.config";
 import * as styles from './index.less';
 
 interface ItopPanel {

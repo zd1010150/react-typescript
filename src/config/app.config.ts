@@ -5,3 +5,14 @@ export const UNAUTHENTICATION = { // Unauthentication rewrite url
     REDIRECT_KEY: 'success_url',
 };
 export const SUCCESS_HTTP_CODE = [200, 201];
+export interface Iaction{
+    type: string
+}
+export const enum LANGUAGE {
+    ZH = "zh",
+    EN = "en"
+}
+export const enum localStorageKeys{
+    loginUser='loginUser',
+    language='language',
+}

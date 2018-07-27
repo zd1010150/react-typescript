@@ -9,25 +9,13 @@ const composeEnhancers =
       // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
     }) : compose;
 
-const enhancer = composeEnhancers(applyMiddleware(thunk),
-  // other store enhancers if any
-)
-export default function configureStore(initialState = {}) {
+const enhancer = composeEnhancers(applyMiddleware(thunk));
+function configureStore(initialState = {}) {
   const store = createStore(
     makeRootReducer(),
     initialState,
-    // applyMiddleware(thunk), // routerMiddleware redux 方式的回退
     enhancer,
-
   );
-  // store.asyncReducers = {}
-
-  // if (module.hot) {
-  //   module.hot.accept('./reducers', () => {
-  //     const reducers = require('./reducers').default; // eslint-disable-line global-require
-  //     store.replaceReducer(reducers(store.asyncReducers));
-  //   });
-  // }
-
   return store;
 }
+export default configureStore;

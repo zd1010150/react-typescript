@@ -1,11 +1,8 @@
 import { combineReducers } from 'redux';
 import { ADD_ERROR, MARK_READED_ERROR } from './actionType';
-import { Ierror } from './types';
+import { Ierror, IerrorAction } from './types';
 
-interface IerrorAction extends Iaction{
-  error?: string,
-    id?: number,
-}
+
 
 const addError = (state: Ierror[], error: string='') => {
   const id = state.length + 1;

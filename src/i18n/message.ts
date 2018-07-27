@@ -1,7 +1,7 @@
 /* tslint:disable:object-literal-sort-keys */
+import { deconstructLanguage } from '../util/languageHelper';
 import global from './global/index';
 import page from './page/index';
-import { deconstructLanguage } from '../utils/languageHelper';
 
 export default {
   zh: { ...deconstructLanguage(global, 'zh', 'global'), ...deconstructLanguage(page, 'zh', 'page') },
