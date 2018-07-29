@@ -9,6 +9,8 @@ export const setStore = (name: string, content: any): void => {
   }
   if (typeof content !== 'string') {
       contentStr = JSON.stringify(content);
+  }else{
+    contentStr = content;
   }
   window.localStorage.setItem(name, contentStr);
 };

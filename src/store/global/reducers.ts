@@ -14,6 +14,7 @@ const language = (state:LANGUAGE = navigator.language.indexOf('zh') > -1 ? LANGU
             globalLanguage = state;
             break;
     }
+    window.console.log("it is trigger", globalLanguage)
     setStore(localStorageKeys.language as string, globalLanguage as string);
     return globalLanguage;
 };

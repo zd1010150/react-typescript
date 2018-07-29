@@ -31,7 +31,7 @@ window.__store__ = store;
 ReactDOM.render(
     <Provider store={store}>
         <I18n>
-            <BrowserRouter >
+            <BrowserRouter>
                <App />
             </BrowserRouter>
         </I18n>

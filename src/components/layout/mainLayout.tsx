@@ -42,7 +42,3 @@ const mapDispatchToProps = (dispatch: Dispatch<GlobalActions>) => {
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(layout);
-
-
-
-

@@ -10,7 +10,7 @@ export interface IpageTitleAction extends Iaction{
     pageTitle?: string,
 }
 
-export type GlobalActions = IlanguageAction | IaccountAction | IpageTitleAction;
+export type GlobalActions = IlanguageAction & IaccountAction & IpageTitleAction;
 
 export interface IloginUser{
     userName: string
@@ -20,4 +20,3 @@ export interface IglobalState{
     language: LANGUAGE,
     pageTitle: string
 }
-

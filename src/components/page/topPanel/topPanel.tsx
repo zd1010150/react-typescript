@@ -1,11 +1,12 @@
+/*tslint:disable:ordered-imports*/
 import {  Dropdown, Icon, Menu } from 'antd';
 import classNames from 'classnames/bind';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
-import zhIcon from 'src/assets/images/ch-language.png';
-import enIcon from 'src/assets/images/en-language.png';
-import { IloginUser } from 'src/store/global/types';
-import { LANGUAGE } from "../../../config/app.config";
+import zhIcon from 'assets/images/ch-language.png';
+import enIcon from 'assets/images/en-language.png';
+import { IloginUser } from 'store/global/types';
+import { LANGUAGE } from "config/app.config";
 import * as styles from './index.less';
 
 interface ItopPanel {
@@ -31,7 +32,7 @@ interface ItopPanel {
             </Menu>);
         return (
             <div>
-            欢迎你{user.userName}
+             {formatMessage({id:'global.info.WELCOME_MSG' })}{user.userName}
             <div data-role="language">
                 <Dropdown overlay={menu}>
                     <button className={cx('ant-dropdown-link')}>
@@ -49,4 +50,3 @@ interface ItopPanel {
      }
 }
 export default injectIntl(TopPanel);
-
