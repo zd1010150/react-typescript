@@ -1,15 +1,9 @@
 /* tslint:disable:object-literal-sort-keys */
 export default {
   zh: {
-    EDIT_BEFORE_SAVEING: '请保存正在编辑的其它订单，再操作本订单',
-    ERROR_INVALID_ID: '身份证号码不合法',
-    ERROR_NO_MODIFY: '你没有做任何修改',
-    ERROR_CHINA_REQUIRE_ID: '中国大陆地区，必填身份证信息',
+    CANT_VISIT_LOGIN: '你已经登录，不能再访问登录页面, 如需访问登录页面，请首先登出',
   },
   en: {
-    EDIT_BEFORE_SAVEING: 'Please  save the other order which is under editing.Then edit this order',
-    ERROR_INVALID_ID: 'Invalid ID Number',
-    ERROR_NO_MODIFY: 'None modification',
-    ERROR_CHINA_REQUIRE_ID: 'Citizens in China are required to input  ID Number',
+      CANT_VISIT_LOGIN: 'You have login, can\'t visit login page, if you want, please logout first',
   },
 };

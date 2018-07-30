@@ -5,20 +5,19 @@ import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
 import zhIcon from 'assets/images/ch-language.png';
 import enIcon from 'assets/images/en-language.png';
-import { IloginUser } from 'store/global/types';
 import { LANGUAGE } from "config/app.config";
 import * as styles from './index.less';
+import { UserName } from 'components/ui/index';
 
 interface ItopPanel {
     language: LANGUAGE,
-    user: IloginUser,
     onChange(language: LANGUAGE): void,
 }
  class TopPanel extends React.Component<ItopPanel & InjectedIntlProps, {}> {
 
     public render() {
         const cx = classNames.bind(styles);
-        const { language, user, intl} = this.props;
+        const { language, intl} = this.props;
         const { formatMessage } = intl;
         const otherLanguage = language === LANGUAGE.ZH ? LANGUAGE.EN : LANGUAGE.ZH;
         const menu = (
@@ -31,9 +30,9 @@ interface ItopPanel {
 
             </Menu>);
         return (
-            <div>
-             {formatMessage({id:'global.info.WELCOME_MSG' })}{user.userName}
-            <div data-role="language">
+            <div className={cx('panel-header')}>
+            <span  className={cx('username')}>{formatMessage({id:'global.info.WELCOME_MSG' })}<UserName/></span>
+            <div data-role="language" className="toggle-language">
                 <Dropdown overlay={menu}>
                     <button className={cx('ant-dropdown-link')}>
                         <img className={cx('language-flag')} src={language === LANGUAGE.ZH ? zhIcon : enIcon} alt="language" />

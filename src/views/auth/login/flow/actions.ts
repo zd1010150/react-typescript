@@ -1,12 +1,13 @@
-
-// import * as _ from 'lodash';
-// import { fetchLoginUserDetail } from 'src/store/global/actions';
-// import { post } from 'src/store/http/httpAction';
+import * as _ from 'lodash';
+import { Dispatch} from 'redux';
+import { setLoginUser } from 'store/global/actions';
+import { IloginUser } from 'store/global/types'
+import { post } from 'store/http/httpAction';
 import {
     DEREGISTER_LOGIN_USER,
    //  LOGOUT_SUCCESS,
 } from './actionType';
-
+import { IloginFormData } from './types';
 export const deRegisterLoginUser = () => ({
     type: DEREGISTER_LOGIN_USER,
 });
@@ -15,15 +16,23 @@ export const deRegisterLoginUser = () => ({
 //     payload: { json },
 // });
 
-// export const tryLogin = (values, successMessage, cb) => dispatch => post('/admin/login', values, dispatch, { successMessage })
-//     .then((json) => {
-//         if (_.isFunction(cb)) {
-//             cb();
-//         }
-//         if (json) {
-//            // dispatch(fetchLoginUserDetail());
-//         }
-//     });
+export const login = (values: IloginFormData, successMessage: string, cb:()=>void) => (dispatch: Dispatch<any>):  Promise<void> =>
+        post('/distributor/login', values, dispatch, { successMessage }).then(({data}) => {
+        debugger
+        if (data && data.token && data.user) {
+            const loginUser: IloginUser = {
+                email: data.user.emial,
+                firstName: data.user.first_name,
+                lastName: data.user.last_name,
+                token: data.token,
+                userId: data.user.id,
+            };
+           dispatch(setLoginUser(loginUser));
+           if(_.isFunction(cb)){
+               cb()
+           }
+        }
+    });
 
 // export const tryLogout = successMessage => dispatch => post('/admin/logout', {}, dispatch, { successMessage }).then(() => {
 //    // dispatch(logoutSuccess());

@@ -1,11 +1,12 @@
 @import "~assets/less/theme.less";
 
-.panel.header{
+.panel-header{
   max-width: @brk-page-max-width;
   background-color: @primary-color;
   padding:10px 20px;
   margin:0 auto;
   overflow: hidden;
+  text-align: right;
   [data-role="language"], [data-role="operations"],[data-role="welcomeMsg"]{
     float: right;
     display: inline-block;
@@ -15,29 +16,10 @@
     color: @brk-text-white-color;
   }
 }
-.top-static-nav{
-  float: left;
-  list-style-type: none;
-  overflow: hidden;
-  margin-bottom: 0px;
-  padding-left: 0px;
-  li{
-    float: left;
-    padding: 0px 2px;
-    margin: 0px;
-    &:not(:last-child):after {
-      content: " | ";
-      display: inline-block;
-      color: rgba(255, 255, 255, 0.2);
-      padding: 0px 10px;
-    }
-    &:last-child:after {
-      content: "|";
-      padding: 0px 10px;
-      color: transparent;
-      display: inline-block;
-    }
-  }
+.username{
+  display: inline-block;
+  height: 24px;
+  line-height: 24px;
 }
 .ant-dropdown-link{
   background-color: transparent;
@@ -52,4 +34,6 @@
 .language-flag{
   width: 20px;
   height: 20px;
+  display: inline-block;
+  margin:0px 5px;
 }

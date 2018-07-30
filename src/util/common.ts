@@ -1,24 +1,21 @@
+import { localStorageKeys } from 'config/app.config'
 import * as _ from 'lodash';
-import Enums from './enumsManager';
+import { IloginUser } from 'store/global/types';
 import { getStore } from './localStorage';
 /**
  * getAuthorization
  */
-interface IloginUser {
-    token_type?: string,
-    access_token?: string,
-    token_info?: string,
-}
+
 export const getAuthorization = () => {
-  const loginUser: string | null | undefined = getStore(Enums.LocalStorageKey);
+  const loginUser: string | null | undefined = getStore(localStorageKeys.loginUser as string);
   if (_.isEmpty(loginUser)) {
     return '';
   }
   const user: IloginUser= JSON.parse(loginUser || '');
-  if (_.isEmpty(user.token_info)) {
+  if (_.isEmpty(user.token)) {
     return '';
   }
-  const { token_type = '', access_token ='' } = user;
-  return `${token_type} ${access_token}`;
+  const { token = '' } = user;
+  return `${token}`;
 };
 

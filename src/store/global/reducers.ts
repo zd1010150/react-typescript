@@ -1,8 +1,12 @@
+import * as _ from 'lodash';
 import { combineReducers } from 'redux';
-import { setStore } from 'src/util/localStorage';
+import { getStore, setStore } from 'src/util/localStorage';
 import {LANGUAGE, localStorageKeys } from "../../config/app.config";
-import { SET_LOGIN_USER, SET_PAGE_TITLE, TOGGLE_LANGUAGE } from './actionTypes';
-import { IaccountAction, IlanguageAction, IloginUser, IpageTitleAction } from './types';
+import { SET_LOGIN_USER, TOGGLE_LANGUAGE } from './actionTypes';
+import { IaccountAction, IlanguageAction, IloginUser } from './types';
+
+const initAccountStr = getStore(localStorageKeys.loginUser as string);
+const initAccount = _.isEmpty(initAccountStr) ? {} : JSON.parse(initAccountStr) as IloginUser;
 
 const language = (state:LANGUAGE = navigator.language.indexOf('zh') > -1 ? LANGUAGE.ZH : LANGUAGE.EN, action: IlanguageAction) => {
     let globalLanguage;
@@ -20,7 +24,7 @@ const language = (state:LANGUAGE = navigator.language.indexOf('zh') > -1 ? LANGU
 };
 
 // 账户信息
-const account = (state: IloginUser= { userName: 'DANDAN' }, action: IaccountAction) => {
+const account = (state: IloginUser= initAccount, action: IaccountAction) => {
     let innerAccount;
     switch (action.type) {
         case SET_LOGIN_USER:
@@ -36,19 +40,10 @@ const account = (state: IloginUser= { userName: 'DANDAN' }, action: IaccountActi
 
 
 
-const pageTitle = (state:string = 'global.pageTitle.leads', action: IpageTitleAction) => {
-    switch (action.type) {
-        case SET_PAGE_TITLE:
-            return action.pageTitle;
-        default:
-            return state;
-    }
-};
 
 
 const rootReducer = combineReducers({
     account,
-    language,
-    pageTitle,
+    language
 });
 export default rootReducer;

@@ -70,7 +70,7 @@ const dispatch = (method: string, url: string, request: Promise<IresponseResult>
       return Promise.reject();
     }
     if (SUCCESS_HTTP_CODE.indexOf(Number(statusCode)) > -1) {
-      return data;
+      return Promise.resolve({data});
     }
     if (data && (data.error || data.errors || data.message)) {
       const { errors } = data;
@@ -90,6 +90,7 @@ const dispatch = (method: string, url: string, request: Promise<IresponseResult>
       return Promise.reject();
     }
   }).catch((err) => {
+    debugger
     dispatcher({
       type: HTTP_ACTION_ERROR,
     });

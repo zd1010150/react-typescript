@@ -2,6 +2,7 @@
 export default {
   zh: {
     button: {
+        signIn: '登录',
       cancel: '取消',
       ok: '确认',
       submit: '提交',
@@ -55,6 +56,7 @@ export default {
   },
   en: {
     button: {
+      signIn: 'Sign In',
       cancel: 'Cancel',
       ok: 'OK',
       submit: 'Submit',

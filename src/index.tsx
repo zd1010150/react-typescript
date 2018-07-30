@@ -1,5 +1,7 @@
 /* tslint:disable:interface-name */
 import 'antd/dist/antd.less';
+
+import { ErrorNotification } from 'components/ui/index';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -27,6 +29,7 @@ if (process.env.NODE_ENV !== 'production') {
     });
 }
 window.__store__ = store;
+ErrorNotification(store);
 
 ReactDOM.render(
     <Provider store={store}>

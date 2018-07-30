@@ -16,3 +16,10 @@ export const enum localStorageKeys{
     loginUser='loginUser',
     language='language',
 }
+export const  NAV_URL_PAGE_MAPPING = {
+    '/dashboard': 'global.pageTitle.myDashboard',
+    '/enquiry': 'global.pageTitle.enquiry'
+}
+export const UN_NAV_URL_PAGE_MAPPING = {
+    '/auth/login' : 'global.pageTitle.signIn'
+}

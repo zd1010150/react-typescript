@@ -6,17 +6,18 @@ export interface IlanguageAction extends Iaction{
 export interface IaccountAction extends Iaction{
     account?: IloginUser,
 }
-export interface IpageTitleAction extends Iaction{
-    pageTitle?: string,
-}
 
-export type GlobalActions = IlanguageAction & IaccountAction & IpageTitleAction;
+
+export type GlobalActions = IlanguageAction & IaccountAction;
 
 export interface IloginUser{
-    userName: string
+    firstName?: string,
+    lastName?: string,
+    token?: string,
+    userId?: number,
+    email?: string,
 }
 export interface IglobalState{
     account: IloginUser,
-    language: LANGUAGE,
-    pageTitle: string
+    language: LANGUAGE
 }
