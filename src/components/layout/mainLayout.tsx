@@ -28,7 +28,7 @@ const layout: React.SFC<propTypes>= ({locale, account, changeLanugage, deRegiste
     <div className="page-wrapper">
         <header className="page-header">
             <div className="panel wrapper">
-                <TopPanel language={locale} onChange={changeLanugage} deRegisterLoginUserDispatch={deRegisterLoginUserDispatch} />
+                <TopPanel account={account} language={locale} onChange={changeLanugage} deRegisterLoginUserDispatch={deRegisterLoginUserDispatch} />
             </div>
         </header>
         <div className={classNames("section",cx("nav-sections"))}>
