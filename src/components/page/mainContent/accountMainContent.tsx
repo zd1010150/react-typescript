@@ -12,13 +12,13 @@ import { Redirect, withRouter } from 'react-router-dom';
 import { getStore} from "util/localStorage";
 import { localStorageKeys } from 'config/app.config';
 import { addError } from 'store/error/action';
-import { GlobalActions, IloginUser} from 'src/store/global/types';
-import { IApplicationState} from 'src/store/reducers';
+import { GlobalActions} from 'src/store/global/types';
+// import { IApplicationState} from 'src/store/reducers';
 import { Dispatch } from 'redux';
 
 const {Sider, Content} = Layout;
 interface ImainContenttProps{
-    account: IloginUser;
+   // account: IloginUser;
     addErrorDispatch: (error:string) => void
 }
 
@@ -28,7 +28,7 @@ class AccountMainContentComponent extends React.Component <PropsType,{}> {
         const hasLoggedIn = this.hasLoggedIn(this.props);
         const page = (() => {
             if(!hasLoggedIn){
-                this.props.addErrorDispatch(this.props.intl.formatMessage({id:'global.error.CANT_VISIT_LOGIN'}));
+                // this.props.addErrorDispatch(this.props.intl.formatMessage({id:'global.error.CANT_VISIT_LOGIN'}));
                 return <Redirect to="/auth/login" />
             }
             return (
@@ -47,19 +47,19 @@ class AccountMainContentComponent extends React.Component <PropsType,{}> {
     }
 
     private hasLoggedIn = (props: PropsType) => {
-        const { account } = props;
-        const localLoginUser = getStore(localStorageKeys.loginUser as string);
+       //  const { account } = props;
+        const localLoginUser =  JSON.parse(getStore(localStorageKeys.loginUser as string));
         if (_.isEmpty(localLoginUser)) {
             return false;
         }
-
-        return !_.isEmpty(account);
+        return true;
+        // return !_.isEmpty(account);
     }
 }
-const mapStateToProps = (state: IApplicationState) =>  ({ account: state.global.account });
+// const mapStateToProps = (state: IApplicationState) =>  ({ account: state.global.account });
 const mapDispatchToProps = (dispatch: Dispatch<GlobalActions>) => {
     return {
         addErrorDispatch: (error: string) => dispatch(addError(error))
     };
 }
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(injectIntl(AccountMainContentComponent)));
+export default withRouter(connect(null, mapDispatchToProps)(injectIntl(AccountMainContentComponent)));
