@@ -1,13 +1,13 @@
-/* tslint:disable:ordered-imports */
+
 import {Button, Form, Icon, Input} from 'antd';
 import { FormComponentProps } from 'antd/lib/form/Form';
 import classNames from 'classnames/bind';
-import { IloginFormData } from '../flow/types';
-import styles from '../index.less';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { RouteComponentProps, withRouter } from "react-router";
 import { NavLink } from 'react-router-dom';
+import { IloginFormData } from 'store/global/types';
+import styles from '../index.less';
 
 
 const cx = classNames.bind(styles);

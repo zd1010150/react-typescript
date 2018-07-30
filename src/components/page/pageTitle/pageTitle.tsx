@@ -30,8 +30,9 @@ class PageTitleComponent extends React.Component <PropsType, {}> {
     }
     private setPageTitle(props: PropsType){
         const pathName = props.location.pathname;
+        const id =  PageRouterTitleMapping[pathName];
         this.setState({
-            pageTitle: props.intl.formatMessage({id: PageRouterTitleMapping[pathName]})
+            pageTitle: props.intl.formatMessage({id: id ? id:  'global.pageTitle.myDashboard'})
         });
     }
 

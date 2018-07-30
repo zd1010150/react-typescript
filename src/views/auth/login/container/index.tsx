@@ -2,8 +2,8 @@
 import { Row, Col, Button } from 'antd';
 import { FormComponentProps } from 'antd/lib/form/Form';
 import classNames from 'classnames/bind';
-import { login } from '../flow/actions';
-import { IloginFormData } from '../flow/types';
+import { login } from 'store/global/actions';
+import { IloginFormData } from 'store/global/types';
 import styles from '../index.less';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';

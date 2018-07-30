@@ -21,3 +21,7 @@ export interface IglobalState{
     account: IloginUser,
     language: LANGUAGE
 }
+export interface IloginFormData{
+    email: string,
+    password: string
+}

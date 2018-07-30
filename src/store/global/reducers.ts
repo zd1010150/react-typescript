@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import { combineReducers } from 'redux';
 import { getStore, setStore } from 'src/util/localStorage';
 import {LANGUAGE, localStorageKeys } from "../../config/app.config";
-import { SET_LOGIN_USER, TOGGLE_LANGUAGE } from './actionTypes';
+import { DEREGISTER_LOGIN_USER, SET_LOGIN_USER, TOGGLE_LANGUAGE} from './actionTypes';
 import { IaccountAction, IlanguageAction, IloginUser } from './types';
 
 const initAccountStr = getStore(localStorageKeys.loginUser as string);
@@ -27,6 +27,9 @@ const language = (state:LANGUAGE = navigator.language.indexOf('zh') > -1 ? LANGU
 const account = (state: IloginUser= initAccount, action: IaccountAction) => {
     let innerAccount;
     switch (action.type) {
+        case DEREGISTER_LOGIN_USER:
+            innerAccount = {};
+            break;
         case SET_LOGIN_USER:
             innerAccount =  action.account;
             break;

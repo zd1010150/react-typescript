@@ -3,6 +3,7 @@ export default {
   zh: {
     button: {
         signIn: '登录',
+        logout: '登出',
       cancel: '取消',
       ok: '确认',
       submit: '提交',
@@ -57,6 +58,7 @@ export default {
   en: {
     button: {
       signIn: 'Sign In',
+      logout: 'Log Out',
       cancel: 'Cancel',
       ok: 'OK',
       submit: 'Submit',

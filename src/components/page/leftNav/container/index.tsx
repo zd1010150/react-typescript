@@ -28,7 +28,6 @@ class Nav extends React.Component <RouteComponentProps<InavState> & InjectedIntl
                 id: NAV_URL_PAGE_MAPPING[key],
                 url: key
             }));
-        debugger
         const menuEls = navObj.map((item, index) => (
             <Menu.Item key = {item.url} className = {cx('left-nav-item')}>
                 <NavLink to = {item.url}>{formatMessage({id: item.id})}</NavLink>

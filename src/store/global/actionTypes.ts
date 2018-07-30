@@ -1,3 +1,3 @@
-
+export const DEREGISTER_LOGIN_USER = 'DEREGISTER_LOGIN_USER'; // 注销当前用户
 export const TOGGLE_LANGUAGE = 'TOGGLE_LANGUAGE';
 export const SET_LOGIN_USER = 'SET_LOGIN_USER';
