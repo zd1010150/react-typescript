@@ -1,6 +1,7 @@
 import AccountInfo from './accountInfo/index';
+import CreateNewAccount from './auth/createAccount';
 import Login from './auth/login/index';
-import Logout from './auth/logout';
+import Logout from './auth/logout/index';
 import QueryGoods from './queryGoods/index';
 
 export {
@@ -8,4 +9,5 @@ export {
     Logout,
     AccountInfo,
     QueryGoods,
+    CreateNewAccount,
 };

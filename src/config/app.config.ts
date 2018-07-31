@@ -21,5 +21,17 @@ export const  NAV_URL_PAGE_MAPPING = {
     '/enquiry': 'global.pageTitle.enquiry'
 }
 export const UN_NAV_URL_PAGE_MAPPING = {
-    '/auth/login' : 'global.pageTitle.signIn'
+    '/auth/createNewAccount': 'global.pageTitle.createNewAccount',
+    '/auth/login' : 'global.pageTitle.signIn',
 }
+export const FORM_LAYOUT_CONFIG = {
+    labelCol: {
+
+      sm: { span: 6, offset: 2 },
+      xs: { span: 24 },
+    },
+    wrapperCol: {
+     sm: { span: 8 },
+      xs: { span: 24 },
+    },
+  };

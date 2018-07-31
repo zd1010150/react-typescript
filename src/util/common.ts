@@ -1,6 +1,6 @@
-import { localStorageKeys } from 'config/app.config'
 import * as _ from 'lodash';
-import { IloginUser } from 'store/global/types';
+import { localStorageKeys } from '../config/app.config'
+import { IloginUser } from '../store/global/types';
 import { getStore } from './localStorage';
 /**
  * getAuthorization

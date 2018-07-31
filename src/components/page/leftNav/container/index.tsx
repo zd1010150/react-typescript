@@ -6,7 +6,7 @@ import {Menu} from 'antd';
 import {NavLink} from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from '../LeftSideNav.less';
-import {NAV_URL_PAGE_MAPPING} from 'config/app.config';
+import {NAV_URL_PAGE_MAPPING} from '../../../../config/app.config';
 
 const cx = classNames.bind(styles);
 

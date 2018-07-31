@@ -4,8 +4,8 @@ import zh from 'antd/lib/locale-provider/zh_CN';
 import * as React from 'react';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import { connect } from 'react-redux';
-import { IApplicationState } from 'src/store/reducers';
 import { LANGUAGE } from "../config/app.config";
+import { IApplicationState } from '../store/reducers';
 
 import * as zhLocaleData from 'react-intl/locale-data/zh';
 import message from './message';

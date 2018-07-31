@@ -1,12 +1,12 @@
 import { notification } from 'antd';
 import * as _ from 'lodash';
-import { SUCCESS_HTTP_CODE, UNAUTHENTICATION  } from 'src/config/app.config';
-import allInfos from 'src/i18n/global/info';
-import http from 'src/util/http';
-import { getStore } from 'src/util/localStorage';
-import { deRegisterLoginUser } from 'store/global/actions';
+import { SUCCESS_HTTP_CODE, UNAUTHENTICATION  } from '../../config/app.config';
 import { localStorageKeys} from "../../config/app.config";
+import allInfos from '../../i18n/global/info';
+import http from '../../util/http';
+import { getStore } from '../../util/localStorage';
 import { addError } from '../error/action';
+import { deRegisterLoginUser } from '../global/actions';
 import {
   HTTP_ACTION_DOING,
   HTTP_ACTION_DONE,
@@ -90,7 +90,6 @@ const dispatch = (method: string, url: string, request: Promise<IresponseResult>
       return Promise.reject();
     }
   }).catch((err) => {
-    debugger
     dispatcher({
       type: HTTP_ACTION_ERROR,
     });

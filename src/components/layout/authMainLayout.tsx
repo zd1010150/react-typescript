@@ -1,15 +1,15 @@
 import classNames from 'classnames/bind';
-import { AccountMainContentComponent, AuthMainContentComponent} from "components/page";
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from "react-router";
-import {Route, Switch, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Dispatch } from 'redux';
-import { deRegisterLoginUser, toggleLanguage } from 'src/store/global/actions';
-import { GlobalActions, IloginUser} from 'src/store/global/types';
-import { IApplicationState} from 'src/store/reducers';
 import { LANGUAGE } from "../../config/app.config";
+import { deRegisterLoginUser, toggleLanguage } from '../../store/global/actions';
+import { GlobalActions, IloginUser} from '../../store/global/types';
+import { IApplicationState} from '../../store/reducers';
 import {
+    AuthMainContentComponent,
     Logo,
     PageTitle,
     TopPanel
@@ -24,27 +24,28 @@ interface ImainLayoutProps{
 }
 const cx = classNames.bind(styles);
 type propTypes = ImainLayoutProps & RouteComponentProps<any>;
-const layout: React.SFC<propTypes>= ({locale, account, changeLanugage, deRegisterLoginUserDispatch}) => (
-    <div className="page-wrapper">
-        <header className="page-header">
-            <div className="panel wrapper">
-                <TopPanel account={account} language={locale} onChange={changeLanugage} deRegisterLoginUserDispatch={deRegisterLoginUserDispatch} />
+const layout: React.SFC<propTypes>= ({locale, account, changeLanugage, deRegisterLoginUserDispatch, location}) => {
+    window.console.log(location.pathname, "=====")
+    return (
+        <div className="page-wrapper">
+            <header className="page-header">
+                <div className="panel wrapper">
+                <h1>auth</h1>
+                    <TopPanel account={account} language={locale} onChange={changeLanugage} deRegisterLoginUserDispatch={deRegisterLoginUserDispatch} />
+                </div>
+            </header>
+            <div className={classNames("section",cx("nav-sections"))}>
+                <Logo language={locale}/>
             </div>
-        </header>
-        <div className={classNames("section",cx("nav-sections"))}>
-            <Logo language={locale}/>
+            <main id="maincontent" className={cx("page-main")}>
+                <PageTitle/>
+                <div className="columns">
+                    <AuthMainContentComponent />
+                </div>
+            </main>
         </div>
-        <main id="maincontent" className={cx("page-main")}>
-            <PageTitle/>
-            <div className="columns">
-                <Switch>
-                    <Route path = "/auth" component = {AuthMainContentComponent}/>
-                    <Route path = "/" component = {AccountMainContentComponent}/>
-                </Switch>
-            </div>
-        </main>
-    </div>
-);
+    );
+}
 const mapStateToProps = (state: IApplicationState) =>  ({ locale: state.global.language, account: state.global.account });
 const mapDispatchToProps = (dispatch: Dispatch<GlobalActions>) => {
     return {

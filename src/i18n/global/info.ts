@@ -7,6 +7,7 @@ export default {
         ERROR_NO_MODIFY: '你没有做任何修改',
         ERROR_CHINA_REQUIRE_ID: '中国大陆地区，必填身份证信息',
         loginSuccess: '登录成功',
+        createNewAccountSuccess: '创建新用户成功',
     },
     en: {
        WELCOME_MSG: 'Welcome',
@@ -15,5 +16,6 @@ export default {
         ERROR_NO_MODIFY: 'None modification',
         ERROR_CHINA_REQUIRE_ID: 'Citizens in China are required to input  ID Number',
         loginSuccess: 'Login Success',
+        createNewAccountSuccess: 'Create New Account Success',
     },
 };

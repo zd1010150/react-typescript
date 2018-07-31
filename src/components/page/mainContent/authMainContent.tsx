@@ -1,15 +1,18 @@
 /*tslint:disable:ordered-imports*/
 import * as React from 'react';
-import { Switch} from 'react-router-dom';
-import { Login, Logout } from 'views/index';
-import { PublicRoute } from 'components/ui'
+import { Switch } from 'react-router';
+import { Login, Logout, CreateNewAccount } from '../../../views/index';
+import { PublicRoute } from '../../ui/index'
 class AuthMainContentComponent extends React.Component <{}> {
     public render() {
-        debugger
+        window.console.log("auth change ======")
+       
+    
        return (
                 <Switch>
                     <PublicRoute path="/auth/login" component={Login} />
                     <PublicRoute path="/auth/logout" component={Logout} />
+                    <PublicRoute path="/auth/createNewAccount" component={CreateNewAccount} />
                 </Switch>
             )
     }

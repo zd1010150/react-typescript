@@ -6,10 +6,10 @@ import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
 import zhIcon from 'assets/images/ch-language.png';
 import enIcon from 'assets/images/en-language.png';
-import { LANGUAGE } from "config/app.config";
+import { LANGUAGE } from "../../../config/app.config";
 import * as styles from './index.less';
-import { UserName } from 'components/ui/index';
-import { IloginUser } from 'src/store/global/types';
+import { UserName } from '../../ui/index';
+import { IloginUser } from '../../../store/global/types';
 
 interface ItopPanel {
     language: LANGUAGE,

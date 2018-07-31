@@ -1,9 +1,9 @@
 import * as _ from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { IloginUser} from 'src/store/global/types';
-import { IApplicationState} from 'src/store/reducers';
 import { LANGUAGE } from "../../config/app.config";
+import { IloginUser} from '../../store/global/types';
+import { IApplicationState} from '../../store/reducers';
 
 
 interface IuserNameProps{

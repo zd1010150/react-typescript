@@ -1,10 +1,10 @@
 /*tslint:disable:ordered-imports*/
 import * as React from 'react';
-import {Switch} from 'react-router-dom';
-import {AccountInfo, QueryGoods} from 'views/index';
+import {Switch} from 'react-router';
+import {AccountInfo, QueryGoods} from '../../../views/index';
 import {Layout} from 'antd';
-import { LeftNav } from 'components/page/index';
-import { PrivateRoute } from 'components/ui';
+import { LeftNav } from '../index';
+import { PrivateRoute } from '../../ui/index';
 
 const {Sider, Content} = Layout;
 class AccountMainContentComponent extends React.Component <{}> {

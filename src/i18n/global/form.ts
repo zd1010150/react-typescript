@@ -28,6 +28,15 @@ export default {
     status: '状态',
     receiver: '收件人',
     createDate: '创建日期',
+    company: '公司',
+    abn: 'ABN/ACN',
+    position: '职位',  
+    oldPwd: '旧密码',
+    newPwd: '新密码',
+    confirmPwd: '确认新密码',
+    confirmError: '新密码和确认密码不一致！',
+    password: '密码',
+    confirmPassword: '确认密码'
   },
   en: {
     lastName: 'Last Name',
@@ -57,5 +66,14 @@ export default {
     status: 'Status',
     receiver: 'Receiver',
     createDate: 'Create Date',
+    company: 'Company',
+    abn: 'ABN/ACN',
+    position: 'Position',
+    oldPwd: 'Old Password',
+    newPwd: 'New Password',
+    confirmPwd: 'Confirm New Password',
+    confirmError: 'New password is not same as to the confirm password',  
+    password: 'Password',
+    confirmPassword: 'Confirm Password'
   },
 };

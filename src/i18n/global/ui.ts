@@ -2,8 +2,8 @@
 export default {
   zh: {
     button: {
-        signIn: '登录',
-        logout: '登出',
+      signIn: '登录',
+      logout: '登出',
       cancel: '取消',
       ok: '确认',
       submit: '提交',
@@ -23,6 +23,7 @@ export default {
       detail: '查看详情',
       goBack: '返回',
       download: '下载所有图片',
+      createNewAccount: '创建新账户',
     },
     input: {
       searchStore: '在此搜索全站商品...',
@@ -78,6 +79,7 @@ export default {
       detail: 'Detail',
       goBack: 'Go Back',
       download: 'Download All Pictures',
+      createNewAccount: 'Create New Account',
     },
     input: {
       searchStore: 'Search entire store here...',

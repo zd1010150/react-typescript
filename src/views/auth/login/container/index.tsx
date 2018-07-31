@@ -1,9 +1,9 @@
 /* tslint:disable:ordered-imports */
-import { Row, Col, Button } from 'antd';
+import { Row, Col } from 'antd';
 import { FormComponentProps } from 'antd/lib/form/Form';
 import classNames from 'classnames/bind';
-import { login } from 'store/global/actions';
-import { IloginFormData } from 'store/global/types';
+import { login } from '../../../../store/global/actions';
+import { IloginFormData } from '../../../../store/global/types';
 import styles from '../index.less';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { RouteComponentProps, withRouter } from "react-router";
 import LoginForm from '../components/loginForm';
+import {Link} from 'react-router-dom';
 
 
 const cx = classNames.bind(styles);
@@ -42,9 +43,9 @@ class Login extends React.Component <IloginForm & FormComponentProps & InjectedI
                         </div>
                         <div className="section-content">
                             <p>{formatMessage({id: 'page.login.newDistributerAdvantage'})}</p>
-                            <Button type = "primary" htmlType = "submit" className = {cx('signInBtn')}>
+                            <Link to="/auth/createNewAccount" className = {cx('signInBtn')}>
                                 {formatMessage({id: 'page.login.createNewAccount'})}
-                            </Button>
+                            </Link>
                         </div>
                     </section>
                 </Col>

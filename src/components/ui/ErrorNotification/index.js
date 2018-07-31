@@ -1,6 +1,6 @@
 
 import { notification } from 'antd';
-import { markReadedError } from 'store/error/action';
+import { markReadedError } from '../../../store/error/action';
 
 const errorNotification = (store) => {
   store.subscribe(() => {

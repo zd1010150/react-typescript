@@ -5,8 +5,8 @@ import classNames from 'classnames/bind';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { RouteComponentProps, withRouter } from "react-router";
-import { NavLink } from 'react-router-dom';
-import { IloginFormData } from 'store/global/types';
+import { Link } from 'react-router-dom';
+import { IloginFormData } from '../../../../store/global/types';
 import styles from '../index.less';
 
 
@@ -37,7 +37,7 @@ class LoginForm extends React.Component <IloginFormProps & FormComponentProps & 
                         <Button type = "primary" htmlType = "submit" className = {cx('signInBtn')}>
                             {formatMessage({id: 'global.ui.button.signIn'})}
                         </Button>
-                        <NavLink to='/auth/forgetpassword'>{formatMessage({id: 'page.login.forgetPassword'})}</NavLink>
+                        <Link to='/auth/forgetpassword'>{formatMessage({id: 'page.login.forgetPassword'})}</Link>
                     </Form.Item>
                 </div>
             </Form>

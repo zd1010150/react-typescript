@@ -1,7 +1,7 @@
 
-import PrivateRoute from 'components/ui/router/privateRoute';
-import PublicRoute from 'components/ui/router/publicRoute';
-import ErrorNotification from './ErrorNotification';
+import ErrorNotification from './ErrorNotification/index';
+import PrivateRoute from './router/privateRoute';
+import PublicRoute from './router/publicRoute';
 import UserName from './userName';
 
 export {

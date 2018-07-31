@@ -1,9 +1,9 @@
 import * as _ from 'lodash';
 import { combineReducers } from 'redux';
-import { getStore, setStore } from 'src/util/localStorage';
-import {LANGUAGE, localStorageKeys } from "../../config/app.config";
-import { DEREGISTER_LOGIN_USER, SET_LOGIN_USER, TOGGLE_LANGUAGE} from './actionTypes';
-import { IaccountAction, IlanguageAction, IloginUser } from './types';
+import { LANGUAGE, localStorageKeys} from "../../config/app.config";
+import { getStore, setStore } from '../../util/localStorage';
+import { DEREGISTER_LOGIN_USER, SET_GLOBAL_SETTING, SET_LOGIN_USER, TOGGLE_LANGUAGE} from './actionTypes';
+import { IaccountAction, Iglobalsetting,IglobalsettingAction, IlanguageAction, IloginUser,  } from './types';
 
 const initAccountStr = getStore(localStorageKeys.loginUser as string);
 const initAccount = _.isEmpty(initAccountStr) ? {} : JSON.parse(initAccountStr) as IloginUser;
@@ -40,13 +40,27 @@ const account = (state: IloginUser= initAccount, action: IaccountAction) => {
     setStore(localStorageKeys.loginUser as string, JSON.stringify(innerAccount) as string);
     return innerAccount;
 };
-
-
+const mappingState = (serverGlobalSettings: any) => {
+    return {
+        positions: serverGlobalSettings.distributor_position
+    };
+}
+const settings = (state: Iglobalsetting = {positions: []} as Iglobalsetting , action: IglobalsettingAction) => {
+    // tslint:disable-next-line:no-shadowed-variable
+    const { type, settings } = action;
+    switch (type) {
+        case SET_GLOBAL_SETTING:
+            return Object.assign({}, state, mappingState(settings))
+        default:
+            return state;
+    }
+}
 
 
 
 const rootReducer = combineReducers({
     account,
-    language
+    language,
+    settings,
 });
 export default rootReducer;

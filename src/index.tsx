@@ -1,17 +1,17 @@
 /* tslint:disable:interface-name */
 import 'antd/dist/antd.less';
 
-import { ErrorNotification } from 'components/ui/index';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import 'src/assets/less/index.less';
-import I18n from 'src/i18n/index';
-import configureStore from 'src/store/configureStore';
 import App from './App';
+import { ErrorNotification } from './components/ui/index';
+import I18n from './i18n/index';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
+import configureStore from './store/configureStore';
 
 declare global {
     interface Window {

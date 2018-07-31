@@ -1,15 +1,18 @@
 import * as _ from 'lodash';
 import { ActionCreator } from 'redux';
-import { Dispatch} from 'redux';
-import { post } from 'store/http/httpAction';
-import { LANGUAGE} from "../../config/app.config";
+import { Dispatch } from 'redux';
+import { LANGUAGE } from "../../config/app.config";
+import { get, post } from '../http/httpAction';
 import {
     DEREGISTER_LOGIN_USER,
+    SET_GLOBAL_SETTING,
     SET_LOGIN_USER,
     TOGGLE_LANGUAGE
 } from './actionTypes';
 import {
     IaccountAction,
+    Iglobalsetting,
+    IglobalsettingAction,
     IlanguageAction,
     IloginFormData,
     IloginUser,
@@ -34,9 +37,12 @@ export const setLoginUser: ActionCreator<IaccountAction> = (
     account,
     type: SET_LOGIN_USER,
 });
-export const login = (values: IloginFormData, successMessage: string, cb:()=>void) => (dispatch: Dispatch<any>):  Promise<void> =>
-        post('/distributor/login', values, dispatch, { successMessage }).then(({data}) => {
-        debugger
+export const setGlobalSetting: ActionCreator<IglobalsettingAction> = (settings: Iglobalsetting) => ({
+    settings,
+    type: SET_GLOBAL_SETTING,
+});
+export const login = (values: IloginFormData, successMessage: string, cb: () => void) => (dispatch: Dispatch<any>): Promise<void> =>
+    post('/distributor/login', values, dispatch, { successMessage }).then(({ data }) => {
         if (data && data.token && data.user) {
             const loginUser: IloginUser = {
                 email: data.user.emial,
@@ -45,11 +51,16 @@ export const login = (values: IloginFormData, successMessage: string, cb:()=>voi
                 token: data.token,
                 userId: data.user.id,
             };
-           dispatch(setLoginUser(loginUser));
-           if(_.isFunction(cb)){
-               cb()
-           }
+            dispatch(setLoginUser(loginUser));
+            if (_.isFunction(cb)) {
+                cb()
+            }
         }
     });
-
+export const fetchGlobalSetting = () => (dispatch: Dispatch<any>): Promise<void> =>
+    get('/distributor/global-settings', {}, dispatch, ).then(({ data }) => {
+        if (data) {
+            dispatch(setGlobalSetting(data));
+        }
+    });
 

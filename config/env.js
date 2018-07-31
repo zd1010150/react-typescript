@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
-const { API_URL, MAGENTO_DOMAIN } = require('../env.js');
+const { API_URL } = require('../env');
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];

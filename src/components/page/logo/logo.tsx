@@ -1,8 +1,8 @@
 import classNames from 'classnames/bind';
-import {LANGUAGE} from "config/app.config";
 import * as React from 'react';
 import enLogo from 'src/assets/images/en-logo.png';
 import zhLogo from 'src/assets/images/zh-logo.png';
+import {LANGUAGE} from "../../../config/app.config";
 import * as styles from './index.less';
 
 interface Ilogo {
