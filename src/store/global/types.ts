@@ -50,3 +50,10 @@ export interface IloginFormData{
     email: string,
     password: string
 }
+
+export interface InotificationData{
+    icon?: string,
+    info?: string,
+    title?: string,
+    backUrl?: string,
+}

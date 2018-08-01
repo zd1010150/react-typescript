@@ -4,8 +4,8 @@ import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from "react-router";
 import { Dispatch } from 'redux';
+import { IantFormValidateResult, IApplicationState } from 'store/types';
 import { Iposition } from '../../../../store/global/types';
-import { IApplicationState } from '../../../../store/reducers'
 import CompanyInforForm from '../components/companyInfoForm';
 import ContactPersonForm from '../components/contactPersonForm';
 import PasswordForm, { passwordFormStatus } from '../components/passwordForm';
@@ -17,10 +17,7 @@ export interface Iprops {
     positions: Iposition[],
     createNewAccountDispatch: (formData: ICreateAccountForm, successMessage: string, cb: ()=> void)=>void
 }
-interface IvalidateResult{
-    data: any,
-    validate: boolean
-}
+
 type IcreateAccountProps = Iprops  & InjectedIntlProps & RouteComponentProps<any>;
 export class CreateAccount extends React.Component <IcreateAccountProps, {}> {
     
@@ -58,7 +55,7 @@ export class CreateAccount extends React.Component <IcreateAccountProps, {}> {
             getPromiseWrapper(this.contactPersonForm), 
             getPromiseWrapper(this.signInForm), 
             getPromiseWrapper(this.passwordForm)
-        ]).then(([companyInfoForm,contactPersonForm, signInfoForm, passwordForm]: [IvalidateResult,IvalidateResult,IvalidateResult,IvalidateResult])=>{
+        ]).then(([companyInfoForm,contactPersonForm, signInfoForm, passwordForm]: [IantFormValidateResult,IantFormValidateResult,IantFormValidateResult,IantFormValidateResult])=>{
             const {password_confirmation, password} = passwordForm.data;
             const validateResult = companyInfoForm.validate && contactPersonForm.validate && signInfoForm.validate && passwordForm.validate && (password === password_confirmation);
             if(validateResult){

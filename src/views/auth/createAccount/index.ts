@@ -1,3 +1,3 @@
-import CreateNewAccount from './container';
+import CreateNewAccount from './container/index';
 
 export default CreateNewAccount;

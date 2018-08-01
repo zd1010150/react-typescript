@@ -108,3 +108,5 @@ export const httpDelete = (url: string, data:object, dispatcher: any, callbackCo
 
 export const patch = (url: string, data:object, dispatcher: any, callbackConfig:IcallbackConfig = { successMessage: '', callbackAction: null }, httpConfig:IrealHeaders = { realHeaders: {}, apiDomain: '' }) =>
   (dispatch('patch', url, http('patch', url, data, httpConfig.realHeaders, httpConfig.apiDomain), dispatcher, callbackConfig));
+export const put = (url: string, data:object, dispatcher: any, callbackConfig:IcallbackConfig = { successMessage: '', callbackAction: null }, httpConfig:IrealHeaders = { realHeaders: {}, apiDomain: '' }) =>
+  (dispatch('put', url, http('put', url, data, httpConfig.realHeaders, httpConfig.apiDomain), dispatcher, callbackConfig));

@@ -4,19 +4,21 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 import classNames from 'classnames/bind';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
+import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from "react-router";
 import { Link } from 'react-router-dom';
-import { IloginFormData } from '../../../../store/global/types';
+import { Dispatch } from 'redux';
+import { sendEmail } from '../flow/actions';
+import { IsendEmailFormData } from '../flow/types';
 import styles from '../index.less';
-
 
 const cx = classNames.bind(styles);
 
 interface IloginFormProps {
-    login: (formData: IloginFormData, successMessage: string, cb: ()=> void) => void
+    sendEmailDispatch: (formData: IsendEmailFormData, successMessage: string, cb: ()=> void) => void
 }
 
-class LoginForm extends React.Component <IloginFormProps & FormComponentProps & InjectedIntlProps & RouteComponentProps<any>> {
+class ForgetPasswordForm extends React.Component <IloginFormProps & FormComponentProps & InjectedIntlProps & RouteComponentProps<any>> {
     public render() {
         const {getFieldDecorator} = this.props.form;
         const {formatMessage} = this.props.intl;
@@ -28,16 +30,10 @@ class LoginForm extends React.Component <IloginFormProps & FormComponentProps & 
                             rules: [{required: true, message: 'Please input your email!'}],
                         })(<Input suffix = {<Icon type = "user"/>} placeholder = "Email"/>)}
                     </Form.Item>
-                    <Form.Item label = "password" className = {cx('formItem')}>
-                        {getFieldDecorator('password', {
-                            rules: [{required: true, message: 'Please input your Password!'}],
-                        })(<Input suffix = {<Icon type = "lock"/>} type = "password" placeholder = "Password"/>)}
-                    </Form.Item>
                     <Form.Item className = {cx('formItem')}>
                         <Button type = "primary" htmlType = "submit" className = {cx('signInBtn')}>
                             {formatMessage({id: 'global.ui.button.signIn'})}
                         </Button>
-                        <Link to='/auth/forgetPassword'>{formatMessage({id: 'page.login.forgetPassword'})}</Link>
                     </Form.Item>
                 </div>
             </Form>
@@ -51,8 +47,8 @@ class LoginForm extends React.Component <IloginFormProps & FormComponentProps & 
         const { history } = this.props;
         this.props.form.validateFields((err: any, values: object) => {
             if (!err) {
-                me.props.login(values as IloginFormData, formatMessage({id: 'global.info.loginSuccess'}), () => {
-                    history.replace("/dashboard");
+                me.props.sendEmailDispatch(values as IsendEmailFormData, formatMessage({id: 'global.info.sendEmailSuccess'}), () => {
+                    history.replace("/auth/login");
                 });
             }
         });
@@ -60,5 +56,11 @@ class LoginForm extends React.Component <IloginFormProps & FormComponentProps & 
 }
 
 
-const LoginFormComponent = withRouter(Form.create()(injectIntl(LoginForm)));
-export default LoginFormComponent;
+
+const mapDispatchToProps = (dispatch: Dispatch<any>) => {
+    return {
+        sendEmailDispatch: (formData: IsendEmailFormData, successMessage: string, cb: () => {}) => dispatch(sendEmail(formData, successMessage, cb))
+    };
+}
+const ForgetPasswordFormComponent = withRouter(connect(null, mapDispatchToProps)(injectIntl(ForgetPasswordForm)));
+export default ForgetPasswordFormComponent;

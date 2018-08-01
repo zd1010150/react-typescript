@@ -1,13 +1,10 @@
 import * as React from 'react';
 
-export interface ItestComponentProps {
-    name: string,
-    framework: string,
-}
 
-export class TestComponent extends React.Component <ItestComponentProps, {}> {
+
+class TestComponent extends React.Component < {}> {
     public render() {
-        const {name, framework} = this.props;
-        return <h1>{name}, {framework}</h1>
+        return <h1>test</h1>
     }
 }
+export default TestComponent;

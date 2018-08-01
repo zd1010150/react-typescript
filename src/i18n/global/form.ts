@@ -36,7 +36,10 @@ export default {
     confirmPwd: '确认新密码',
     confirmError: '新密码和确认密码不一致！',
     password: '密码',
-    confirmPassword: '确认密码'
+    confirmPassword: '确认密码',
+    contactEmail: '联系人邮箱',
+
+    loginEmail: '登录邮箱'
   },
   en: {
     lastName: 'Last Name',
@@ -74,6 +77,8 @@ export default {
     confirmPwd: 'Confirm New Password',
     confirmError: 'New password is not same as to the confirm password',  
     password: 'Password',
-    confirmPassword: 'Confirm Password'
+    confirmPassword: 'Confirm Password',
+    contactEmail: 'Contact Email',
+    loginEmail: 'Login Email'
   },
 };

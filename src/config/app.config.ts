@@ -6,7 +6,7 @@ export const UNAUTHENTICATION = { // Unauthentication rewrite url
 };
 export const SUCCESS_HTTP_CODE = [200, 201];
 export interface Iaction{
-    type: string
+    type: string | symbol
 }
 export const enum LANGUAGE {
     ZH = "zh",
@@ -22,7 +22,9 @@ export const  NAV_URL_PAGE_MAPPING = {
 }
 export const UN_NAV_URL_PAGE_MAPPING = {
     '/auth/createNewAccount': 'global.pageTitle.createNewAccount',
+    '/auth/forgetPassword': 'global.pageTitle.forgetPassword',
     '/auth/login' : 'global.pageTitle.signIn',
+    '/auth/resetPassword': 'global.pageTitle.resetPassword'
 }
 export const FORM_LAYOUT_CONFIG = {
     labelCol: {

@@ -1,9 +1,9 @@
 
-import { AccountMainLayout, AuthMainLayout} from "components/layout/index";
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Route, RouteComponentProps, Switch, withRouter } from "react-router";
 import { Dispatch } from 'redux';
+import { AccountMainLayout, AuthMainLayout} from "./components/layout/index";
 import { fetchGlobalSetting } from './store/global/actions';
 interface Iprops{
   fetchGolbalSettingDispatch: () => void
@@ -13,7 +13,6 @@ class App extends React.Component <RouteComponentProps<any> & Iprops> {
     this.props.fetchGolbalSettingDispatch();
   }
     public render() {
-       debugger
        return (
         <div className="App">
             <Switch>

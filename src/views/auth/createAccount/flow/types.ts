@@ -14,3 +14,5 @@ export interface IsignInfoFormData{
     password: string
 }
 export type ICreateAccountForm = IcompanyFormData & IcontactPersonFormData & IsignInfoFormData;
+
+

@@ -5,11 +5,15 @@ export default {
         enquiry : '商品查询',
         signIn : '经销商登录',
         createNewAccount : '创建新账户',
+        forgetPassword: '忘记密码',
+        resetPassword: '重置密码'
     },
     en: {
         myDashboard: 'My DashBoard',
         enquiry : 'Enquiry',
         signIn : 'Distributor Sign In',
         createNewAccount : 'Create New Account',
+        forgetPassword: 'Forget Your Password',
+        resetPassword: 'Reset Password'
     },
 };

@@ -1,6 +1,7 @@
 declare interface IReduxConnectDispatch{
   dispatch: (action: any) => void
 }
+declare module 'query-string'
 declare module 'classnames'
 declare module 'classnames/bind'
 declare module '*.less'

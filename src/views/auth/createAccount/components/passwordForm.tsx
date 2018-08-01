@@ -18,7 +18,7 @@ export enum passwordFormStatus {
 }
 
 interface IpasswordFormProps {
-    editStatus: passwordFormStatus
+    editStatus?: passwordFormStatus
 }
 interface IpasswordFormState {
     isConfirmError?: boolean,
@@ -34,11 +34,13 @@ class PasswordForm extends React.Component<propsTypes> {
     }
     
     public render() {
+        const { editStatus } = this.props;
         const { getFieldDecorator } = this.props.form;
         const { formatMessage } = this.props.intl;
         const locale = this.props.intl.locale === 'zh' ? LANGUAGE.ZH : LANGUAGE.EN;
         const { isConfirmError, pwdStreeLevel } = this.state;
-        const oldPwdEl = this.props.editStatus === passwordFormStatus.modifyPassword? (
+        const isCreateNew = editStatus === passwordFormStatus.createNew;
+        const oldPwdEl = editStatus === passwordFormStatus.modifyPassword? (
             <Form.Item
                 {...FORM_LAYOUT_CONFIG}
                 label={formatMessage({ id: 'global.form.oldPwd' })}
@@ -59,7 +61,7 @@ class PasswordForm extends React.Component<propsTypes> {
                 { oldPwdEl}
                 <Form.Item
                     {...FORM_LAYOUT_CONFIG}
-                    label={formatMessage({ id: 'global.form.newPwd' })}
+                    label={formatMessage({ id: isCreateNew ? 'global.form.password' :'global.form.newPwd' })}
                     className = {cx('formItem')}
                 >
                     {
