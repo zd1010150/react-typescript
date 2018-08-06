@@ -8,7 +8,9 @@ import { fetchGlobalSetting } from './store/global/actions';
 interface Iprops{
   fetchGolbalSettingDispatch: () => void
 }
+
 class App extends React.Component <RouteComponentProps<any> & Iprops> {
+  
   public componentDidMount(){
     this.props.fetchGolbalSettingDispatch();
   }

@@ -2,8 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6549d746-8ccb-4b92-ad53-2af4db607699" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.tsx" afterPath="$PROJECT_DIR$/src/App.tsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/layout/accountMainLayout.tsx" afterPath="$PROJECT_DIR$/src/components/layout/accountMainLayout.tsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/layout/authMainLayout.tsx" afterPath="$PROJECT_DIR$/src/components/layout/authMainLayout.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/i18n/global/info.ts" afterPath="$PROJECT_DIR$/src/i18n/global/info.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/i18n/page/index.js" afterPath="$PROJECT_DIR$/src/i18n/page/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/global/actions.ts" afterPath="$PROJECT_DIR$/src/store/global/actions.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/global/reducers.ts" afterPath="$PROJECT_DIR$/src/store/global/reducers.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/global/types.ts" afterPath="$PROJECT_DIR$/src/store/global/types.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/pageReducer.ts" afterPath="$PROJECT_DIR$/src/store/pageReducer.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/types.ts" afterPath="$PROJECT_DIR$/src/store/types.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/auth/forgetPassword/container/index.tsx" afterPath="$PROJECT_DIR$/src/views/auth/forgetPassword/container/index.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/auth/resetPassword/container/index.tsx" afterPath="$PROJECT_DIR$/src/views/auth/resetPassword/container/index.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/auth/resetPassword/flow/actions.ts" afterPath="$PROJECT_DIR$/src/views/auth/resetPassword/flow/actions.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/auth/resetPassword/flow/types.ts" afterPath="$PROJECT_DIR$/src/views/auth/resetPassword/flow/types.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/queryGoods/container/index.tsx" afterPath="$PROJECT_DIR$/src/views/queryGoods/container/index.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/typings/custom-typings.d.ts" afterPath="$PROJECT_DIR$/typings/custom-typings.d.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,26 +39,6 @@
               <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1532998433000" expanded="true" signature="571:703" ph="..." />
-                <marker date="1532998433000" expanded="true" signature="778:3629" ph="{...}" />
-                <marker date="1532998433000" expanded="true" signature="801:3019" ph="{...}" />
-                <marker date="1532998433000" expanded="true" signature="1070:1495" ph="&lt;Menu/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="1093:1475" ph="&lt;Menu.Item/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="1125:1446" ph="&lt;button/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="1537:1766" ph="&lt;Menu/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="1560:1746" ph="&lt;Menu.Item/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="1873:2035" ph="&lt;button/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="2057:2321" ph="&lt;Dropdown/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="2107:2293" ph="&lt;button/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="2366:3012" ph="&lt;div/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="2419:2511" ph="&lt;span/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="2528:2993" ph="&lt;div/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="2603:2970" ph="&lt;Dropdown/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="2661:2938" ph="&lt;button/&gt;" />
-                <marker date="1532998433000" expanded="true" signature="3055:3229" ph="{...}" />
-                <marker date="1532998433000" expanded="true" signature="3257:3627" ph="{...}" />
-                <marker date="1532998433000" expanded="true" signature="3341:3619" ph="{&quot;title&quot;: 'Confirm'...}" />
-                <marker date="1532998433000" expanded="true" signature="3548:3609" ph="{...}" />
                 <marker date="1532998433000" expanded="true" signature="3622:3627" ph="{...}" />
               </folding>
             </state>
@@ -66,25 +61,53 @@
             <state relative-caret-position="1127">
               <caret line="57" column="11" lean-forward="false" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
               <folding>
-                <marker date="1533021253000" expanded="true" signature="2136:2174" ph="&lt;Form.Item/&gt;" />
-                <marker date="1533021253000" expanded="true" signature="2136:2197" ph="&lt;div/&gt;" />
-                <marker date="1533021253000" expanded="true" signature="2136:2217" ph="&lt;Form/&gt;" />
-                <marker date="1533021253000" expanded="true" signature="2136:2234" ph="{...}" />
-                <marker date="1533021253000" expanded="true" signature="2136:2762" ph="{...}" />
-                <marker date="1533021253000" expanded="true" signature="2305:2760" ph="{...}" />
-                <marker date="1533021253000" expanded="true" signature="2518:2752" ph="{...}" />
-                <marker date="1533021253000" expanded="true" signature="2542:2742" ph="{...}" />
-                <marker date="1533021253000" expanded="true" signature="2656:2726" ph="{...}" />
+                <marker date="1533095413000" expanded="true" signature="2136:2174" ph="&lt;Form.Item/&gt;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="authMainContent.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="authMainContent.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/page/mainContent/authMainContent.tsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="184">
               <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reselect.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/queryGoods/flow/reselect.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="types.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/queryGoods/flow/types.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1533532405000" expanded="true" signature="469:529" ph="..." />
+                <marker date="1533532405000" expanded="true" signature="882:931" ph="..." />
+                <marker date="1533532405000" expanded="true" signature="1020:1141" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/queryGoods/index.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -98,11 +121,6 @@
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#35#66#0" expanded="true" />
-                <marker date="1533024844000" expanded="true" signature="375:844" ph="{...}" />
-                <marker date="1533024844000" expanded="true" signature="397:842" ph="{...}" />
-                <marker date="1533024844000" expanded="true" signature="437:822" ph="&lt;Layout/&gt;" />
-                <marker date="1533024844000" expanded="true" signature="512:796" ph="&lt;Content/&gt;" />
-                <marker date="1533024844000" expanded="true" signature="546:765" ph="&lt;Switch/&gt;" />
               </folding>
             </state>
           </provider>
@@ -232,9 +250,9 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
-    <option name="width" value="2048" />
+    <option name="width" value="2009" />
     <option name="height" value="1129" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -253,8 +271,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -266,54 +282,6 @@
               <item name="fe-distrubuter-react-app" type="b2602c69:ProjectViewProjectNode" />
               <item name="fe-distrubuter-react-app" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fe-distrubuter-react-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fe-distrubuter-react-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fe-distrubuter-react-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fe-distrubuter-react-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="layout" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fe-distrubuter-react-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fe-distrubuter-react-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fe-distrubuter-react-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fe-distrubuter-react-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mainContent" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fe-distrubuter-react-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fe-distrubuter-react-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="topPanel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fe-distrubuter-react-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fe-distrubuter-react-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="i18n" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fe-distrubuter-react-app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fe-distrubuter-react-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fe-distrubuter-react-app" type="b2602c69:ProjectViewProjectNode" />
@@ -363,12 +331,29 @@
             <path>
               <item name="fe-distrubuter-react-app" type="b2602c69:ProjectViewProjectNode" />
               <item name="fe-distrubuter-react-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="queryGoods" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fe-distrubuter-react-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fe-distrubuter-react-app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="queryGoods" type="462c0819:PsiDirectoryNode" />
+              <item name="flow" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fe-distrubuter-react-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fe-distrubuter-react-app" type="462c0819:PsiDirectoryNode" />
               <item name="typings" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -439,26 +424,27 @@
       <workItem from="1532910465350" duration="6882000" />
       <workItem from="1532919889627" duration="21477000" />
       <workItem from="1533002454457" duration="388000" />
+      <workItem from="1533521322969" duration="774000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102039000" />
+    <option name="totallyTimeSpent" value="102813000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="2048" height="1129" extended-state="0" />
+    <frame x="0" y="23" width="2009" height="1129" extended-state="6" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2397632" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23943663" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -487,8 +473,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/page/leftNav/flow/actionType.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/page/leftNav/flow/reducer.js" />
     <entry file="file://$PROJECT_DIR$/src/components/page/leftNav/component/nav.js" />
     <entry file="file://$PROJECT_DIR$/src/components/TestComponent.tsx">
       <provider selected="true" editor-type-id="text-editor">
@@ -600,13 +584,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="2" column="47" lean-forward="false" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/queryGoods/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="25" lean-forward="false" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -769,26 +746,6 @@
           <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1532998433000" expanded="true" signature="571:703" ph="..." />
-            <marker date="1532998433000" expanded="true" signature="778:3629" ph="{...}" />
-            <marker date="1532998433000" expanded="true" signature="801:3019" ph="{...}" />
-            <marker date="1532998433000" expanded="true" signature="1070:1495" ph="&lt;Menu/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="1093:1475" ph="&lt;Menu.Item/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="1125:1446" ph="&lt;button/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="1537:1766" ph="&lt;Menu/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="1560:1746" ph="&lt;Menu.Item/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="1873:2035" ph="&lt;button/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="2057:2321" ph="&lt;Dropdown/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="2107:2293" ph="&lt;button/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="2366:3012" ph="&lt;div/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="2419:2511" ph="&lt;span/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="2528:2993" ph="&lt;div/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="2603:2970" ph="&lt;Dropdown/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="2661:2938" ph="&lt;button/&gt;" />
-            <marker date="1532998433000" expanded="true" signature="3055:3229" ph="{...}" />
-            <marker date="1532998433000" expanded="true" signature="3257:3627" ph="{...}" />
-            <marker date="1532998433000" expanded="true" signature="3341:3619" ph="{&quot;title&quot;: 'Confirm'...}" />
-            <marker date="1532998433000" expanded="true" signature="3548:3609" ph="{...}" />
             <marker date="1532998433000" expanded="true" signature="3622:3627" ph="{...}" />
           </folding>
         </state>
@@ -815,27 +772,12 @@
         <state relative-caret-position="1127">
           <caret line="57" column="11" lean-forward="false" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
           <folding>
-            <marker date="1533021253000" expanded="true" signature="2136:2174" ph="&lt;Form.Item/&gt;" />
-            <marker date="1533021253000" expanded="true" signature="2136:2197" ph="&lt;div/&gt;" />
-            <marker date="1533021253000" expanded="true" signature="2136:2217" ph="&lt;Form/&gt;" />
-            <marker date="1533021253000" expanded="true" signature="2136:2234" ph="{...}" />
-            <marker date="1533021253000" expanded="true" signature="2136:2762" ph="{...}" />
-            <marker date="1533021253000" expanded="true" signature="2305:2760" ph="{...}" />
-            <marker date="1533021253000" expanded="true" signature="2518:2752" ph="{...}" />
-            <marker date="1533021253000" expanded="true" signature="2542:2742" ph="{...}" />
-            <marker date="1533021253000" expanded="true" signature="2656:2726" ph="{...}" />
+            <marker date="1533095413000" expanded="true" signature="2136:2174" ph="&lt;Form.Item/&gt;" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/layout/mainLayout.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="42" column="25" lean-forward="false" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/layout/mainLayout.tsx" />
     <entry file="file://$PROJECT_DIR$/src/components/page/mainContent/accountMainContent.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -843,11 +785,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#35#66#0" expanded="true" />
-            <marker date="1533024844000" expanded="true" signature="375:844" ph="{...}" />
-            <marker date="1533024844000" expanded="true" signature="397:842" ph="{...}" />
-            <marker date="1533024844000" expanded="true" signature="437:822" ph="&lt;Layout/&gt;" />
-            <marker date="1533024844000" expanded="true" signature="512:796" ph="&lt;Content/&gt;" />
-            <marker date="1533024844000" expanded="true" signature="546:765" ph="&lt;Switch/&gt;" />
           </folding>
         </state>
       </provider>
@@ -856,6 +793,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/queryGoods/flow/reselect.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/queryGoods/flow/types.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1533532405000" expanded="true" signature="469:529" ph="..." />
+            <marker date="1533532405000" expanded="true" signature="882:931" ph="..." />
+            <marker date="1533532405000" expanded="true" signature="1020:1141" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/queryGoods/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>

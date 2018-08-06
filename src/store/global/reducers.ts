@@ -42,7 +42,9 @@ const account = (state: IloginUser= initAccount, action: IaccountAction) => {
 };
 const mappingState = (serverGlobalSettings: any) => {
     return {
-        positions: serverGlobalSettings.distributor_position
+        brands: serverGlobalSettings.brand,
+        categories: serverGlobalSettings.distributor_category || [],
+        positions: serverGlobalSettings.distributor_position || []
     };
 }
 const settings = (state: Iglobalsetting = {positions: []} as Iglobalsetting , action: IglobalsettingAction) => {

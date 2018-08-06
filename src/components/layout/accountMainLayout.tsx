@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { Dispatch } from 'redux';
 import { IApplicationState} from 'store/types';
 import { LANGUAGE } from "../../config/app.config";
-import { deRegisterLoginUser, toggleLanguage } from '../../store/global/actions';
+import { deRegisterLoginUser, fetchGlobalSettingAuth, toggleLanguage } from '../../store/global/actions';
 import { GlobalActions, IloginUser} from '../../store/global/types';
 import {
     AccountMainContentComponent,
@@ -16,41 +16,49 @@ import {
 } from '../page/index';
 import * as styles from './index.less';
 
-interface ImainLayoutProps{
+interface Iprops{
     locale: LANGUAGE;
     account: IloginUser;
     changeLanugage:  (language: LANGUAGE) => void,
-    deRegisterLoginUserDispatch: () => void
+    deRegisterLoginUserDispatch: () => void,
+    fetchGlobalSettingAuthDispatch: ()=>void
 }
 const cx = classNames.bind(styles);
-type propTypes = ImainLayoutProps & RouteComponentProps<any>;
-const layout: React.SFC<propTypes>= ({locale, account, changeLanugage, deRegisterLoginUserDispatch, location}) => {
-    window.console.log(location.pathname, "=====")
-    return (
-        <div className="page-wrapper">
-            <header className="page-header">
-                <div className="panel wrapper">
-                    <TopPanel account={account} language={locale} onChange={changeLanugage} deRegisterLoginUserDispatch={deRegisterLoginUserDispatch} />
+type propTypes = Iprops & RouteComponentProps<any>;
+class AccountLayout extends React.Component<propTypes>{
+    public componentDidMount() {
+        this.props.fetchGlobalSettingAuthDispatch();
+    }
+    public render() {
+        const { locale, account, changeLanugage, deRegisterLoginUserDispatch, location } = this.props;
+        return (
+            <div className="page-wrapper">
+                <header className="page-header">
+                    <div className="panel wrapper">
+                        <TopPanel account={account} language={locale} onChange={changeLanugage} deRegisterLoginUserDispatch={deRegisterLoginUserDispatch} />
+                    </div>
+                </header>
+                <div className={classNames("section",cx("nav-sections"))}>
+                    <Logo language={locale}/>
                 </div>
-            </header>
-            <div className={classNames("section",cx("nav-sections"))}>
-                <Logo language={locale}/>
+                <main id="maincontent" className={cx("page-main")}>
+                    <PageTitle/>
+                    <div className="columns">
+                        <AccountMainContentComponent />
+                    </div>
+                </main>
             </div>
-            <main id="maincontent" className={cx("page-main")}>
-                <PageTitle/>
-                <div className="columns">
-                    <AccountMainContentComponent />
-                </div>
-            </main>
-        </div>
-    );
+        );
+    }
 }
+
 const mapStateToProps = (state: IApplicationState) =>  ({ locale: state.global.language, account: state.global.account });
-const mapDispatchToProps = (dispatch: Dispatch<GlobalActions>) => {
+const mapDispatchToProps = (dispatch: Dispatch<any>) => {
     return {
         changeLanugage: (language: LANGUAGE) => dispatch(toggleLanguage(language)),
-        deRegisterLoginUserDispatch: () => dispatch(deRegisterLoginUser())
+        deRegisterLoginUserDispatch: () => dispatch(deRegisterLoginUser()),
+        fetchGlobalSettingAuthDispatch: () => dispatch(fetchGlobalSettingAuth())
     };
 }
 // 此处一定要把withRouter注入到组件中，要不然本组件不知道路由发生了变化，就不会重新渲染
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(layout));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AccountLayout));

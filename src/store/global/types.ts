@@ -25,7 +25,9 @@ export interface Ipositions{
     [index: number]: Iposition
 }
 export interface Iglobalsetting {
-    positions?: Ipositions
+    positions?: Ipositions,
+    brands?: Ibrand[],
+    categories?: Icategory[],
 }
 export interface IloginUser{
     firstName?: string,
@@ -34,12 +36,23 @@ export interface IloginUser{
     userId?: number,
     email?: string,
 }
+export interface Ibrand{
+    id: number,
+    name: string,
+    name_zh: string,
+    url: string,
+}
+export interface Icategory{
+    id: number,
+    name: string,
+    name_zh: string,
+}
 
 /** global state */
 export interface IglobalState{
     account: IloginUser,
     language: LANGUAGE,
-    settings: Iglobalsetting
+    settings: Iglobalsetting,
 }
 
 /** state interface end */

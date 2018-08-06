@@ -57,10 +57,16 @@ export const login = (values: IloginFormData, successMessage: string, cb: () => 
             }
         }
     });
-export const fetchGlobalSetting = () => (dispatch: Dispatch<any>): Promise<void> =>
-    get('/distributor/global-settings', {}, dispatch, ).then(({ data }) => {
+export const fetchGlobalSettingAuth = () => (dispatch: Dispatch<any>): Promise<void> =>
+    get('/distributor/global-settings-auth', {}, dispatch, ).then(({ data }) => {
         if (data) {
             dispatch(setGlobalSetting(data));
         }
     });
+export const fetchGlobalSetting = () => (dispatch: Dispatch<any>): Promise<void> =>
+get('/distributor/global-settings', {}, dispatch, ).then(({ data }) => {
+    if (data) {
+        dispatch(setGlobalSetting(data));
+    }
+});
 
