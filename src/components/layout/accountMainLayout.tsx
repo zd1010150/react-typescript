@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { RouteComponentProps } from "react-router";
 import { withRouter } from 'react-router-dom';
 import { Dispatch } from 'redux';
-import { IApplicationState} from 'store/types';
 import { LANGUAGE } from "../../config/app.config";
 import { deRegisterLoginUser, fetchGlobalSettingAuth, toggleLanguage } from '../../store/global/actions';
-import { GlobalActions, IloginUser} from '../../store/global/types';
+import { IloginUser} from '../../store/global/types';
+import { IApplicationState} from '../../store/types';
 import {
     AccountMainContentComponent,
     Logo,
@@ -30,7 +30,7 @@ class AccountLayout extends React.Component<propTypes>{
         this.props.fetchGlobalSettingAuthDispatch();
     }
     public render() {
-        const { locale, account, changeLanugage, deRegisterLoginUserDispatch, location } = this.props;
+        const { locale, account, changeLanugage, deRegisterLoginUserDispatch } = this.props;
         return (
             <div className="page-wrapper">
                 <header className="page-header">

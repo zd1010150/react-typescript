@@ -2,31 +2,32 @@ import { Button, Input, Table } from "antd";
 import * as _ from "lodash";
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
-import { IpaginationParams } from "store/types";
+import { Icategory } from '../../../store/global/types';
+import { IpaginationParams } from "../../../store/types";
 import {
+  Iproduct,
   IproductInCart,
   IproductQuery,
-  IproductQueryFormData
+  IproductQueryFormData,
 } from "../flow/types";
 interface Iprops {
   goodsQuery: IproductQuery;
   goodsPagination: IpaginationParams;
   getGoodsData: (values: IproductQueryFormData) => void;
   addToCart: (product: IproductInCart) =>void;
-  goods: IproductInCart[];
+  goods: Iproduct[];
 }
 
 type propTypes = Iprops & InjectedIntlProps;
 class GoodsTable extends React.Component<propTypes, {}> {
   private temper: object = {};
   public componentDidMount() {
-    this.fetchData(this.props);
+   this.fetchData(this.props);
   }
   public componentDidUpdate(prevProps: propTypes) {
     if (
       !(
-        _.isEqual(prevProps.goodsQuery, this.props.goodsQuery) &&
-        _.isEqual(prevProps.goodsPagination, this.props.goodsQuery)
+        _.isEqual(prevProps.goodsQuery, this.props.goodsQuery)
       )
     ) {
       this.fetchData(this.props);
@@ -66,9 +67,9 @@ class GoodsTable extends React.Component<propTypes, {}> {
       },
       {
         key: "category",
-        render: (t: string, record: ImappedProduct) => {
+        render: (t: string, record: Iproduct) => {
           const prop = locale === "zh" ? "name_zh" : "name_en";
-          return record.categories.map(c => c[prop]).join(", ");
+          return (record.categories as Icategory[]).map((c:Icategory) => c[prop]).join(", ");
         },
         title: formatMessage({ id: "page.enquery.category" })
       },
@@ -90,16 +91,17 @@ class GoodsTable extends React.Component<propTypes, {}> {
       },
       {
         key: "enqueryQty",
-        render: (t: string, record: ImappedProduct) => {
+        render: (t: string, record: Iproduct) => {
           return (
             <div>
               <Input ref={c => (this.temper[record.id] = c)} />
-              // tslint:disable-next-line:jsx-no-lambda
               <Button
                 type="primary"
-                onClick={() => this.addGoodToCart(record.id, record)}
+                data-id={ record.id }
+                data-record = { JSON.stringify(record)}
+                onClick={this.addGoodToCart}
               >
-                {formatMessage({ id: "global.ui.button.add" })}
+                {formatMessage({ id: "global.ui.button.addGoods" })}
               </Button>
             </div>
           );
@@ -116,6 +118,7 @@ class GoodsTable extends React.Component<propTypes, {}> {
     };
     return (
       <Table
+        rowKey="id"
         columns={columns}
         dataSource={goods}
         pagination={paginationConfig}
@@ -132,10 +135,10 @@ class GoodsTable extends React.Component<propTypes, {}> {
         ? "desc"
         : "asc";
     getGoodsData({
-      orderBy: sorter.columnKey as string,
+      orderBy: sorter.columnKey || '',
       page: pagination.current as number,
       per_page: pagination.pageSize as number,
-      sortedBy: innerSortedBy as string,
+      sortedBy: innerSortedBy|| '',
       ...goodsQuery
     });
   };
@@ -146,7 +149,10 @@ class GoodsTable extends React.Component<propTypes, {}> {
       ...goodsPagination
     });
   };
-  private addGoodToCart = (productId: number, product: IproductInCart) => {
+  private addGoodToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const btnEl = e.target as HTMLButtonElement;
+    const productId = Number(btnEl.dataset.id);
+    const product = JSON.parse(btnEl.dataset.product|| '') as Iproduct;
     const quantity = this.temper[productId].value;
     this.props.addToCart(Object.assign({},product,{product_id: product.id, quantity}));
   };

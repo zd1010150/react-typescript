@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import { IpaginationParams } from "../../../../store/types";
 import {
   QUERYGOODS_BY_PAGINATION,
@@ -29,7 +30,7 @@ export const goodsPagination = (
     case QUERYGOODS_BY_PAGINATION:
       return Object.assign({}, state, {
         page: action.page,
-        per_page: action.perPage,
+        per_page: action.per_page,
         total: action.total
       });
     case QUERYGOODS_SET_SORTER:
@@ -83,17 +84,11 @@ const batchToggleBrands = (
   isAdd: boolean
 ) => {
   if (isAdd) {
-    const newIds = [...state.brand_ids];
-    ids.forEach(id => {
-      if (newIds.indexOf(id) < 0) {
-        newIds.push(id);
-      }
-    });
     return Object.assign({}, state, {
-      brand_ids: newIds
+      brand_ids: ids
     });
   } else {
-    const brands = state.brand_ids.filter(i => i !== id);
+    const brands = state.brand_ids.filter(i => ids.indexOf(i) < 0);
     return Object.assign({}, state, {
       brand_ids: [...brands]
     });
@@ -120,18 +115,14 @@ const batchToggleCategory = (
   ids: number[],
   isAdd: boolean
 ) => {
+  debugger
   if (isAdd) {
-    const newIds = [...state.category_ids];
-    ids.forEach(id => {
-      if (newIds.indexOf(id) < 0) {
-        newIds.push(id);
-      }
-    });
+    
     return Object.assign({}, state, {
-      category_ids: newIds
+      category_ids: ids
     });
   } else {
-    const categories = state.category_ids.filter(i => ids.indexOf(i) > -1);
+    const categories = state.category_ids.filter(i => ids.indexOf(i) < 0);
     return Object.assign({}, state, {
       category_ids: [...categories]
     });
@@ -174,18 +165,18 @@ const mappingGoods = (state: Iproduct[] = [], data: any) => {
     id: good.product_id,
     // tslint:disable-next-line:object-literal-sort-keys
     code: good.product_code,
-    categories: good.categories.map((c: any) => c.distributor_category_id),
+    categories: _.isEmpty(good.categories) ? [] : good.categories.map((c: any) => c.distributor_category_id),
     online_time: good.online_time,
     product_name_zh: good.name,
     product_name_en: good.name_en,
     qty_per_pallet: good.qty_per_pallet,
-    wholesale_pallet: good.wholesale_pallet.map((p: any) => ({
+    wholesale_pallet: _.isEmpty(good.wholesale_pallet) ? [] : good.wholesale_pallet.map((p: any) => ({
       index: p.pallets,
       price: p.price
     })),
     img: good.image_url,
-    brand_zh: good.brand.name_zh,
-    brand_en: good.brand.name
+    brand_zh: (good.brand && good.brand.name_zh) || '',
+    brand_en: (good.brand && good.brand.name) || ''
   }));
 };
 export const goods = (state: Iproduct[] = [], action: any) => {

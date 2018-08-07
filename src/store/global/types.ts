@@ -38,13 +38,13 @@ export interface IloginUser{
 }
 export interface Ibrand{
     id: number,
-    name: string,
+    name_en: string,
     name_zh: string,
     url: string,
 }
 export interface Icategory{
     id: number,
-    name: string,
+    name_en: string,
     name_zh: string,
 }
 

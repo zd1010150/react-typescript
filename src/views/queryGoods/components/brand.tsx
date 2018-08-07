@@ -10,14 +10,18 @@ interface IcomponentBrand{
     name: string,
     url: string,
 }
+interface Istate {
+  pickedBrands: IcomponentBrand[]
+}
 interface Iprops {
   brands: Ibrand[];
+  filterCategoryByBrand: (brandId: number) => void
+  filterBrandsByEnglishName: (charactor: string) => void;
+  filterBrandsByPinying: (charactor: string) => void;
   setSelectedBrandBatch: (ids: number[], isAdd: boolean) => void,
 }
-interface Istate {
-    pickedBrands: IcomponentBrand[]
-}
-type propTypes = Iprops & InjectedIntlProps & Istate;
+
+type propTypes = Iprops & InjectedIntlProps;
 
 class BrandComponent extends React.Component<propTypes, {}> {
   public state: Istate= {
@@ -41,7 +45,7 @@ class BrandComponent extends React.Component<propTypes, {}> {
         />
     );
   }
-  private selectBrand = e => {
+  private selectBrand = (e:any)=> {
     window.console.log("brand:", JSON.parse(e.target.value));
     const brandObj:IcomponentBrand = JSON.parse(e.target.value);
     let newPickedBrands = [];
@@ -60,10 +64,15 @@ class BrandComponent extends React.Component<propTypes, {}> {
   };
   private saveBrand = () => {
       this.props.setSelectedBrandBatch(this.state.pickedBrands.map(c => c.id), true);
+      // this.props.filterCategoryByBrand(this.state.pickedBrands[0].id);
   }
-  private selectAlphabet = v => {
-    window.console.log("alphabet", v);
-  };
+  private selectAlphabet = (v: string) => {
+    if(this.props.intl.locale ===  'zh'){
+      this.props.filterBrandsByPinying(v);
+    }else{
+      this.props.filterBrandsByEnglishName(v);
+    }
+ };
   
 }
 export default injectIntl(BrandComponent);

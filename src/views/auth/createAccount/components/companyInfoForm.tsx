@@ -4,10 +4,10 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 import classNames from 'classnames/bind';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
-import { formStatus } from 'store/types';
-import {IaccountInfo} from 'views/accountInfo/flow/types';
 import { FORM_LAYOUT_CONFIG, LANGUAGE } from '../../../../config/app.config';
+import { formStatus } from '../../../../store/types';
 import { getExistRule } from '../../../../util/validateMessagesUtil';
+import {IaccountInfo} from '../../../accountInfo/flow/types';
 import styles from '../index.less';
 
 const cx = classNames.bind(styles);

@@ -5,8 +5,8 @@ import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from "react-router";
 import { Dispatch } from 'redux';
-import { IantFormValidateResult } from 'store/types';
-import PasswordForm, { passwordFormStatus } from 'views/auth/createAccount/components/passwordForm';
+import { IantFormValidateResult } from '../../../../store/types';
+import PasswordForm, { passwordFormStatus } from '../../createAccount/components/passwordForm';
 import { resetPwd } from '../flow/actions'
 import { IresetPasswordFormData } from '../flow/types'
 

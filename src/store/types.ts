@@ -1,8 +1,8 @@
-import { IaccountInfo } from "views/accountInfo/flow/types";
-import { IenquryState } from 'views/queryGoods/flow/types';
+import { IaccountInfo } from "../views/accountInfo/flow/types";
+import { IenquryState } from '../views/queryGoods/flow/types';
 import { Ierror } from './error/types';
 import { IglobalState } from './global/types';
-
+import { Iui } from './ui/types';
 export interface IpageState {
   accountInfo: { account: IaccountInfo };
   enquery: IenquryState
@@ -12,6 +12,7 @@ export interface IApplicationState extends IpageState{
     errors: {
         errors: Ierror[]
     },
+    ui: Iui
 }
 export interface IantFormValidateResult{
     data: any,

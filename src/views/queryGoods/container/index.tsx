@@ -1,11 +1,15 @@
-import * as React from 'react';
+import * as React from "react";
+ import FilterContainer from "./filterContainer";
+ import Table from "./tableContainer";
 
-
- class TestComponent extends React.Component < {}> {
-    public render() {
-        return <div>
-      weee 
+class IndexComponent extends React.Component<{}> {
+  public render() {
+    return (
+      <div>
+        <FilterContainer />
+        <Table />
       </div>
-    }
+    );
+  }
 }
-export default TestComponent;
+export default IndexComponent;

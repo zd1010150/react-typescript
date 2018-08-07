@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import { Dispatch } from "redux";
-import { post } from "store/http/httpAction";
+import { post } from "../../../../store/http/httpAction";
 import { IresetPasswordFormData } from "./types";
 
 

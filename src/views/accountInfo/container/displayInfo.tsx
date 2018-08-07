@@ -5,7 +5,7 @@ import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Dispatch } from 'redux';
-import { IApplicationState } from 'store/types';
+import { IApplicationState } from '../../../store/types';
 import { getDetail } from '../flow/actions';
 import { CHANGE_PWD, EDIT_INFO } from '../flow/pageActions';
 import { IaccountInfo } from '../flow/types';

@@ -1,5 +1,5 @@
-import { IantPagination, IpaginationParams } from 'store/types';
-
+import { Ibrand, Icategory  } from '../../../store/global/types';
+import { IpaginationParams } from '../../../store/types';
 
 export interface IproductQuery{
     search: string,
@@ -23,7 +23,7 @@ export interface Ipallet{
 export interface Iproduct{
     id: number,
     code: string,
-    categories: number[] | ImappedProductCategory[],
+    categories: number[] | Icategory[],
     online_time: string,
     product_name_zh: string,
     product_name_en: string,
@@ -33,10 +33,7 @@ export interface Iproduct{
     brand_zh: string,
     brand_en: string,
 }
-export interface ImappedProductCategory{
-    name_en: string,
-    name_zh: string,
-}
+
 
 export interface IproductToPost{
     product_id: number,
@@ -46,9 +43,11 @@ export type IproductInCart = Iproduct & IproductToPost;
 
 
 export interface IenquryState {
-    goodsPagination: IantPagination,
+    goodsPagination: IpaginationParams,
     goodsQuery: IproductQuery,
     goods: Iproduct[],
-    cart: IproductToPost[]
+    cart: IproductToPost[],
+    brands: Ibrand[],
+    categories: Icategory[]
 }
 

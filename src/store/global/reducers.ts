@@ -41,9 +41,10 @@ const account = (state: IloginUser= initAccount, action: IaccountAction) => {
     return innerAccount;
 };
 const mappingState = (serverGlobalSettings: any) => {
+    
     return {
-        brands: serverGlobalSettings.brand,
-        categories: serverGlobalSettings.distributor_category || [],
+        brands: _.isEmpty(serverGlobalSettings.brand) ? [] : serverGlobalSettings.brand.map((b:any) => ({ id: b.id, name_zh: b.name_zh, name_en: name, url:  b.logo_url})),
+        categories: _.isEmpty(serverGlobalSettings.distributor_category)? [] : serverGlobalSettings.distributor_category.map((c:any) => ({id: c.id, name_zh: c.name_zh, name_en: c.name})),
         positions: serverGlobalSettings.distributor_position || []
     };
 }

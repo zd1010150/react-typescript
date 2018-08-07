@@ -4,7 +4,7 @@ import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from "react-router";
 import { Dispatch } from 'redux';
-import { IantFormValidateResult, IApplicationState } from 'store/types';
+import { IantFormValidateResult, IApplicationState } from '../../../store/types';
 import PasswordForm, { passwordFormStatus } from '../../auth/createAccount/components/passwordForm';
 import { getDetail, updatePwd } from '../flow/actions'
 import { IupdatePwdFormData } from '../flow/types'

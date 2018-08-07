@@ -7,7 +7,7 @@ import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { InotificationData } from 'store/global/types';
+import { InotificationData } from '../../../store/global/types';
 
 type Iprops = InotificationData & RouteComponentProps<any> & InjectedIntlProps;
 

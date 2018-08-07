@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { RouteComponentProps } from "react-router";
 import { withRouter } from 'react-router-dom';
 import { Dispatch } from 'redux';
-import { IApplicationState} from 'store/types';
 import { LANGUAGE } from "../../config/app.config";
 import { deRegisterLoginUser, toggleLanguage } from '../../store/global/actions';
 import { GlobalActions, IloginUser} from '../../store/global/types';
+import { IApplicationState} from '../../store/types';
 import {
     AuthMainContentComponent,
     Logo,

@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import { createSelector } from "reselect";
 import { IApplicationState } from "../../../store/types";
-import {IproductInCart } from "./types";
+// import {IproductInCart } from "./types";
 
 const getGlobalBrnads = (state: IApplicationState) =>
   state.global.settings.brands;
@@ -13,30 +13,27 @@ const getSelectedCategoryId = (state: IApplicationState) =>
   state.enquery.goodsQuery.category_ids;
 const getSelectedBrandId = (state: IApplicationState) =>
   state.enquery.goodsQuery.brand_ids;
-
-export const getGoodsDetail = createSelector(
-  [getGlobalCategories, getAllGoods],
-  (globalCategories, goods) => {
-    return goods.map(good =>
-      Object.assign({}, good, {
-        categories: (good.categories as number[]).map(cId => {
-          const category = (globalCategories || []).filter(c => c.id === cId);
-          if (_.isEmpty(category)) {
-            return {
-              name_en: "",
-              name_zh: ""
-            };
-          } else {
-            return {
-              name_en: category[0].name,
-              name_zh: category[0].name_zh
-            };
+export const getSelectedCategoryDetail = createSelector(
+  [getSelectedCategoryId, getGlobalCategories],
+  (ids, categories)=>{
+      return ids.map(id=>{
+          const category = (categories || []).filter(b => b.id === id);
+          if(_.isEmpty(category)){
+              return {
+                  id,
+                  name_en: '',
+                  name_zh: '',
+              }
+          }else{
+              return {
+                  id,
+                  name_en: category[0].name_en,
+                  name_zh: category[0].name_zh,
+              }
           }
-        })
       })
-    );
   }
-);
+)
 export const getSelectedBrandDetail = createSelector(
     [getSelectedBrandId, getGlobalBrnads],
     (ids, brands)=>{
@@ -52,7 +49,7 @@ export const getSelectedBrandDetail = createSelector(
             }else{
                 return {
                     id,
-                    name_en: brand[0].name,
+                    name_en: brand[0].name_en,
                     name_zh: brand[0].name_zh,
                     url: brand[0].url,
               
@@ -61,6 +58,7 @@ export const getSelectedBrandDetail = createSelector(
         })
     }
 )
+
 export const getAllGoodsDetail = createSelector(
   [getAllGoods, getGlobalCategories],
   (goods, categories)=>{
@@ -74,7 +72,7 @@ export const getAllGoodsDetail = createSelector(
             };
           } else {
             return {
-              name_en: category[0].name,
+              name_en: category[0].name_en,
               name_zh: category[0].name_zh
             };
           }

@@ -3,7 +3,7 @@ import errorReducer from './error/reducer';
 
 import globalsReducer from './global/reducers';
 import pageReducer from './pageReducer';
-// import uiReducer from './uiReducer';
+import uiReducer from './ui/reducer';
 
 
 
@@ -12,7 +12,7 @@ export const makeRootReducer = () => (
       errors: errorReducer,
       global: globalsReducer, // 注入全局reducer
     ...pageReducer, // 注入页面级reducer
-   // ui: uiReducer,
+      ui: uiReducer,
   })
 );
 
