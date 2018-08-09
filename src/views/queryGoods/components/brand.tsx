@@ -1,78 +1,243 @@
-// mport classNames from "classnames/bind";
+import { Button, Col, Icon, Row, Tooltip } from "antd";
+import brand1 from 'assets/images/brands/1.png';
+import brand2 from 'assets/images/brands/3.png';
+import brand3 from 'assets/images/brands/4.png';
+import brand4 from 'assets/images/brands/5.png';
+import brand5 from 'assets/images/brands/6.png';
+import classNames from "classnames/bind";
+import *  as _ from 'lodash';
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
-import { BrandFilter } from "zero-design";
-import { Ibrand } from '../../../store/global/types';
-// import styles from "../index.less";
+import { Ibrand } from "../../../store/global/types";
+import styles from "../index.less";
 
-interface IcomponentBrand{
-    id: number,
-    name: string,
-    url: string,
-}
 interface Istate {
-  pickedBrands: IcomponentBrand[]
+  isDisplayAll: boolean;
 }
 interface Iprops {
   brands: Ibrand[];
-  filterCategoryByBrand: (brandId: number) => void
+  checkedBrandIds: number[];
+  filterCategoryByBrand: (brandIds: number[]) => void;
   filterBrandsByEnglishName: (charactor: string) => void;
   filterBrandsByPinying: (charactor: string) => void;
-  setSelectedBrandBatch: (ids: number[], isAdd: boolean) => void,
+  getAllBrands: () => void;
+  setCheckedBrandIds: (ids: number[])=>void;
+  setSelectedBrandBatch: (ids: number[], isAdd: boolean) => void;
+  
 }
 
 type propTypes = Iprops & InjectedIntlProps;
 
 class BrandComponent extends React.Component<propTypes, {}> {
-  public state: Istate= {
-    pickedBrands : []
-  }
+  public state: Istate = {
+    isDisplayAll: false,
+  };
   public render() {
-    const { intl, brands} = this.props;
-    const { locale} = intl;
-    // const cx = classNames.bind(styles);
+    const { intl, brands } = this.props;
+    const { locale, formatMessage } = intl;
+    const cx = classNames.bind(styles);
     const field = locale === "zh" ? "name_zh" : "name_en";
+    const data = brands.map(c => ({ id: c.id, name: c[field], url: c.url }));
+    const alphabets = (() => {
+      const characters = [];
+      for (let i = 0; i < 26; i++) {
+        characters.push(String.fromCharCode(i + 65));
+      }
+      return characters;
+    })();
+    // test
+    const generateor =  (id: number) => [brand1, brand2, brand3, brand4, brand5][id%5];
+
+    const isDisplayAll = this.state.isDisplayAll;
     return (
-        <BrandFilter
-          pickedBrands={this.state.pickedBrands}
-          selectBrand={this.selectBrand}
-          saveBrand={this.saveBrand}
-          selectAlphabet={this.selectAlphabet}
-          label="Brand"
-          data={brands.map(b => ({ id: b.id, url: b.url, name: b[field]}))}
-          saveBackground="green"
-          cancelBackground="red"
-        />
+      <div className={cx("category-brand-wrapper")}>
+        <div className={cx("filter-label-col")}>
+          <span className={cx("filter-label")}>
+            {formatMessage({ id: "page.enquery.brands" })}
+          </span>
+        </div>
+
+        {isDisplayAll ? (
+          <div className={cx("filter-options-all-col")}>
+            <div className={cx("filter-brand-alphabet")}>
+              <a
+                href="#"
+                key="all"
+                className={cx("alphabet")}
+                data-value="all"
+                onClick={this.selectAlphabet}
+              >
+                All
+              </a>
+              {alphabets.map(i => (
+                <a
+                  href="#"
+                  key={i}
+                  className={cx("alphabet")}
+                  data-value={i}
+                  onClick={this.selectAlphabet}
+                >
+                  {i}
+                </a>
+              ))}
+              <a
+                href="#"
+                key="09"
+                className={cx("alphabet")}
+                data-value="0-9"
+                onClick={this.selectAlphabet}
+              >
+                0-9
+              </a>
+            </div>
+            <div className={cx("filter-all-options-wrapper")}>
+              <Row gutter={5}>
+                {data.map(d => (
+                  <Col xl={3} key={d.id}>
+                    <label
+                      className={
+                        this.props.checkedBrandIds.indexOf(d.id) > -1
+                          ? cx("brand-selected")
+                          : cx("brand-unselected")
+                      }
+                    >
+                      <input
+                        type="checkbox"
+                        id={`brand-${d.id}`}
+                        value={d.id}
+                        className={cx("brand-img-checkbox")}
+                        onChange={this.selectBrand}
+                      />
+
+                      <img
+                        className={cx("brand-img")}
+                        src={
+                          d.url ||
+                          generateor(d.id)
+                        }
+                        alt=""
+                      />
+                      <Tooltip title={d.name}>
+                        <span className={cx("brand-title")}>{d.name}</span>
+                      </Tooltip>
+                    </label>
+                  </Col>
+                ))}
+              </Row>
+            </div>
+            <div className={cx("filter-save-cancel")}>
+              <Button
+                type="primary"
+                onClick={this.saveBrand}
+                size="small"
+                className={cx("save-btn")}
+              >
+                {formatMessage({ id: "global.ui.button.save" })}
+              </Button>
+              <Button size="small" onClick={this.cancelSelect}>
+                {formatMessage({ id: "global.ui.button.cancel" })}
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div className={cx("filter-options-first-col")}>
+            <Row>
+              {data.slice(0, 8).map(d => (
+                <Col xl={3} key={d.id}>
+                  <label
+                    className={
+                      this.props.checkedBrandIds.indexOf(d.id) > -1
+                        ? cx("brand-selected")
+                        : cx("brand-unselected")
+                    }
+                  >
+                    <input
+                      type="checkbox"
+                      id={`brand-${d.id}`}
+                      value={d.id}
+                      className={cx("brand-img-checkbox")}
+                      onChange={this.selectBrand}
+                    />
+
+                    <img
+                      className={cx("brand-img")}
+                      src={
+                        d.url ||
+                        generateor(d.id)
+                      }
+                      alt=""
+                    />
+                    <Tooltip title={d.name}>
+                      <span className={cx("brand-title")}>{d.name}</span>
+                    </Tooltip>
+                  </label>
+                </Col>
+              ))}
+            </Row>
+          </div>
+        )}
+
+        <div className={cx("more-btn-col")}>
+          <button className={cx("more-btn")} onClick={this.toggleDisplayAll}>
+            {" "}
+            {formatMessage({ id: "global.ui.button.more" })}{" "}
+            <Icon type={isDisplayAll ? "up" : "down"} />
+          </button>
+        </div>
+      </div>
     );
   }
-  private selectBrand = (e:any)=> {
-    window.console.log("brand:", JSON.parse(e.target.value));
-    const brandObj:IcomponentBrand = JSON.parse(e.target.value);
-    let newPickedBrands = [];
-    if (
-      this.state.pickedBrands.find(brand => brand.id === brandObj.id)
-    ) {
-      newPickedBrands = this.state.pickedBrands.filter(
-        brand => brand.id !== brandObj.id
-      );
+  private selectBrand = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked;
+    const brandId = Number(JSON.parse(e.target.value));
+    let newPickedBrandIds: number[] = [];
+    if (isChecked) {
+      if (!this.props.checkedBrandIds.find(id => id === brandId)) {
+        newPickedBrandIds = [...this.props.checkedBrandIds, brandId];
+      }
     } else {
-      newPickedBrands = [...this.state.pickedBrands, brandObj];
+      newPickedBrandIds = this.props.checkedBrandIds.filter(
+        id => id !== brandId
+      );
     }
-    this.setState({
-      pickedBrands: newPickedBrands
-    });
+    this.props.setCheckedBrandIds(newPickedBrandIds)
+    if(!_.isEmpty(newPickedBrandIds)){
+      this.setState({
+        isDisplayAll: true
+      })
+    }
   };
   private saveBrand = () => {
-      this.props.setSelectedBrandBatch(this.state.pickedBrands.map(c => c.id), true);
-      // this.props.filterCategoryByBrand(this.state.pickedBrands[0].id);
-  }
-  private selectAlphabet = (v: string) => {
-    if(this.props.intl.locale ===  'zh'){
+    this.props.setSelectedBrandBatch(this.props.checkedBrandIds, true);
+    this.props.filterCategoryByBrand(this.props.checkedBrandIds);
+    this.setState({
+      isDisplayAll: false
+    });
+  };
+  private selectAlphabet = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const aEl = e.target as HTMLAnchorElement;
+    const v = `${aEl.dataset.value}`;
+    window.console.log("Vvvvv", v);
+    if(v === "0-9"){
+      this.props.filterBrandsByEnglishName(v);
+    } else if( v === "all") {
+      this.props.getAllBrands();
+    }else if(this.props.intl.locale ===  'zh'){
       this.props.filterBrandsByPinying(v);
-    }else{
+    }else {
       this.props.filterBrandsByEnglishName(v);
     }
- };
-  
+  };
+  private toggleDisplayAll = () => {
+    this.setState({
+      isDisplayAll: !this.state.isDisplayAll
+    });
+  };
+  private cancelSelect = () => {
+    this.setState({
+      isDisplayAll: false
+    });
+  }
 }
 export default injectIntl(BrandComponent);

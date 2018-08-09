@@ -1,0 +1,42 @@
+@import "../theme.less";
+.enquery-search{
+    input{
+        border: 1px solid @primary-color;
+    }
+    & > .ant-input-suffix{
+        right: 0;
+        top: 16px;
+    }
+    & > .ant-input-suffix > .ant-input-search-button{
+        color: #fff;
+        height: 30px;
+    }
+}
+.enquiry-cart{
+    .cart-quantity{
+        vertical-align: middle;
+        display: inline-block;
+        background: @highlight-color;
+        border-radius: 20px;
+        margin-left: 20px;
+        .ant-scroll-number.ant-badge-count{
+          border-radius: 20px !important;
+        }
+      }
+}
+.enquiry-table{
+    margin-top: 10px;
+    .ant-table-thead > tr:first-child > th{
+        font-size: 12px;
+        font-weight: normal;
+    }
+    .ant-table-small > .ant-table-content > .ant-table-body > table{
+        padding: 0px;
+    }
+    .ant-table-small > .ant-table-content > .ant-table-body > table > .ant-table-tbody > tr > td{
+        padding: 0px 6px;
+    }
+}
+.goods-table-wrapper{
+    
+}

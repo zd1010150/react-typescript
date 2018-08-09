@@ -23,9 +23,10 @@ class I18n extends React.Component <I18nPros, {}> {
     public render() {
         const { children, locale } = this.props;
         const lanPackage = locale === LANGUAGE.ZH ? zh : en;
+        const propLocal = locale === LANGUAGE.ZH ? 'zh' : 'en'
         return (
             <LocaleProvider locale={lanPackage}>
-                <IntlProvider locale={`${locale}`} messages={message[locale]}>
+                <IntlProvider key={propLocal} locale={propLocal} messages={message[locale]}>
                     { children }
                 </IntlProvider>
             </LocaleProvider>

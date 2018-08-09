@@ -14,7 +14,7 @@ export default {
       addGoodsToCart: '加入发货车',
       delete: '删除',
       edit: '编辑',
-      addGoods: '添加商品',
+      addGoods: '添加',
       save: '保存',
       search: '搜索',
       pay: '支付',
@@ -24,7 +24,8 @@ export default {
       goBack: '返回',
       download: '下载所有图片',
       createNewAccount: '创建新账户',
-      changePwd: '修改密码'
+      changePwd: '修改密码',
+      more: '更多'
     },
     input: {
       searchStore: '在此搜索全站商品...',
@@ -71,7 +72,7 @@ export default {
       addGoodsToCart: 'Add to Cart',
       delete: 'Delete',
       edit: 'Edit',
-      addGoods: 'Add Goods',
+      addGoods: 'Add',
       save: 'Save',
       search: 'Search',
       pay: 'Pay',
@@ -81,7 +82,8 @@ export default {
       goBack: 'Go Back',
       download: 'Download All Pictures',
       createNewAccount: 'Create New Account',
-      changePwd: 'Modify Password'
+      changePwd: 'Modify Password',
+      more: 'More'
     },
     input: {
       searchStore: 'Search entire store here...',

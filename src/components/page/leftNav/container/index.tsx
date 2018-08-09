@@ -34,7 +34,7 @@ class Nav extends React.Component <RouteComponentProps<InavState> & InjectedIntl
             </Menu.Item>
         ));
         return (
-            <div>
+            <div className="sidebar sidebar-main">
                 <Menu mode = "inline"
                       inlineIndent = {30}
                       onOpenChange = {this.onOpenChange}
@@ -43,7 +43,7 @@ class Nav extends React.Component <RouteComponentProps<InavState> & InjectedIntl
                       defaultSelectedKeys = {[location.pathname]}
                       defaultOpenKeys = {["clientLists"]}
                       selectedKeys = {[location.pathname]}>
-                    <SubMenu title = "My account">
+                    <SubMenu title = "My account" key="clientLists">
                         {
                             menuEls
                         }

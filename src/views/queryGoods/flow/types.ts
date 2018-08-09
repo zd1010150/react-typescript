@@ -48,6 +48,8 @@ export interface IenquryState {
     goods: Iproduct[],
     cart: IproductToPost[],
     brands: Ibrand[],
-    categories: Icategory[]
+    categories: Icategory[],
+    checkedBrandIds: number[],
+    checkedCategoryIds: number[]
 }
 

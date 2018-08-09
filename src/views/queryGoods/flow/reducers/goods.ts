@@ -115,7 +115,6 @@ const batchToggleCategory = (
   ids: number[],
   isAdd: boolean
 ) => {
-  debugger
   if (isAdd) {
     
     return Object.assign({}, state, {

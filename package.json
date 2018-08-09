@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/lodash": "^4.14.114",
+    "@types/moment": "^2.13.0",
     "@types/react-intl": "^2.3.8",
     "@types/react-redux": "^6.0.5",
     "@types/react-router-dom": "^4.3.0",
@@ -30,6 +31,7 @@
     "less": "2.7.3",
     "less-loader": "^4.1.0",
     "less-vars-to-js": "^1.2.1",
+    "moment": "^2.22.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",

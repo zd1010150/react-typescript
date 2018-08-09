@@ -1,7 +1,12 @@
-import { Button, Input, Table } from "antd";
+import { Button, Input, notification, Popover, Table, Tooltip } from "antd";
+import { PaginationConfig} from 'antd/lib/pagination/Pagination'
+import classNames from "classnames/bind";
 import * as _ from "lodash";
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
+import {biggerZeroInterger} from 'util/regex';
+import styles from "../index.less";
+
 import { Icategory } from '../../../store/global/types';
 import { IpaginationParams } from "../../../store/types";
 import {
@@ -17,10 +22,14 @@ interface Iprops {
   addToCart: (product: IproductInCart) =>void;
   goods: Iproduct[];
 }
-
+interface Istate{
+  quantity: object,
+}
 type propTypes = Iprops & InjectedIntlProps;
 class GoodsTable extends React.Component<propTypes, {}> {
-  private temper: object = {};
+  public state: Istate ={
+    quantity: {}
+  }
   public componentDidMount() {
    this.fetchData(this.props);
   }
@@ -36,7 +45,10 @@ class GoodsTable extends React.Component<propTypes, {}> {
 
   public render() {
     const { intl, goods, goodsPagination } = this.props;
+    window.console.log("dandan", goods);
     const { formatMessage, locale } = intl;
+    const cx = classNames.bind(styles);
+    
     const wholeSealColumns = [1, 2, 3].map(index => {
       return {
         key: `wholesale${index}`,
@@ -57,31 +69,57 @@ class GoodsTable extends React.Component<propTypes, {}> {
       {
         dataIndex: "code",
         key: "productCode",
-        title: formatMessage({ id: "page.enquery.productCode" })
+        title: formatMessage({ id: "page.enquery.productCode" }),
+        width: 100,
       },
       {
-        dataIndex: locale === "zh" ? "brand_zh" : "brand_en",
         key: locale === "zh" ? "brand.name_zh" : "brand.name",
+        render: (t: string, record: Iproduct) => {
+          const field = locale === "zh" ? "brand_zh" : "brand_en";
+          const brandName = record[field];
+          return <Tooltip title={brandName}><div className={cx('category-brand-td')}>{brandName}</div></Tooltip>;
+        },
         sorter: true,
-        title: formatMessage({ id: "page.enquery.brands" })
+        title: formatMessage({ id: "page.enquery.brands" }),
+        width: 100,
       },
       {
         key: "category",
         render: (t: string, record: Iproduct) => {
           const prop = locale === "zh" ? "name_zh" : "name_en";
-          return (record.categories as Icategory[]).map((c:Icategory) => c[prop]).join(", ");
+          const categoryNames = (record.categories as Icategory[]).map((c:Icategory) => c[prop]).join(", ");
+          return <Tooltip title={categoryNames}><div className={cx('category-names-td')}>{categoryNames}</div></Tooltip>;
         },
-        title: formatMessage({ id: "page.enquery.category" })
+        title: formatMessage({ id: "page.enquery.category" }),
+        width: 100,
       },
       {
-        dataIndex: "onlineDate",
         key: "online_time",
-        title: formatMessage({ id: "page.enquery.onlineDate" })
+        render: (t: string, record: Iproduct) => {
+          const time = record.online_time
+          return <Tooltip title={time}><div className={cx('category-time-td')}>{time}</div></Tooltip>;
+        },
+        sorter: true,
+        title: formatMessage({ id: "page.enquery.onlineDate" }),
+        width: 120,
       },
       {
-        dataIndex: locale === "zh" ? "product_name_zh" : "product_name_en",
         key: locale === "zh" ? "name" : "name_en",
-        title: formatMessage({ id: "page.enquery.productName" })
+        render: (t: string, record: Iproduct) => {
+          const name = record[locale === "zh" ? "product_name_zh" : "product_name_en"];
+          const popoverContentEl = (
+          <div className={cx('product-name-popover-wrapper')}>
+            <img width="100" height="100" className={cx('product-image-popover')} src={record.img}/>
+            <p className={cx('product-name-popover')}>{name}</p>
+          </div>);
+          return (
+          <Popover placement="right" content={popoverContentEl}>
+          <div className={cx('product-name-td')}>{name}</div>
+        </Popover>)
+        } ,
+        sorter: true,
+        title: formatMessage({ id: "page.enquery.productName" }),
+        width: 150,
       },
       ...wholeSealColumns,
       {
@@ -93,12 +131,13 @@ class GoodsTable extends React.Component<propTypes, {}> {
         key: "enqueryQty",
         render: (t: string, record: Iproduct) => {
           return (
-            <div>
-              <Input ref={c => (this.temper[record.id] = c)} />
+            <div className={cx('table-input-quantity-wrapper')} >
+              <Input className={cx('table-input-quantity')} onBlur={this.setQuantity} data-id={record.id}/>
               <Button
                 type="primary"
+                size="small"
+                className={cx('table-input-btn')} 
                 data-id={ record.id }
-                data-record = { JSON.stringify(record)}
                 onClick={this.addGoodToCart}
               >
                 {formatMessage({ id: "global.ui.button.addGoods" })}
@@ -106,19 +145,24 @@ class GoodsTable extends React.Component<propTypes, {}> {
             </div>
           );
         },
-        title: formatMessage({ id: "page.enquery.enqueryQty" })
+        title: formatMessage({ id: "page.enquery.enqueryQty" }),
+        width: 150
       }
     ];
-    const paginationConfig = {
+    const paginationConfig : PaginationConfig = {
       current: goodsPagination.page,
       defaultCurrent: goodsPagination.page,
       defaultPageSize: goodsPagination.per_page,
       pageSize: goodsPagination.per_page,
+      position: "both",
       total: goodsPagination.total
     };
     return (
       <Table
+        bordered={true}
         rowKey="id"
+        size="small"
+        className="enquiry-table"
         columns={columns}
         dataSource={goods}
         pagination={paginationConfig}
@@ -152,10 +196,39 @@ class GoodsTable extends React.Component<propTypes, {}> {
   private addGoodToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     const btnEl = e.target as HTMLButtonElement;
     const productId = Number(btnEl.dataset.id);
-    const product = JSON.parse(btnEl.dataset.product|| '') as Iproduct;
-    const quantity = this.temper[productId].value;
-    this.props.addToCart(Object.assign({},product,{product_id: product.id, quantity}));
+    const product = this.props.goods.filter(good => good.id === productId)[0];
+
+    const quantity = this.state.quantity[`${productId}`];
+    if(quantity && _.isNumber(quantity) && Number(quantity) > 0){
+      this.props.addToCart(Object.assign({},product,{product_id: product.id, quantity}));
+    }else{
+      notification.error({ 
+        description: 'Input legal quantity, 输入正确的数量.',
+        message: 'Error 错误',
+      });
+    }
+    
   };
+  private setQuantity = (e: React.FocusEvent<HTMLInputElement>) => {
+    const inputEl = e.target as HTMLInputElement;
+    const value = inputEl.value
+      if(value.length === 0){
+        return
+      }
+      if(!biggerZeroInterger.test(value)) {
+        notification.error({ 
+          description: 'only input interger number, 只能输入大于0的正整数.',
+          message: 'Error 错误',
+        });
+      }else{
+        this.setState({
+          quantity: Object.assign({}, this.state.quantity, { [`${inputEl.dataset.id}`]: Number(value)})
+        })
+
+      }
+    
+    
+  }
 }
 
 export default injectIntl(GoodsTable);

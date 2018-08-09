@@ -1,8 +1,12 @@
 @import "../theme.less";
+@menu-backgound: @body-background;
 .sidebar-main{
   padding-right: 25px;
 
   .ant-menu.ant-menu-inline{
+    .ant-menu-submenu > .ant-menu{
+      background:@menu-backgound;
+    }
     & > .ant-menu-item-divider{
       border-top: 1px solid #d1d1d1;
       display: block;
@@ -10,12 +14,12 @@
     }
     .ant-menu-item{
       color: #575757;
+      background: @menu-backgound;
       &>a{
         color: #494949;
       }
       a:hover, a:active{
         color: @primary-color;
-        background-color: transparent;
       }
 
     }
@@ -28,7 +32,6 @@
 
      }
     .ant-menu-item-selected{
-      background-color: transparent;
       font-weight: 700;
       font-size: 14px;
       a{
@@ -52,4 +55,8 @@
     }
   }
 
+}
+.left-side-nav{
+  background: @menu-backgound;
+  padding-top: 20px;
 }

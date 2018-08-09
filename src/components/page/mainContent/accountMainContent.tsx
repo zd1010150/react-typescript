@@ -5,15 +5,17 @@ import {AccountInfo, QueryGoods} from '../../../views/index';
 import {Layout} from 'antd';
 import { LeftNav } from '../index';
 import { PrivateRoute } from '../../ui/index';
+import { PageTitle } from '../index';
 
 const {Sider, Content} = Layout;
 class AccountMainContentComponent extends React.Component <{}> {
     public render() {
 
             return (
-                <Layout>
-                    <Sider><LeftNav/></Sider>
-                    <Content>
+                <Layout className="account-main-layout">
+                    <Sider className="left-side-nav"><LeftNav/></Sider>
+                    <Content className="account-main-content">
+                        <PageTitle/>
                         <Switch>
                             <PrivateRoute path = "/dashboard" component = {AccountInfo}/>
                             <PrivateRoute path = "/enquiry" component = {QueryGoods}/>

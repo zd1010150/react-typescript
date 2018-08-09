@@ -41,7 +41,7 @@ export const setGlobalSetting: ActionCreator<IglobalsettingAction> = (settings: 
     settings,
     type: SET_GLOBAL_SETTING,
 });
-export const login = (values: IloginFormData, successMessage: string, cb: () => void) => (dispatch: Dispatch<any>): Promise<void> =>
+export const login = (values: IloginFormData, successMessage: string, cb: (data:any) => void) => (dispatch: Dispatch<any>): Promise<void> =>
     post('/distributor/login', values, dispatch, { successMessage }).then(({ data }) => {
         if (data && data.token && data.user) {
             const loginUser: IloginUser = {
@@ -53,7 +53,11 @@ export const login = (values: IloginFormData, successMessage: string, cb: () => 
             };
             dispatch(setLoginUser(loginUser));
             if (_.isFunction(cb)) {
-                cb()
+                cb(data)
+            }
+        }else if(data && data.captcha){
+            if (_.isFunction(cb)) {
+                cb(data)
             }
         }
     });

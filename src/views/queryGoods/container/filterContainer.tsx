@@ -1,3 +1,5 @@
+import { Col, Row } from "antd";
+import classNames from "classnames/bind";
 import * as React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
@@ -12,11 +14,15 @@ import RefineBy from "../components/refinedResult";
 import {
   deleteFromCart,
   deleteRefineBy,
+  enqueryGoods,
   filterBrandsByCategory,
   filterBrandsByEnglishName,
   filterBrandsByPinying,
   filterCategoryByBrand,
+  getAllBrands,
   modifyQuantityInCart,
+  setCheckedBrandIds,
+  setCheckedCategoryIds,
   setSearchKey,
   setSelectedBrandBatch,
   setSelectedCategoryBatch,
@@ -26,13 +32,17 @@ import {
   getSelectedBrandDetail,
   getSelectedCategoryDetail
 } from "../flow/reselect";
-import { IproductInCart, IrefineBytypes } from "../flow/types";
+import { IproductInCart, IproductToPost, IrefineBytypes } from "../flow/types";
+import styles from "../index.less";
 
 interface IdispatchProps {
-  filterBrandsByCategoryDispatch: (categoryId: number) => void;
-  filterCategoryByBrandDispatch: (brandId: number) => void;
+  filterBrandsByCategoryDispatch: (categoryId: number[]) => void;
+  filterCategoryByBrandDispatch: (brandId: number[]) => void;
   filterBrandsByEnglishNameDispatch: (charactor: string) => void;
   filterBrandsByPinyingDispatch: (charactor: string) => void;
+  getAllBrandsDispatch: () => void;
+  setCheckedBrandIdsDispatch: (ids: number[]) => void;
+  setCheckedCategoryIdsDispatch: (ids: number[]) => void;
   setSelectedBrandBatchDispatch: (ids: number[], isAdd: boolean) => void;
   setSelectedCategoryBatchDispatch: (ids: number[], isAdd: boolean) => void;
   setSearchKeyDispatch: (searchKey: string) => void;
@@ -40,6 +50,10 @@ interface IdispatchProps {
   deleteFromCartDispatch: (id: number) => void;
   modifyQuantityInCartDispatch: (id: number, quantity: number) => void;
   deleteRefineByDispatch: (deleteType: IrefineBytypes) => void;
+  enqueryGoodsDispatch: (
+    values: { items: IproductToPost[] },
+    cb: () => void
+  ) => void;
 }
 interface IstateProps {
   availableBrands: Ibrand[];
@@ -49,47 +63,78 @@ interface IstateProps {
   selectedCategoies: Icategory[];
   startDate: string;
   endDate: string;
+  checkedBrandIds: number[];
+  checkedCategoryIds: number[];
 }
 type propTypes = IdispatchProps & IstateProps;
 class QueryContainer extends React.Component<propTypes, {}> {
   public render() {
     // debugger
+    const cx = classNames.bind(styles);
     return (
       <div>
-        <div>
-          <QueryByCode onSearch={this.props.setSearchKeyDispatch} />
-          <Cart
-            goods={this.props.goodsIncart}
-            deleteFromCart={this.props.deleteFromCartDispatch}
-            modifyQuantityInCart={this.props.modifyQuantityInCartDispatch}
-          />
+        <Row key="search-code">
+          <Col
+            key="search-code-input"
+            span={18}
+            className={cx("search-key-col")}
+          >
+            <QueryByCode onSearch={this.props.setSearchKeyDispatch} />
+          </Col>
+          <Col key="cart" span={6} className={cx("cart-col")}>
+            <Cart
+              goods={this.props.goodsIncart}
+              deleteFromCart={this.props.deleteFromCartDispatch}
+              modifyQuantityInCart={this.props.modifyQuantityInCartDispatch}
+              enqueryGoods={this.props.enqueryGoodsDispatch}
+            />
+          </Col>
+        </Row>
+        <Row key="refine-result">
+          <Col span={24} className={cx("refine-result-col")}>
+            <RefineBy
+              deleteRefineBy={this.props.deleteRefineByDispatch}
+              selectedCategories={this.props.selectedCategoies}
+              selectedBrands={this.props.selectedBrands}
+              startDate={this.props.startDate}
+              endDate={this.props.endDate}
+            />
+          </Col>
+        </Row>
+        <div className={cx("filters-wrapper")}>
+          <div className={cx("filter")}>
+            <Category
+              categories={this.props.availableCategories}
+              setSelectedCategoryBatch={
+                this.props.setSelectedCategoryBatchDispatch
+              }
+              filterBrandsByCategory={this.props.filterBrandsByCategoryDispatch}
+              checkedCategoryIds={this.props.checkedCategoryIds}
+              setCheckedCategoryIds={this.props.setCheckedCategoryIdsDispatch}
+            />
+          </div>
+          <div className={cx("filter")}>
+            <Brand
+              brands={this.props.availableBrands}
+              checkedBrandIds={this.props.checkedBrandIds}
+              filterCategoryByBrand={this.props.filterCategoryByBrandDispatch}
+              setCheckedBrandIds={this.props.setCheckedBrandIdsDispatch}
+              setSelectedBrandBatch={this.props.setSelectedBrandBatchDispatch}
+              filterBrandsByEnglishName={
+                this.props.filterBrandsByEnglishNameDispatch
+              }
+              filterBrandsByPinying={this.props.filterBrandsByPinyingDispatch}
+              getAllBrands={this.props.getAllBrandsDispatch}
+            />
+          </div>
+          <div className={cx("filter")}>
+            <Date
+              startDate={this.props.startDate}
+              endDate={this.props.endDate}
+              setTimeRange={this.props.setTimeRangeDispatch}
+            />
+          </div>
         </div>
-        <RefineBy
-          deleteRefineBy={this.props.deleteRefineByDispatch}
-          selectedCategories={this.props.selectedCategoies}
-          selectedBrands={this.props.selectedBrands}
-          startDate={this.props.startDate}
-          endDate={this.props.endDate}
-        />
-        <Category
-          categories={this.props.availableCategories}
-          setSelectedCategoryBatch={this.props.setSelectedCategoryBatchDispatch}
-          filterBrandsByCategory={this.props.filterBrandsByCategoryDispatch}
-        />
-        <Brand
-          brands={this.props.availableBrands}
-          filterCategoryByBrand={this.props.filterCategoryByBrandDispatch}
-          setSelectedBrandBatch={this.props.setSelectedBrandBatchDispatch}
-          filterBrandsByEnglishName={
-            this.props.filterBrandsByEnglishNameDispatch
-          }
-          filterBrandsByPinying={this.props.filterBrandsByPinyingDispatch}
-        />
-        <Date
-          startDate={this.props.startDate}
-          endDate={this.props.endDate}
-          setTimeRange={this.props.setTimeRangeDispatch}
-        />
       </div>
     );
   }
@@ -97,6 +142,8 @@ class QueryContainer extends React.Component<propTypes, {}> {
 const mapStateToProps = (state: IApplicationState) => ({
   availableBrands: state.enquery.brands,
   availableCategories: state.enquery.categories,
+  checkedBrandIds: state.enquery.checkedBrandIds,
+  checkedCategoryIds: state.enquery.checkedCategoryIds,
   endDate: state.enquery.goodsQuery.timerange.to,
   goodsIncart: state.enquery.cart,
   selectedBrands: getSelectedBrandDetail(state),
@@ -108,16 +155,25 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => {
     deleteFromCartDispatch: (id: number) => dispatch(deleteFromCart(id)),
     deleteRefineByDispatch: (deleteType: IrefineBytypes) =>
       dispatch(deleteRefineBy(deleteType)),
-    filterBrandsByCategoryDispatch: (categoryId: number) =>
-      dispatch(filterBrandsByCategory(categoryId)),
+    enqueryGoodsDispatch: (
+      values: { items: IproductToPost[] },
+      cb: () => void
+    ) => dispatch(enqueryGoods(values, cb)),
+    filterBrandsByCategoryDispatch: (categoryIds: number[]) =>
+      dispatch(filterBrandsByCategory(categoryIds)),
     filterBrandsByEnglishNameDispatch: (charactor: string) =>
       dispatch(filterBrandsByEnglishName(charactor)),
     filterBrandsByPinyingDispatch: (charactor: string) =>
       dispatch(filterBrandsByPinying(charactor)),
-    filterCategoryByBrandDispatch: (brandId: number) =>
-      dispatch(filterCategoryByBrand(brandId)),
+    filterCategoryByBrandDispatch: (brandIds: number[]) =>
+      dispatch(filterCategoryByBrand(brandIds)),
+    getAllBrandsDispatch: () => dispatch(getAllBrands()),
     modifyQuantityInCartDispatch: (id: number, quantity: number) =>
       dispatch(modifyQuantityInCart(id, quantity)),
+    setCheckedBrandIdsDispatch: (ids: number[]) =>
+      dispatch(setCheckedBrandIds(ids)),
+    setCheckedCategoryIdsDispatch: (ids: number[]) =>
+      dispatch(setCheckedCategoryIds(ids)),
     setSearchKeyDispatch: (searchKey: string) =>
       dispatch(setSearchKey(searchKey)),
     setSelectedBrandBatchDispatch: (ids: number[], isAdd: boolean) =>

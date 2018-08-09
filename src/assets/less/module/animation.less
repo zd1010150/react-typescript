@@ -1,0 +1,38 @@
+@import "../theme.less";
+.good-to-cart-wraper.animate {
+  -webkit-animation: hor-animation linear 0.5s forwards;
+  animation: hor-animation linear 0.5s forwards;
+}
+.good-to-cart {
+  width: 50px;
+  height: 50px;
+  background: @primary-color;
+  border-radius: 100px;
+}
+.good-to-cart.animate {
+  -webkit-animation: vertical-animation cubic-bezier(0.5, -0.5, 1, 1) 0.5s
+    forwards;
+  animation: vertical-animation cubic-bezier(0.5, -0.5, 1, 1) 0.5s forwards;
+}
+@-webkit-keyframes hor-animation {
+  0% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+  100% {
+    -webkit-transform: translateX(200px);
+    transform: translateX(200px);
+  }
+}
+@-webkit-keyframes vertical-animation {
+  0% {
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(200px);
+    transform: translateY(200px);
+    width: 0px;
+    height: 0px;
+  }
+}

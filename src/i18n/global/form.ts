@@ -3,6 +3,7 @@ export default {
   zh: {
     lastName: '姓',
     firstName: '名',
+    captcha: '验证码',
     phone: '电话',
     email: 'Email',
     address: '地址',
@@ -45,6 +46,7 @@ export default {
     lastName: 'Last Name',
     firstName: 'First Name',
     phone: 'Phone',
+    captcha: 'Verification Code',
     email: 'Email',
     address: 'Address',
     city: 'City',

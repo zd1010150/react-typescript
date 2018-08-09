@@ -21,7 +21,7 @@ class QueryByProductCode extends React.Component < propTypes, {}> {
           // tslint:disable-next-line:jsx-no-lambda
           onSearch={value=>onSearch(value)}
           enterButton={true}
-          className={cx('search-input')}
+          className={classNames(cx('search-input'), 'enquery-search')}
         />
         )
         

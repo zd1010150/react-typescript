@@ -11,7 +11,6 @@ import { IApplicationState} from '../../store/types';
 import {
     AccountMainContentComponent,
     Logo,
-    PageTitle,
     TopPanel
 } from '../page/index';
 import * as styles from './index.less';
@@ -41,12 +40,9 @@ class AccountLayout extends React.Component<propTypes>{
                 <div className={classNames("section",cx("nav-sections"))}>
                     <Logo language={locale}/>
                 </div>
-                <main id="maincontent" className={cx("page-main")}>
-                    <PageTitle/>
-                    <div className="columns">
+                <div className="account-main page-main columns">
                         <AccountMainContentComponent />
-                    </div>
-                </main>
+                </div>
             </div>
         );
     }
