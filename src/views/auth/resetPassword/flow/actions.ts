@@ -8,7 +8,6 @@ import { IresetPasswordFormData } from "./types";
   export const resetPwd = (values: IresetPasswordFormData, successMessage: string, cb: () => void)=> (dispatch: Dispatch<any>): Promise<void> =>
   post('/distributor/password/reset', values, dispatch, { successMessage }).then(({ data }) => {
       if (data) {
-          debugger
           if (_.isFunction(cb)) {
               cb()
           }

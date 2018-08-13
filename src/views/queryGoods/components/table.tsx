@@ -45,11 +45,10 @@ class GoodsTable extends React.Component<propTypes, {}> {
 
   public render() {
     const { intl, goods, goodsPagination } = this.props;
-    window.console.log("dandan", goods);
     const { formatMessage, locale } = intl;
     const cx = classNames.bind(styles);
     
-    const wholeSealColumns = [1, 2, 3].map(index => {
+    const wholeSealColumns = [1,2,3].map(index => {
       return {
         key: `wholesale${index}`,
         render: (t: string, record: IproductInCart) => {

@@ -14,9 +14,9 @@ const mappingState = (state: Icategory[] = [], serverGlobalSettings: any): Icate
 const mapData =  ( data: any): Icategory[] => {
     if(!_.isEmpty(data)){
         return data.map((c:any) => ({
-            id: c.distributor_category.id,
-            name_en: c.distributor_category.name,
-            name_zh: c.distributor_category.name_zh,
+            id: c.id,
+            name_en: c.name,
+            name_zh: c.name_zh,
         }));
     }else{
         return [];
@@ -36,7 +36,6 @@ const categories = (state: Icategory[]= [], action:any) => {
 const delteRefineBy = (state: number[],
     deleteType: IrefineBytypes
   ) => {
-    debugger
     switch (deleteType) {
       case IrefineBytypes.category:
         return [];

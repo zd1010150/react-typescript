@@ -4,7 +4,7 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 import classNames from 'classnames/bind';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
-import { FORM_LAYOUT_CONFIG, LANGUAGE } from '../../../../config/app.config';
+import { LANGUAGE } from '../../../../config/app.config';
 import { getPwdLevel, passwordStreeLevel } from '../../../../util/password';
 import { getExistRule, validator } from '../../../../util/validateMessagesUtil';
 import styles from '../index.less';
@@ -42,7 +42,6 @@ class PasswordForm extends React.Component<propsTypes> {
         const isCreateNew = editStatus === passwordFormStatus.createNew;
         const oldPwdEl = editStatus === passwordFormStatus.modifyPassword? (
             <Form.Item
-                {...FORM_LAYOUT_CONFIG}
                 label={formatMessage({ id: 'global.form.oldPwd' })}
                 className = {cx('formItem')}
             >
@@ -52,7 +51,7 @@ class PasswordForm extends React.Component<propsTypes> {
                         rules: [
                            getExistRule('required', 'password', locale, { required: true })
                         ],
-                    })(<Input type="password" size="small" />)
+                    })(<Input type="password" />)
                 }
             </Form.Item>
         ): '';
@@ -60,7 +59,6 @@ class PasswordForm extends React.Component<propsTypes> {
             <Form layout = "vertical" className = {cx('formWrapper')}>
                 { oldPwdEl}
                 <Form.Item
-                    {...FORM_LAYOUT_CONFIG}
                     label={formatMessage({ id: isCreateNew ? 'global.form.password' :'global.form.newPwd' })}
                     className = {cx('formItem')}
                 >
@@ -73,7 +71,7 @@ class PasswordForm extends React.Component<propsTypes> {
                                     validator: validator.password(locale),
                                 },
                             ],
-                        })(<Input type="password" size="small" onInput={this.validatePasswordLevel} />)
+                        })(<Input type="password" onInput={this.validatePasswordLevel} />)
                     }
                     <span className="form-tip">
                         {
@@ -88,7 +86,6 @@ class PasswordForm extends React.Component<propsTypes> {
                         }</span>
                 </Form.Item>
                 <Form.Item
-                    {...FORM_LAYOUT_CONFIG}
                     label={formatMessage({ id: 'global.form.confirmPwd' })}
                     className = {cx('formItem')}
                 >
@@ -101,7 +98,7 @@ class PasswordForm extends React.Component<propsTypes> {
                                     validator: validator.password(locale),
                                 },
                             ],
-                        })(<Input size="small" type="password" onBlur={this.validatePaswordConsistency} />)
+                        })(<Input  type="password" onBlur={this.validatePaswordConsistency} />)
                     }
                     {isConfirmError ? <span className="form-tip error-msg">{formatMessage({ id: 'global.form.confirmError' })}</span> : ''}
                 </Form.Item>
@@ -109,7 +106,6 @@ class PasswordForm extends React.Component<propsTypes> {
         );
     }
     private validatePasswordLevel = (e: React.FormEvent<HTMLInputElement>) => {
-        window.console.log("dandan")
         const { form } = this.props;
         const pwd = form.getFieldValue('password');
         const level = getPwdLevel(pwd);

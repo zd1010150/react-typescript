@@ -15,7 +15,7 @@ export const getDetail = () => (dispatch: Dispatch<any>): Promise<void> =>
       dispatch(
         setAccount({
           abn: data.user.abn,
-          company: data.user.company,
+          company: data.user.company.company,
           contact_email: data.user.contact_email,
           email: data.user.email,
           first_name: data.user.first_name,
@@ -32,7 +32,6 @@ export const getDetail = () => (dispatch: Dispatch<any>): Promise<void> =>
   export const updataEditAccount = (id: number,values: IeditAccountFormData, successMessage: string, cb: () => void) => (dispatch: Dispatch<any>): Promise<void> =>
   put(`/distributor/distributor-users/${id}`, values, dispatch, { successMessage }).then(({ data }) => {
       if (data) {
-          debugger
           if (_.isFunction(cb)) {
               cb()
           }
@@ -42,7 +41,6 @@ export const getDetail = () => (dispatch: Dispatch<any>): Promise<void> =>
   export const updatePwd = (values: IupdatePwdFormData, successMessage: string, cb: () => void)=> (dispatch: Dispatch<any>): Promise<void> =>
   put('/distributor/password/update', values, dispatch, { successMessage }).then(({ data }) => {
       if (data) {
-          debugger
           if (_.isFunction(cb)) {
               cb()
           }

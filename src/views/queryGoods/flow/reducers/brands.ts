@@ -49,7 +49,6 @@ const brands = (state: Ibrand[] = [], action: any) => {
 const delteRefineBy = (state: number[],
   deleteType: IrefineBytypes
 ) => {
-  debugger
   switch (deleteType) {
     case IrefineBytypes.brand:
       return [];

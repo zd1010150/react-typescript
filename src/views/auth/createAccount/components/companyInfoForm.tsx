@@ -4,7 +4,7 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 import classNames from 'classnames/bind';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
-import { FORM_LAYOUT_CONFIG, LANGUAGE } from '../../../../config/app.config';
+import {  LANGUAGE } from '../../../../config/app.config';
 import { formStatus } from '../../../../store/types';
 import { getExistRule } from '../../../../util/validateMessagesUtil';
 import {IaccountInfo} from '../../../accountInfo/flow/types';
@@ -31,7 +31,7 @@ class CompanyInfoForm extends React.Component <propsTypes> {
         return (
             <Form layout = "vertical" className = {cx('formWrapper')}>
                 <div className = {cx('fieldsWrapper')}>
-                    <Form.Item  {...FORM_LAYOUT_CONFIG} label = {formatMessage({id: 'global.form.company'})} className = {cx('formItem')}>
+                    <Form.Item  label = {formatMessage({id: 'global.form.company'})} className = {cx('formItem')}>
                         {getFieldDecorator('company', {
                             initialValue: isEdting? (editObject ? editObject.company : undefined) : undefined,
                             rules: [
@@ -39,7 +39,7 @@ class CompanyInfoForm extends React.Component <propsTypes> {
                             ],
                         })(<Input disabled={isEdting} />)}
                     </Form.Item>
-                    <Form.Item  {...FORM_LAYOUT_CONFIG}  label = {formatMessage({id: 'global.form.abn'})} className = {cx('formItem')}>
+                    <Form.Item   label = {formatMessage({id: 'global.form.abn'})} className = {cx('formItem')}>
                         {getFieldDecorator('abn', {
                             initialValue: isEdting? (editObject ? editObject.abn : '') : '',
                         })(<Input  placeholder = {formatMessage({id: 'page.createAccount.abnHolder'})} disabled={isEdting} />)}

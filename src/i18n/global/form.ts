@@ -5,7 +5,7 @@ export default {
     firstName: '名',
     captcha: '验证码',
     phone: '电话',
-    email: 'Email',
+    email: '电子邮件',
     address: '地址',
     city: '市',
     state: '省',

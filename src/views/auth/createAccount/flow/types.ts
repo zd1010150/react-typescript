@@ -13,6 +13,9 @@ export interface IsignInfoFormData{
     email: string,
     password: string
 }
-export type ICreateAccountForm = IcompanyFormData & IcontactPersonFormData & IsignInfoFormData;
+export interface Icaptach{
+    captcha: string,
+}
+export type ICreateAccountForm = IcompanyFormData & IcontactPersonFormData & IsignInfoFormData & Icaptach;
 
 

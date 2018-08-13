@@ -4,15 +4,18 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 import classNames from 'classnames/bind';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
-import { FORM_LAYOUT_CONFIG, LANGUAGE } from '../../../../config/app.config';
+import {  LANGUAGE } from '../../../../config/app.config';
 import { getExistRule } from '../../../../util/validateMessagesUtil';
 import styles from '../index.less';
 
 const cx = classNames.bind(styles);
 
-
-
-class Captcha extends React.Component <FormComponentProps & InjectedIntlProps> {
+interface Iprops {
+    captcha?: string,
+    refresh: () => void
+}
+type propTypes = Iprops & FormComponentProps & InjectedIntlProps
+class Captcha extends React.Component <propTypes> {
     public render() {
         const {getFieldDecorator} = this.props.form;
         const {formatMessage} = this.props.intl;
@@ -20,23 +23,18 @@ class Captcha extends React.Component <FormComponentProps & InjectedIntlProps> {
         return (
             <Form layout = "vertical" className = {cx('formWrapper')}>
                 <div className = {cx('fieldsWrapper')}>
-                <Form.Item
-                        {...FORM_LAYOUT_CONFIG}
-                        label={formatMessage({ id: 'global.form.email' })}
-                        className={cx('formItem')}
-                    >
-                        {
-                            getFieldDecorator('email', {
-                                rules: [
-                                    getExistRule('required', 'email', locale, { required: true }),
-                                    getExistRule('email', 'email', locale),
-                                ],
-                            })(<Input />)}
+                <Form.Item label = {formatMessage({id: 'global.form.captcha'})} className = {cx('formItem')}>
+                        {getFieldDecorator('captcha', {
+                            rules: [getExistRule('required', 'captcha', locale, { required: true })],
+                        })(<Input />)}
+                         <div className="captacha-field">
+                            <img src={this.props.captcha} alt="" onClick={this.props.refresh}/> {formatMessage({id: 'page.login.inputCaptch'})}
+                         </div>
                     </Form.Item>
                 </div>
             </Form>
         );
-    }
+    } 
 
 }
 

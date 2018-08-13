@@ -69,7 +69,6 @@ interface IstateProps {
 type propTypes = IdispatchProps & IstateProps;
 class QueryContainer extends React.Component<propTypes, {}> {
   public render() {
-    // debugger
     const cx = classNames.bind(styles);
     return (
       <div>

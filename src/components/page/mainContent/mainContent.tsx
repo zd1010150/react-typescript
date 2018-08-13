@@ -6,7 +6,6 @@ import { AccountMainContentComponent, AuthMainContentComponent} from "../index";
 
 class MainContentComponent extends React.Component <RouteComponentProps<any>> {
     public render() {
-        window.console.log("auth change ======")
        return (
                 <Switch>
                         <Route path = "/auth" component = {AuthMainContentComponent}/>

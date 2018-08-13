@@ -41,8 +41,8 @@ export const setGlobalSetting: ActionCreator<IglobalsettingAction> = (settings: 
     settings,
     type: SET_GLOBAL_SETTING,
 });
-export const login = (values: IloginFormData, successMessage: string, cb: (data:any) => void) => (dispatch: Dispatch<any>): Promise<void> =>
-    post('/distributor/login', values, dispatch, { successMessage }).then(({ data }) => {
+export const login = (values: IloginFormData,  cb: (data:any) => void) => (dispatch: Dispatch<any>): Promise<void> =>
+    post('/distributor/login', values, dispatch, { needShowSuccessMsg: false }).then(({ data }) => {
         if (data && data.token && data.user) {
             const loginUser: IloginUser = {
                 email: data.user.emial,

@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button, Col, Row } from 'antd';
 import queryString from 'query-string';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
@@ -23,10 +23,12 @@ export class ResetPassword extends React.Component <IcreateAccountProps, {}> {
     public render() {
         const { formatMessage } = this.props.intl;
         return (
-            <div>
+            <Row>
+                <Col span={12}>
                 <PasswordForm editStatus={passwordFormStatus.resetPassword} ref={c => this.passwordForm=c}/>
-                <Button onClick={this.createNewAccount}>{formatMessage({ id: 'global.ui.button.save'})}</Button>
-            </div>
+                <Button className = 'magento-btn-big big-btn' onClick={this.createNewAccount}>{formatMessage({ id: 'global.ui.button.resetPwd'})}</Button>
+            </Col>
+            </Row>
         )
     }
     private createNewAccount = async() => {

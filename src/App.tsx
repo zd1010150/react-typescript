@@ -1,6 +1,7 @@
+import { PrivateRoute, PublicRoute } from 'components/ui/index'
 import * as React from "react";
 import { connect } from "react-redux";
-import { Route, RouteComponentProps, Switch, withRouter } from "react-router";
+import { RouteComponentProps, Switch, withRouter } from "react-router";
 import { Dispatch } from "redux";
 import { AccountMainLayout, AuthMainLayout } from "./components/layout/index";
 import { PageLoading } from "./components/page/index";
@@ -17,8 +18,8 @@ class App extends React.Component<RouteComponentProps<any> & Iprops> {
     return (
       <div className="App">
         <Switch>
-          <Route path="/auth" component={AuthMainLayout} />
-          <Route path="/" component={AccountMainLayout} />
+          <PublicRoute path="/auth" component={AuthMainLayout} />
+          <PrivateRoute path="/" component={AccountMainLayout} />
         </Switch>
         <PageLoading />
       </div>

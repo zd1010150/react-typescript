@@ -5,7 +5,7 @@ import { baseUrl } from "../config/env.config";
 import { getAuthorization } from "./common";
 const concatByValueType = (values: any, key: string) => {
   if (_.isArray(values)) {
-    return values.reduce((str, value: any) => str + `${key}[]=${value}&`, "");
+    return values.reduce((str: string, value: any) => str + `${key}[]=${value}&`, "");
   } else if (_.isObject(values)) {
     let str = "";
     Object.keys(values).forEach((vkey:string)=>{
@@ -24,7 +24,7 @@ const concatParams = (params: object) => {
     return "";
   }
   let str = "";
-  _.forOwn(params, (value, key) => (str += concatByValueType(value, key)));
+  _.forOwn(params, (value: any, key:string) => (str += concatByValueType(value, key)));
   return str;
 };
 export default async (

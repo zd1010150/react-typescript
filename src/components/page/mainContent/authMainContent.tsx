@@ -5,10 +5,7 @@ import { Login, Logout, CreateNewAccount, ForgetPassword, ResetPassword } from '
 import { PublicRoute } from '../../ui/index'
 class AuthMainContentComponent extends React.Component <{}> {
     public render() {
-        window.console.log("auth change ======")
-       
-    
-       return (
+      return (
                 <Switch>
                     <PublicRoute path="/auth/login" component={Login} />
                     <PublicRoute path="/auth/logout" component={Logout} />

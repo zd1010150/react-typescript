@@ -43,7 +43,7 @@ class Nav extends React.Component <RouteComponentProps<InavState> & InjectedIntl
                       defaultSelectedKeys = {[location.pathname]}
                       defaultOpenKeys = {["clientLists"]}
                       selectedKeys = {[location.pathname]}>
-                    <SubMenu title = "My account" key="clientLists">
+                    <SubMenu title = {formatMessage({id: 'global.ui.menu.myAccount'})} key="clientLists">
                         {
                             menuEls
                         }

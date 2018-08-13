@@ -27,44 +27,43 @@ export class DispalyInfo extends React.Component <propType, {}> {
         const {accountInfo} = this.props;
         return (
             <div>
-                <h3 className="section-title">{ formatMessage({ id: 'page.accountInfo.accountInformation'}) }</h3>
-                <Row>
-                    <Col span={2}> { formatMessage({id: 'global.form.lastName'})} </Col>
-                    <Col span={22}>{ accountInfo.last_name}</Col>
+                <h3 className="section-title first-section-title">{ formatMessage({ id: 'page.accountInfo.accountInformation'}) }</h3>
+                <Row className="one-row" gutter={20}>
+                    <Col span={3} className="text-left"> { formatMessage({id: 'global.form.lastName'})}: </Col>
+                    <Col span={21} className="font-bold">{ accountInfo.last_name}</Col>
                     
                 </Row>
-                <Row>
-                    <Col span={2}> { formatMessage({id: 'global.form.firstName'})} </Col>
-                    <Col span={22}>{ accountInfo.first_name}</Col>
+                <Row className="one-row" gutter={20}>
+                    <Col span={3} className="text-left"> { formatMessage({id: 'global.form.firstName'})}: </Col>
+                    <Col span={21} className="font-bold">{ accountInfo.first_name}</Col>
+                </Row>
+                <Row className="one-row" gutter={20}>
+                    <Col span={3} className="text-left"> { formatMessage({id: 'global.form.phone'})} :</Col>
+                    <Col span={21} className="font-bold">{ accountInfo.phone}</Col>
                     
                 </Row>
-                <Row>
-                    <Col span={2}> { formatMessage({id: 'global.form.phone'})} </Col>
-                    <Col span={22}>{ accountInfo.phone}</Col>
+                <Row className="one-row" gutter={20}>
+                    <Col span={3} className="text-left"> { formatMessage({id: 'global.form.contactEmail'})} :</Col>
+                    <Col span={21} className="font-bold">{ accountInfo.contact_email}</Col>
                     
                 </Row>
-                <Row>
-                    <Col span={2}> { formatMessage({id: 'global.form.contactEmail'})} </Col>
-                    <Col span={22}>{ accountInfo.contact_email}</Col>
+                <Row className="one-row" gutter={20}>
+                    <Col span={3} className="text-left"> { formatMessage({id: 'global.form.abn'})}: </Col>
+                    <Col span={21} className="font-bold">{ accountInfo.abn || ''}</Col>
                     
                 </Row>
-                <Row>
-                    <Col span={2}> { formatMessage({id: 'global.form.abn'})} </Col>
-                    <Col span={22}>{ accountInfo.abn || ''}</Col>
-                    
+                <Row className="one-row" gutter={20}>
+                    <Col span={3} className="text-left"> { formatMessage({id: 'global.form.position'})}: </Col>
+                    <Col span={21} className="font-bold">{ accountInfo.position_name}</Col>
                 </Row>
-                <Row>
-                    <Col span={2}> { formatMessage({id: 'global.form.position'})} </Col>
-                    <Col span={22}>{ accountInfo.position_name}</Col>
+                <Row className="one-row" gutter={20}>
+                    <Col span={3} className="text-left"> { formatMessage({id: 'global.form.loginEmail'})}: </Col>
+                    <Col span={21} className="font-bold">{ accountInfo.email}</Col>
                 </Row>
-                <Row>
-                    <Col span={2}> { formatMessage({id: 'global.form.loginEmail'})} </Col>
-                    <Col span={22}>{ accountInfo.email}</Col>
-                </Row>
-                <Row>
-                    <Col span={24}>
-                        <Link to={`/dashboard?action=${EDIT_INFO }`}>{ formatMessage({ id: 'global.ui.button.edit'}) }</Link> | 
-                        <Link to={`/dashboard?action=${CHANGE_PWD }`}>{ formatMessage({ id: 'global.ui.button.changePwd'}) }</Link>
+                <Row className="mt-xlg">
+                    <Col span={24} >
+                        <Link to={`/dashboard?action=${EDIT_INFO }`} className="pr-lg">{ formatMessage({ id: 'global.ui.button.edit'}) }</Link> | 
+                        <Link to={`/dashboard?action=${CHANGE_PWD }`} className="pl-lg">{ formatMessage({ id: 'global.ui.button.changePwd'}) }</Link>
                     </Col>
                 </Row>
             </div>

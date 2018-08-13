@@ -21,7 +21,7 @@ export default {
             weak:'Weak',
             strong:'Strong',
             medium:'Medium',
-            no:'无'
+            no:'No'
         },
         companyInfo: 'Company Information',
         contactPerson: 'Contact Person',

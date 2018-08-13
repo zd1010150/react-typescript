@@ -4,7 +4,7 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 import classNames from 'classnames/bind';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
-import {FORM_LAYOUT_CONFIG, LANGUAGE} from '../../../../config/app.config'
+import { LANGUAGE} from '../../../../config/app.config'
 import { formStatus } from '../../../../store/types';
 import { getExistRule } from '../../../../util/validateMessagesUtil';
 import {IaccountInfo} from '../../../accountInfo/flow/types';
@@ -33,7 +33,6 @@ class SignInfoForm extends React.Component <propsTypes> {
             <Form layout = "vertical" className = {cx('formWrapper')}>
                 <div className = {cx('fieldsWrapper')}>
                 <Form.Item
-                        {...FORM_LAYOUT_CONFIG}
                         label={formatMessage({ id: 'global.form.loginEmail' })}
                         className={cx('formItem')}
                     >

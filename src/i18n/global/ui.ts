@@ -25,7 +25,8 @@ export default {
       download: '下载所有图片',
       createNewAccount: '创建新账户',
       changePwd: '修改密码',
-      more: '更多'
+      more: '更多',
+      resetPwd: '重置密码',
     },
     input: {
       searchStore: '在此搜索全站商品...',
@@ -57,6 +58,9 @@ export default {
       addressInfo: '地址信息',
       otherInfo: '其他信息',
     },
+    menu: {
+      myAccount: '我的账户'
+    }
   },
   en: {
     button: {
@@ -83,7 +87,8 @@ export default {
       download: 'Download All Pictures',
       createNewAccount: 'Create New Account',
       changePwd: 'Modify Password',
-      more: 'More'
+      more: 'More',
+      resetPwd: 'Reset Password',
     },
     input: {
       searchStore: 'Search entire store here...',
@@ -115,5 +120,8 @@ export default {
       addressInfo: 'Address Information',
       otherInfo: 'Other Information',
     },
+    menu: {
+      myAccount: 'My Account'
+    }
   },
 };

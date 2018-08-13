@@ -21,7 +21,7 @@ class TopPanel extends React.Component<ItopPanel & InjectedIntlProps, {}> {
 
     public render() {
         const cx = classNames.bind(styles);
-        const { language, intl, account } = this.props;
+        const { language, intl, account} = this.props;
         const { formatMessage } = intl;
         const otherLanguage = language === LANGUAGE.ZH ? LANGUAGE.EN : LANGUAGE.ZH;
         const languageMenu = (
@@ -39,15 +39,11 @@ class TopPanel extends React.Component<ItopPanel & InjectedIntlProps, {}> {
                     <button className={cx('ant-dropdown-link')} onClick={this.logout}>{formatMessage({ id: `global.ui.button.logout` })}</button>
                 </Menu.Item>
             </Menu>);
-        const userNameEl = (_.isEmpty(account.lastName) || _.isEmpty(account.firstName)) ?
-            (<button className={cx('ant-dropdown-link')}>
-                {formatMessage({ id: 'global.info.WELCOME_MSG' })}
-                <UserName />
-            </button>) : (
-                <Dropdown overlay={userMenu}>
+        const userNameEl = _.isEmpty(`${account.userId}`) ? <span>{formatMessage({ id: 'global.info.WELCOME_MSG' })}</span> : (<Dropdown overlay={userMenu} >
                     <button className={cx('ant-dropdown-link')}>
                         {formatMessage({ id: 'global.info.WELCOME_MSG' })}
                         <UserName />
+                        <Icon type="down" />
                     </button>
                 </Dropdown>
             );

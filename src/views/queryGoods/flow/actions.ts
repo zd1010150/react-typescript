@@ -150,8 +150,12 @@ export const filterCategoryByBrand = (brandIds: number[]) => (
 ): Promise<void> =>
   get(`/distributor/brand-filter-category`, {data: brandIds}, dispatch).then(
     ({ data }) => {
-      debugger
-      dispatch(setCategories((data && data.data) || []));
+      let categories :any = [];
+      if(data && data.data){
+        const allResponsCategories= data.data.map((d:any)=>d.distributor_category);
+        categories = _.unionBy(allResponsCategories, 'id');
+      }
+      dispatch(setCategories(categories|| []));
       }
   );
 export const filterBrandsByCategory = (categoryIds: number[]) => (
@@ -188,7 +192,6 @@ export const filterBrandsByPinying = (charater: string) => (
     getState: () => {}
   ) =>{
     const state :IApplicationState = getState() as IApplicationState;
-    debugger
     dispatch( resetBrands(state.global.settings.brands || []));
   }
     

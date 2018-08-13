@@ -4,7 +4,7 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 import classNames from 'classnames/bind';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
-import { FORM_LAYOUT_CONFIG, LANGUAGE } from '../../../../config/app.config';
+import { LANGUAGE } from '../../../../config/app.config';
 import { Iposition } from '../../../../store/global/types';
 import { formStatus } from '../../../../store/types';
 import { getExistRule, validator } from '../../../../util/validateMessagesUtil';
@@ -40,7 +40,7 @@ class ContactPersonForm extends React.Component<propsTypes> {
         return (
             <Form layout="vertical" className={cx('formWrapper')}>
                 <div className={cx('fieldsWrapper')}>
-                    <Form.Item  {...FORM_LAYOUT_CONFIG} label={formatMessage({ id: 'global.form.lastName' })} className={cx('formItem')}>
+                    <Form.Item   label={formatMessage({ id: 'global.form.lastName' })} className={cx('formItem')}>
                         {getFieldDecorator('last_name', {
                             initialValue: isEdting? (editObject ? editObject.last_name : '') : '',
                             rules: [
@@ -48,7 +48,7 @@ class ContactPersonForm extends React.Component<propsTypes> {
                             ],
                         })(<Input/>)}
                     </Form.Item>
-                    <Form.Item  {...FORM_LAYOUT_CONFIG} label={formatMessage({ id: 'global.form.firstName' })} className={cx('formItem')}>
+                    <Form.Item   label={formatMessage({ id: 'global.form.firstName' })} className={cx('formItem')}>
                         {getFieldDecorator('first_name', {
                             initialValue: isEdting? (editObject ? editObject.first_name : '') : '',
                             rules: [
@@ -57,7 +57,7 @@ class ContactPersonForm extends React.Component<propsTypes> {
                         })(<Input />)}
                     </Form.Item>
                     <Form.Item
-                        {...FORM_LAYOUT_CONFIG}
+                        
                         label={formatMessage({ id: 'global.form.phone' })}
                         className={cx('formItem')}
                     >
@@ -72,7 +72,7 @@ class ContactPersonForm extends React.Component<propsTypes> {
                             })(<Input />)}
                     </Form.Item>
                     <Form.Item
-                        {...FORM_LAYOUT_CONFIG}
+                        
                         label={formatMessage({ id: 'global.form.contactEmail' })}
                         className={cx('formItem')}
                     >
@@ -85,7 +85,7 @@ class ContactPersonForm extends React.Component<propsTypes> {
                                 ],
                             })(<Input />)}
                     </Form.Item>
-                    <Form.Item  {...FORM_LAYOUT_CONFIG} label={formatMessage({ id: 'global.form.position' })} className={cx('formItem')}>
+                    <Form.Item  label={formatMessage({ id: 'global.form.position' })} className={cx('formItem')}>
                         {
                             getFieldDecorator('position_id', {
                                 initialValue: isEdting? (editObject ? editObject.position_id : positionDefaultId) : positionDefaultId,

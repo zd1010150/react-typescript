@@ -61,7 +61,8 @@ export interface IglobalState{
 
 export interface IloginFormData{
     email: string,
-    password: string
+    password: string,
+    captcha? : string
 }
 
 export interface InotificationData{

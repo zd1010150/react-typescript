@@ -6,12 +6,11 @@ import {
     ICreateAccountForm
 } from './types';
 
-export const createNewAccount = (values: ICreateAccountForm, successMessage: string, cb: () => void) => (dispatch: Dispatch<any>): Promise<void> =>
-    post('/distributor/distributor-users', values, dispatch, { successMessage }).then(({ data }) => {
+export const createNewAccount = (values: ICreateAccountForm, cb: (data: any) => void) => (dispatch: Dispatch<any>): Promise<void> =>
+    post('/distributor/distributor-users', values, dispatch, { needShowSuccessMsg: false }).then(({ data }) => {
         if (data) {
-            debugger
             if (_.isFunction(cb)) {
-                cb()
+                cb(data)
             }
         }
     });

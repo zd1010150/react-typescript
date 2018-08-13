@@ -17,7 +17,7 @@ import {Link} from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 interface IloginForm {
-    login: (formData: IloginFormData, successMessage: string, cb: (data: any)=> void) => void
+    login: (formData: IloginFormData, cb: (data: any)=> void) => void
 }
 type propTypes = IloginForm & FormComponentProps & InjectedIntlProps & RouteComponentProps<any>;
 class Login extends React.Component <propTypes> {
@@ -57,7 +57,7 @@ class Login extends React.Component <propTypes> {
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => {
     return {
-        login: (formData: IloginFormData, successMessage: string, cb: (data: any) => {}) => dispatch(login(formData, successMessage, cb))
+        login: (formData: IloginFormData,  cb: (data: any) => {}) => dispatch(login(formData, cb))
     };
 }
 const LoginFormComponent = withRouter(connect(null, mapDispatchToProps)(injectIntl(Login)));

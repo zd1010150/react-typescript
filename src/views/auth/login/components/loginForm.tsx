@@ -1,5 +1,5 @@
 
-import {Button, Form, Input} from 'antd';
+import {Button, Form, Input, notification } from 'antd';
 import { FormComponentProps } from 'antd/lib/form/Form';
 import classNames from 'classnames/bind';
 import { LANGUAGE} from 'config/app.config'
@@ -14,7 +14,7 @@ import styles from '../index.less';
 const cx = classNames.bind(styles);
 
 interface IloginFormProps {
-    login: (formData: IloginFormData, successMessage: string, cb: (data: any)=> void) => void,
+    login: (formData: IloginFormData,  cb: (data: any)=> void) => void,
     
 }
 interface IloginFormState { 
@@ -25,6 +25,7 @@ class LoginForm extends React.Component <propTypes> {
     public state: IloginFormState = {
         captcha: ''
     }
+    
     public render() {
         const {getFieldDecorator} = this.props.form;
         const {formatMessage, locale} = this.props.intl;
@@ -34,7 +35,7 @@ class LoginForm extends React.Component <propTypes> {
                         {getFieldDecorator('captcha', {
                             rules: [getExistRule('required', 'captcha', tlocale, { required: true })],
                         })(<Input />)}
-                         <span><img src={this.state.captcha} alt="" onClick={this.clickRefresh}/> {formatMessage({id: 'page.login.inputCaptch'})}</span>
+                         <div className="captacha-field"><img src={this.state.captcha} alt="" onClick={this.clickRefresh}/> {formatMessage({id: 'page.login.inputCaptch'})}</div>
                     </Form.Item>
         ): '';
         return (
@@ -72,13 +73,16 @@ class LoginForm extends React.Component <propTypes> {
         const { history } = this.props;
         this.props.form.validateFields((err: any, values: object) => {
             if (!err) {
-                me.props.login(values as IloginFormData, formatMessage({id: 'global.info.loginSuccess'}), (data) => {
+                me.props.login(values as IloginFormData, (data) => {
                     if(data.captcha){
                         me.setState({
                             captcha: data.captcha
                         })
                     }else{
-                        
+                        notification.success({ 
+                            description: '',
+                            message: formatMessage({id: 'global.info.loginSuccess'})
+                        });    
                     history.replace("/dashboard");    
                     }
                 });
@@ -86,8 +90,8 @@ class LoginForm extends React.Component <propTypes> {
         });
     }
     private clickRefresh = ()=> {
-        const {login, form, intl } = this.props;
-        login(form.getFieldsValue() as IloginFormData, intl.formatMessage({id: 'global.info.loginSuccess'}), (data) => {
+        const {login, form, } = this.props;
+        login(form.getFieldsValue() as IloginFormData, (data) => {
             this.setState({
                 captcha: data.captcha
             })

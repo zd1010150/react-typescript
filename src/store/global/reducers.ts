@@ -35,7 +35,6 @@ const language = (
       globalLanguage = state;
       break;
   }
-  window.console.log("it is trigger", globalLanguage);
   setStore(localStorageKeys.language as string, globalLanguage as string);
   return globalLanguage;
 };
