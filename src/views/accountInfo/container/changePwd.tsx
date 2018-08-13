@@ -4,6 +4,7 @@ import { InjectedIntlProps, injectIntl } from "react-intl";
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router";
 import { Dispatch } from "redux";
+import { deRegisterLoginUser} from 'store/global/actions';
 import {
   IantFormValidateResult,
   IApplicationState
@@ -21,6 +22,7 @@ export interface Iprops {
     cb: () => void
   ) => void;
   getDetailDispatch: () => void;
+  deRegisterLoginUserDispatch: () => void
 }
 
 type IcreateAccountProps = Iprops &
@@ -52,7 +54,7 @@ export class ChangePwd extends React.Component<IcreateAccountProps, {}> {
     );
   }
   private createNewAccount = async () => {
-    const { updatePwdDispatch, intl, history } = this.props;
+    const { updatePwdDispatch, intl, deRegisterLoginUserDispatch } = this.props;
     const getPromiseWrapper = (form: any) =>
       new Promise(resolve => {
         form.validateFieldsAndScroll((err: any, values: object) => {
@@ -70,13 +72,15 @@ export class ChangePwd extends React.Component<IcreateAccountProps, {}> {
         if (validateResult) {
           const postData: IupdatePwdFormData = {
             old_password: passwordForm.data.old_password,
-            password: passwordForm.data.password
+            password: passwordForm.data.password,
+            password_confirmation: passwordForm.data.password_confirmation,
           };
           updatePwdDispatch(
             postData,
-            intl.formatMessage({ id: "global.info.createNewAccountSuccess" }),
+            intl.formatMessage({ id: "global.info.updatePasswordSuccess" }),
             () => {
-              history.replace("/auth/login");
+              deRegisterLoginUserDispatch();
+              // history.replace("/auth/login");
             }
           );
         }
@@ -94,7 +98,9 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => {
       formData: IupdatePwdFormData,
       successMessage: string,
       cb: () => {}
-    ) => dispatch(updatePwd(formData, successMessage, cb))
+    ) => dispatch(updatePwd(formData, successMessage, cb)),
+    // tslint:disable-next-line:object-literal-sort-keys
+    deRegisterLoginUserDispatch: () => dispatch(deRegisterLoginUser())
   };
 };
 const ChangePwdComponent = withRouter(

@@ -25,5 +25,6 @@ export interface IeditAccountFormData {
 export interface IupdatePwdFormData {
   old_password: string;
   password: string;
+  password_confirmation: string,
 }
 
