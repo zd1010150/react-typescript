@@ -11,7 +11,7 @@ export default {
         productName:'商品名',
         wholesale: '批发 {index} <br/> ({pallets} 货板)',
         qtyPallet:'数量/货板',
-        enqueryQty: '询价',
+        enqueryQty: '询价数量（货板）',
         enqueryGoods: '询价',
         quantity: '数量',
         pallets: '货板',

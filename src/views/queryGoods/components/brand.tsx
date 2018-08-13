@@ -1,9 +1,4 @@
 import { Button, Col, Icon, Row, Tooltip } from "antd";
-import brand1 from 'assets/images/brands/1.png';
-import brand2 from 'assets/images/brands/3.png';
-import brand3 from 'assets/images/brands/4.png';
-import brand4 from 'assets/images/brands/5.png';
-import brand5 from 'assets/images/brands/6.png';
 import classNames from "classnames/bind";
 import *  as _ from 'lodash';
 import * as React from "react";
@@ -45,9 +40,7 @@ class BrandComponent extends React.Component<propTypes, {}> {
       }
       return characters;
     })();
-    // test
-    const generateor =  (id: number) => [brand1, brand2, brand3, brand4, brand5][id%5];
-
+   
     const isDisplayAll = this.state.isDisplayAll;
     return (
       <div className={cx("category-brand-wrapper")}>
@@ -112,8 +105,7 @@ class BrandComponent extends React.Component<propTypes, {}> {
                       <img
                         className={cx("brand-img")}
                         src={
-                          d.url ||
-                          generateor(d.id)
+                          d.url 
                         }
                         alt=""
                       />
@@ -162,8 +154,7 @@ class BrandComponent extends React.Component<propTypes, {}> {
                     <img
                       className={cx("brand-img")}
                       src={
-                        d.url ||
-                        generateor(d.id)
+                        d.url
                       }
                       alt=""
                     />

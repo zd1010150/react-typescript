@@ -39,7 +39,7 @@ class TopPanel extends React.Component<ItopPanel & InjectedIntlProps, {}> {
                     <button className={cx('ant-dropdown-link')} onClick={this.logout}>{formatMessage({ id: `global.ui.button.logout` })}</button>
                 </Menu.Item>
             </Menu>);
-        const userNameEl = _.isEmpty(`${account.userId}`) ? <span>{formatMessage({ id: 'global.info.WELCOME_MSG' })}</span> : (<Dropdown overlay={userMenu} >
+        const userNameEl = (account.userId === undefined) || _.isEmpty(`${account.userId}`) ? <span>{formatMessage({ id: 'global.info.WELCOME_MSG' })}</span> : (<Dropdown overlay={userMenu} >
                     <button className={cx('ant-dropdown-link')}>
                         {formatMessage({ id: 'global.info.WELCOME_MSG' })}
                         <UserName />
@@ -68,16 +68,16 @@ class TopPanel extends React.Component<ItopPanel & InjectedIntlProps, {}> {
         onChange(otherLanguage)
     }
     private logout = () => {
-        const { deRegisterLoginUserDispatch } = this.props;
+        const { deRegisterLoginUserDispatch, intl } = this.props;
+        const { formatMessage } = intl;
         Modal.confirm({
-            title: 'Confirm',
-            // tslint:disable-next-line:object-literal-sort-keys
-            content: '你确定退出',
-            okText: '确认',
-            cancelText: '取消',
+            cancelText: formatMessage({id: 'global.ui.button.cancel'}),
+            content: formatMessage({id: 'global.info.confirmLogout'}),
+            okText: formatMessage({id: 'global.ui.button.ok'}),
             onOk: () => {
                 deRegisterLoginUserDispatch()
-            }
+            },
+            title: '',
         });
     }
 }

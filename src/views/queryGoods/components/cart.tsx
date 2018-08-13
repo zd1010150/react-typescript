@@ -38,7 +38,7 @@ class DateComponent extends React.Component<propTypes, {}> {
                   {formatMessage({ id: "page.enquery.productCode" })}: {g.code}
                 </p>
                 <p className={cx("cart-good-quantity")}>
-                  {formatMessage({ id: "page.enquery.quantity" })}:
+                  {formatMessage({ id: "page.enquery.qtyPallet" })}:
                   <Input
                     defaultValue={`${g.quantity}`}
                     onBlur={this.modifyQuantity}

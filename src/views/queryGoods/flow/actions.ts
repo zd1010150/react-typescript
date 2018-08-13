@@ -78,10 +78,10 @@ export const deleteFromCart = (id: number) => ({
 });
 
 export const setPagination = (
-  page: number,
+  page: number = 0,
   // tslint:disable-next-line:variable-name
-  per_page: number,
-  total: number
+  per_page: number = 0,
+  total: number =0
 ) => ({
   page,
   per_page,
@@ -124,12 +124,12 @@ export const getGoodsData = (values: IproductQueryFormData) => (
 ): Promise<void> =>
   get("/distributor/distributor-products", values, dispatch).then(
     ({ data }) => {
-      if (data && data.meta) {
-        dispatch(setProducts(data.data));
+      if (data) {
+        dispatch(setProducts(data.data || []));
         dispatch(
           setSorter(values.orderBy || '', values.sortedBy || '')
         );
-        const { total, per_page, current_page } = data.meta.pagination;
+        const { total, per_page, current_page } = data.meta && data.meta.pagination;
         dispatch(setPagination(current_page, per_page, total));
       }
     }
@@ -138,7 +138,7 @@ export const enqueryGoods = (
   values: { items: IproductToPost[] },
   cb: () => void
 ) => (dispatch: Dispatch<any>): Promise<void> =>
-  post("/distributor/distributor-enquiries", values, dispatch ).then(
+  post("/distributor/distributor-enquiries", values, dispatch,  { needShowSuccessMsg: false }).then(
     ({ data }) => {
       if (data && _.isFunction(cb)) {
         cb();

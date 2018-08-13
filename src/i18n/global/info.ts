@@ -11,6 +11,7 @@ export default {
         updateAccountSuccess: '更新用户信息成功',
         sendEmailSuccess: '发送邮件成功，快到邮箱里，查收重置密码的邮件',
         resetPasswordSuccess: '重置密码成功，请重新登录',
+       confirmLogout: '你确定退出？',
 
 
         resetPasswordTip: '请在下面输入您的电子邮件地址,以接收密码重置链接.'
@@ -23,6 +24,7 @@ export default {
         ERROR_CHINA_REQUIRE_ID: 'Citizens in China are required to input  ID Number',
         loginSuccess: 'Login Success',
         createNewAccountSuccess: 'Create New Account Success',
+        confirmLogout: 'Are you sure to log out?',
         updateAccountSuccess: 'Update Account Success',
         sendEmailSuccess: 'Send Email success, please open your mail box and click reset password link',
         resetPasswordSuccess: 'Reset password successfully, please log in agian',

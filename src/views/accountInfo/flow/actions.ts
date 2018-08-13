@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import { Dispatch } from "redux";
-import { get, put } from "../../../store/http/httpAction";
+import { get, post ,put } from "../../../store/http/httpAction";
 import { SET_ACCOUNT_IMFORMATION } from "./actionTypes";
 import { IaccountInfo, IeditAccountFormData, IupdatePwdFormData } from "./types";
 
@@ -39,7 +39,7 @@ export const getDetail = () => (dispatch: Dispatch<any>): Promise<void> =>
   });
 
   export const updatePwd = (values: IupdatePwdFormData, successMessage: string, cb: () => void)=> (dispatch: Dispatch<any>): Promise<void> =>
-  put('/distributor/password/update', values, dispatch, { successMessage }).then(({ data }) => {
+  post('/distributor/password/update', values, dispatch, { successMessage }).then(({ data }) => {
       if (data) {
           if (_.isFunction(cb)) {
               cb()

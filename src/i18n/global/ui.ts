@@ -48,7 +48,7 @@ export default {
       none: '无',
     },
     dialog: {
-      info: '提示',
+      info: '提示'
     },
     upload: {
       maxSize: '文件最大是2M',
@@ -110,7 +110,7 @@ export default {
       none: 'None',
     },
     dialog: {
-      info: '提示',
+      info: 'Info',
     },
     upload: {
       maxSize: 'Maximum file size is 2M',
