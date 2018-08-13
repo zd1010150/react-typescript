@@ -3,7 +3,7 @@ import { PaginationConfig} from 'antd/lib/pagination/Pagination'
 import classNames from "classnames/bind";
 import * as _ from "lodash";
 import * as React from "react";
-import { InjectedIntlProps, injectIntl } from "react-intl";
+import { FormattedHTMLMessage, InjectedIntlProps, injectIntl } from "react-intl";
 import {biggerZeroInterger} from 'util/regex';
 import styles from "../index.less";
 
@@ -48,12 +48,13 @@ class GoodsTable extends React.Component<propTypes, {}> {
     const { formatMessage, locale } = intl;
     const cx = classNames.bind(styles);
     
-    const wholeSealColumns = [1,2,3].map(index => {
+    const wholeSealColumns = [1,3,6].map((currentValue, index) => {
+      const arrayIndex = index+1;
       return {
         key: `wholesale${index}`,
         render: (t: string, record: IproductInCart) => {
           const wholesale = record.wholesale_pallet.filter(
-            w => w.index === index
+            w => w.index === arrayIndex
           );
           if (!_.isEmpty(wholesale)) {
             return wholesale[0].price;
@@ -61,7 +62,7 @@ class GoodsTable extends React.Component<propTypes, {}> {
             return "";
           }
         },
-        title: formatMessage({ id: "page.enquery.wholesale" }, { index })
+        title: <FormattedHTMLMessage id="page.enquery.wholesale" values={ {index: arrayIndex, pallets:currentValue }}/>
       };
     });
     const columns = [

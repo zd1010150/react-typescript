@@ -17,7 +17,7 @@ class QueryByProductCode extends React.Component < propTypes, {}> {
         return (
          
         <Input.Search
-          placeholder={formatMessage({ id: 'global.ui.input.searchUser' })}
+          placeholder={formatMessage({ id: 'page.enquery.codePlaceholder' })}
           // tslint:disable-next-line:jsx-no-lambda
           onSearch={value=>onSearch(value)}
           enterButton={true}
