@@ -1,4 +1,3 @@
-// import classNames from "classnames/bind";
 import * as React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
@@ -7,7 +6,6 @@ import GoodsTable from "../components/table";
 
 import { addToCart, getGoodsData } from "../flow/actions";
 import { getAllGoodsDetail } from "../flow/reselect";
-// import styles from "../index.less";
 import {
   IproductInCart,
   IproductQuery,
@@ -26,7 +24,6 @@ type propsTypes = IstateProps & IdispatchProps;
 
 class TableContainer extends React.Component<propsTypes, {}> {
   public render() {
-    // const cx = classNames.bind(styles);
     return (
       <div className="goods-table-wrapper">
         <GoodsTable

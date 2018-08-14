@@ -188,9 +188,10 @@ class GoodsTable extends React.Component<propTypes, {}> {
   };
   private fetchData = (props: propTypes) => {
     const { getGoodsData, goodsQuery, goodsPagination } = props;
+    const newGoodsPagination = Object.assign({}, goodsPagination, { page: 1 })
     getGoodsData({
       ...goodsQuery,
-      ...goodsPagination
+      ...newGoodsPagination
     });
   };
   private addGoodToCart = (e: React.MouseEvent<HTMLButtonElement>) => {

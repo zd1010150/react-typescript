@@ -25,8 +25,7 @@ interface ImainLayoutProps{
 const cx = classNames.bind(styles);
 type propTypes = ImainLayoutProps & RouteComponentProps<any>;
 const layout: React.SFC<propTypes>= ({locale, account, changeLanugage, deRegisterLoginUserDispatch, location}) => {
-    window.console.log(location.pathname, "=====")
-    return (
+   return (
         <div className="page-wrapper">
             <header className="page-header">
                 <div className="panel wrapper">

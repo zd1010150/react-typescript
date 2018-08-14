@@ -52,7 +52,6 @@ class BrandComponent extends React.Component<propTypes, {}> {
       return characters;
     })();
     const ifIncludeNumber = /\d+/g .test(availableCharacter.join(""));
-    window.console.log(availableCharacter, "dandan");
     const isDisplayAll = this.state.isDisplayAll;
     return (
       <div className={cx("category-brand-wrapper")}>
@@ -219,7 +218,6 @@ class BrandComponent extends React.Component<propTypes, {}> {
     e.preventDefault();
     const aEl = e.target as HTMLButtonElement;
     const v = `${aEl.dataset.value}`;
-    window.console.log("Vvvvv", v);
     if(v === "0-9"){
       this.props.filterBrandsByEnglishName(v);
     } else if( v === "all") {
