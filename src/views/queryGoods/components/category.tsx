@@ -1,18 +1,21 @@
 import { Button, Checkbox, Col, Icon, Row, Tooltip } from "antd";
 import classNames from "classnames/bind";
-import * as _ from "lodash";
+import * as _ from 'lodash';
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 import { Icategory } from "../../../store/global/types";
+import { IproductQuery} from "../flow/types";
 import styles from "../index.less";
 
 interface Istate {
   isDisplayAll: boolean;
 }
 interface Iprops {
+  goodsQuery: IproductQuery;
   categories: Icategory[];
   checkedCategoryIds: number[];
-  filterBrandsByCategory: (categoryIds: number[]) => void;
+  getAllCategories: () => void;
+  
   setSelectedCategoryBatch: (ids: number[], isAdd: boolean) => void;
   setCheckedCategoryIds: (ids: number[]) => void;
 }
@@ -23,6 +26,15 @@ class CategoryComponent extends React.Component<propTypes, {}> {
   public state: Istate = {
     isDisplayAll: false
   };
+  public componentDidUpdate(prevProps: propTypes) {
+    if (
+      !(
+        _.isEqual(prevProps.goodsQuery.brand_ids, this.props.goodsQuery.brand_ids)
+      )
+    ) {
+      this.props.getAllCategories();
+    }
+  }
   public render() {
     const { intl, categories } = this.props;
     const { locale, formatMessage } = intl;
@@ -128,7 +140,6 @@ class CategoryComponent extends React.Component<propTypes, {}> {
   };
   private saveCategory = () => {
     this.props.setSelectedCategoryBatch(this.props.checkedCategoryIds, true);
-    this.props.filterBrandsByCategory(this.props.checkedCategoryIds);
     this.setState({
       isDisplayAll: false
     });

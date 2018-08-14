@@ -113,6 +113,16 @@
   margin: 3px 3px;
   color: @grey-text-color;
   font-size: 12px;
+  border: 0px;
+  background: transparent;
+  &:not(:disabled){
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+  &:disabled{
+    color: #ccc;
+  }
 }
 .brand-img {
   height: 30px;

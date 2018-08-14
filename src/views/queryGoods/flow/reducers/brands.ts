@@ -15,6 +15,7 @@ const mappingState = (state: Ibrand[], serverGlobalSettings: any): Ibrand[] => {
       id: b.id,
       name_en: b.name,
       name_zh: b.name_zh,
+      name_zh_pinyin: b.name_zh_pinyin,
       url: b.logo_url
     }));
   } else {
@@ -27,6 +28,7 @@ const mapData = (data: any): Ibrand[] => {
       id: b.id,
       name_en: b.name,
       name_zh: b.name_zh,
+      name_zh_pinyin: b.name_zh_pinyin,
       url: b.logo_url
     }));
   } else {

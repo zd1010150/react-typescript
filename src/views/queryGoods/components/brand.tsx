@@ -4,18 +4,20 @@ import *  as _ from 'lodash';
 import * as React from "react";
 import { InjectedIntlProps, injectIntl } from "react-intl";
 import { Ibrand } from "../../../store/global/types";
+import { IproductQuery} from "../flow/types";
 import styles from "../index.less";
 
 interface Istate {
   isDisplayAll: boolean;
 }
 interface Iprops {
+  availableCharacter: string[];
   brands: Ibrand[];
   checkedBrandIds: number[];
-  filterCategoryByBrand: (brandIds: number[]) => void;
   filterBrandsByEnglishName: (charactor: string) => void;
   filterBrandsByPinying: (charactor: string) => void;
   getAllBrands: () => void;
+  goodsQuery: IproductQuery;
   setCheckedBrandIds: (ids: number[])=>void;
   setSelectedBrandBatch: (ids: number[], isAdd: boolean) => void;
   
@@ -27,8 +29,17 @@ class BrandComponent extends React.Component<propTypes, {}> {
   public state: Istate = {
     isDisplayAll: false,
   };
+  public componentDidUpdate(prevProps: propTypes) {
+    if (
+      !(
+        _.isEqual(prevProps.goodsQuery.category_ids, this.props.goodsQuery.category_ids)
+      )
+    ) {
+      this.props.getAllBrands();
+    }
+  }
   public render() {
-    const { intl, brands } = this.props;
+    const { intl, brands, availableCharacter } = this.props;
     const { locale, formatMessage } = intl;
     const cx = classNames.bind(styles);
     const field = locale === "zh" ? "name_zh" : "name_en";
@@ -40,7 +51,8 @@ class BrandComponent extends React.Component<propTypes, {}> {
       }
       return characters;
     })();
-   
+    const ifIncludeNumber = /\d+/g .test(availableCharacter.join(""));
+    window.console.log(availableCharacter, "dandan");
     const isDisplayAll = this.state.isDisplayAll;
     return (
       <div className={cx("category-brand-wrapper")}>
@@ -53,35 +65,34 @@ class BrandComponent extends React.Component<propTypes, {}> {
         {isDisplayAll ? (
           <div className={cx("filter-options-all-col")}>
             <div className={cx("filter-brand-alphabet")}>
-              <a
-                href="#"
+              <button
                 key="all"
                 className={cx("alphabet")}
                 data-value="all"
                 onClick={this.selectAlphabet}
               >
                 All
-              </a>
+              </button>
               {alphabets.map(i => (
-                <a
-                  href="#"
+                <button
+                  disabled={availableCharacter.indexOf(i) < 0}
                   key={i}
                   className={cx("alphabet")}
                   data-value={i}
                   onClick={this.selectAlphabet}
                 >
                   {i}
-                </a>
+                </button>
               ))}
-              <a
-                href="#"
+              <button
+                disabled={!ifIncludeNumber}
                 key="09"
                 className={cx("alphabet")}
                 data-value="0-9"
                 onClick={this.selectAlphabet}
               >
                 0-9
-              </a>
+              </button>
             </div>
             <div className={cx("filter-all-options-wrapper")}>
               <Row gutter={5}>
@@ -200,14 +211,13 @@ class BrandComponent extends React.Component<propTypes, {}> {
   };
   private saveBrand = () => {
     this.props.setSelectedBrandBatch(this.props.checkedBrandIds, true);
-    this.props.filterCategoryByBrand(this.props.checkedBrandIds);
     this.setState({
       isDisplayAll: false
     });
   };
-  private selectAlphabet = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  private selectAlphabet = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const aEl = e.target as HTMLAnchorElement;
+    const aEl = e.target as HTMLButtonElement;
     const v = `${aEl.dataset.value}`;
     window.console.log("Vvvvv", v);
     if(v === "0-9"){

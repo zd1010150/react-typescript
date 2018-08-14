@@ -40,6 +40,7 @@ export interface Ibrand{
     id: number,
     name_en: string,
     name_zh: string,
+    name_zh_pinyin: string,
     url: string,
 }
 export interface Icategory{

@@ -15,11 +15,10 @@ import {
   deleteFromCart,
   deleteRefineBy,
   enqueryGoods,
-  filterBrandsByCategory,
   filterBrandsByEnglishName,
   filterBrandsByPinying,
-  filterCategoryByBrand,
   getAllBrands,
+  getAllCategories,
   modifyQuantityInCart,
   setCheckedBrandIds,
   setCheckedCategoryIds,
@@ -29,18 +28,18 @@ import {
   setTimeRange
 } from "../flow/actions";
 import {
+  getAvaliableCharacterOfBrands,
   getSelectedBrandDetail,
   getSelectedCategoryDetail
 } from "../flow/reselect";
-import { IproductInCart, IproductToPost, IrefineBytypes } from "../flow/types";
+import { IproductInCart, IproductQuery, IproductToPost, IrefineBytypes } from "../flow/types";
 import styles from "../index.less";
 
 interface IdispatchProps {
-  filterBrandsByCategoryDispatch: (categoryId: number[]) => void;
-  filterCategoryByBrandDispatch: (brandId: number[]) => void;
   filterBrandsByEnglishNameDispatch: (charactor: string) => void;
   filterBrandsByPinyingDispatch: (charactor: string) => void;
   getAllBrandsDispatch: () => void;
+  getAllCategoriesDispatch: () =>void;
   setCheckedBrandIdsDispatch: (ids: number[]) => void;
   setCheckedCategoryIdsDispatch: (ids: number[]) => void;
   setSelectedBrandBatchDispatch: (ids: number[], isAdd: boolean) => void;
@@ -58,8 +57,10 @@ interface IdispatchProps {
 interface IstateProps {
   availableBrands: Ibrand[];
   availableCategories: Icategory[];
+  availableCharaters: string[];
   selectedBrands: Ibrand[];
   goodsIncart: IproductInCart[];
+  goodsQuery:IproductQuery;
   selectedCategoies: Icategory[];
   startDate: string;
   endDate: string;
@@ -103,20 +104,22 @@ class QueryContainer extends React.Component<propTypes, {}> {
         <div className={cx("filters-wrapper")}>
           <div className={cx("filter")}>
             <Category
+              goodsQuery= { this.props.goodsQuery}
               categories={this.props.availableCategories}
               setSelectedCategoryBatch={
                 this.props.setSelectedCategoryBatchDispatch
               }
-              filterBrandsByCategory={this.props.filterBrandsByCategoryDispatch}
+              getAllCategories = { this.props.getAllCategoriesDispatch}
               checkedCategoryIds={this.props.checkedCategoryIds}
               setCheckedCategoryIds={this.props.setCheckedCategoryIdsDispatch}
             />
           </div>
           <div className={cx("filter")}>
             <Brand
+              goodsQuery= { this.props.goodsQuery}
+              availableCharacter = {this.props.availableCharaters}
               brands={this.props.availableBrands}
               checkedBrandIds={this.props.checkedBrandIds}
-              filterCategoryByBrand={this.props.filterCategoryByBrandDispatch}
               setCheckedBrandIds={this.props.setCheckedBrandIdsDispatch}
               setSelectedBrandBatch={this.props.setSelectedBrandBatchDispatch}
               filterBrandsByEnglishName={
@@ -141,10 +144,12 @@ class QueryContainer extends React.Component<propTypes, {}> {
 const mapStateToProps = (state: IApplicationState) => ({
   availableBrands: state.enquery.brands,
   availableCategories: state.enquery.categories,
+  availableCharaters: getAvaliableCharacterOfBrands(state),
   checkedBrandIds: state.enquery.checkedBrandIds,
   checkedCategoryIds: state.enquery.checkedCategoryIds,
   endDate: state.enquery.goodsQuery.timerange.to,
   goodsIncart: state.enquery.cart,
+  goodsQuery: state.enquery.goodsQuery,
   selectedBrands: getSelectedBrandDetail(state),
   selectedCategoies: getSelectedCategoryDetail(state),
   startDate: state.enquery.goodsQuery.timerange.from
@@ -158,15 +163,13 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => {
       values: { items: IproductToPost[] },
       cb: () => void
     ) => dispatch(enqueryGoods(values, cb)),
-    filterBrandsByCategoryDispatch: (categoryIds: number[]) =>
-      dispatch(filterBrandsByCategory(categoryIds)),
+    
     filterBrandsByEnglishNameDispatch: (charactor: string) =>
       dispatch(filterBrandsByEnglishName(charactor)),
     filterBrandsByPinyingDispatch: (charactor: string) =>
       dispatch(filterBrandsByPinying(charactor)),
-    filterCategoryByBrandDispatch: (brandIds: number[]) =>
-      dispatch(filterCategoryByBrand(brandIds)),
     getAllBrandsDispatch: () => dispatch(getAllBrands()),
+    getAllCategoriesDispatch: () =>dispatch(getAllCategories()),
     modifyQuantityInCartDispatch: (id: number, quantity: number) =>
       dispatch(modifyQuantityInCart(id, quantity)),
     setCheckedBrandIdsDispatch: (ids: number[]) =>

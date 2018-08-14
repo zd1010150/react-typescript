@@ -1,18 +1,26 @@
+// import {IproductInCart } from "./types";
+import { LANGUAGE } from "config/app.config";
 import * as _ from "lodash";
 import { createSelector } from "reselect";
 import { IApplicationState } from "../../../store/types";
-// import {IproductInCart } from "./types";
 
 const getGlobalBrnads = (state: IApplicationState) =>
   state.global.settings.brands;
 const getGlobalCategories = (state: IApplicationState) =>
   state.global.settings.categories;
 const getAllGoods = (state: IApplicationState) => state.enquery.goods;
+const getAvailableBrands = ( state: IApplicationState) => state.enquery.brands;
+const getAppLanguage = (state: IApplicationState) => state.global.language;
+
 
 const getSelectedCategoryId = (state: IApplicationState) =>
   state.enquery.goodsQuery.category_ids;
 const getSelectedBrandId = (state: IApplicationState) =>
   state.enquery.goodsQuery.brand_ids;
+export const getAvaliableCharacterOfBrands = createSelector([getAvailableBrands, getAppLanguage], ( brands, langauge ) => {
+  const field = langauge === LANGUAGE.ZH ? 'name_zh_pinyin' : 'name_en';
+  return _.uniq(brands.map( b => (b[field] || '')[0].toUpperCase()))
+});
 export const getSelectedCategoryDetail = createSelector(
   [getSelectedCategoryId, getGlobalCategories],
   (ids, categories) => {
@@ -44,6 +52,7 @@ export const getSelectedBrandDetail = createSelector(
           id,
           name_en: "",
           name_zh: "",
+          name_zh_pinyin: "",
           url: ""
         };
       } else {
@@ -51,6 +60,7 @@ export const getSelectedBrandDetail = createSelector(
           id,
           name_en: brand[0].name_en,
           name_zh: brand[0].name_zh,
+          name_zh_pinyin: brand[0].name_zh_pinyin,
           url: brand[0].url
         };
       }

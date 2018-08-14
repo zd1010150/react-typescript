@@ -1,7 +1,12 @@
 import * as _ from 'lodash';
 import { SET_GLOBAL_SETTING } from '../../../../store/global/actionTypes';
 import { Icategory  } from '../../../../store/global/types';
-import { QUERYGOODS_DELETE_REFINE_BY,QUERYGOODS_SET_CATEGORIES, QUERYGOODS_SET_CHECKED_CATEGORY } from '../actionTypes';
+import { 
+    QUERYGOODS_DELETE_REFINE_BY,
+    QUERYGOODS_RESET_ALL_CATEGORIES, 
+    QUERYGOODS_SET_CATEGORIES, 
+    QUERYGOODS_SET_CHECKED_CATEGORY 
+} from '../actionTypes';
 import { IrefineBytypes } from '../types';
 
 const mappingState = (state: Icategory[] = [], serverGlobalSettings: any): Icategory[] => {
@@ -29,6 +34,8 @@ const categories = (state: Icategory[]= [], action:any) => {
             return mappingState(state, settings)
         case QUERYGOODS_SET_CATEGORIES:
             return mapData(action.categories)
+            case QUERYGOODS_RESET_ALL_CATEGORIES:
+            return action.categories
         default:
             return state;
     }

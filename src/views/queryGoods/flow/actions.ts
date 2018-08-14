@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import { Dispatch } from "redux";
-import { IApplicationState } from 'store/types';
-import { Ibrand } from "../../../store/global/types";
+import { Ibrand, Icategory } from 'store/global/types'
+import { IApplicationState, } from 'store/types';
 import { get, post } from "../../../store/http/httpAction";
 import {
   QUERYGOODS_ADD_TO_CART,
@@ -10,6 +10,7 @@ import {
   QUERYGOODS_DELETE_REFINE_BY,
   QUERYGOODS_MODIFY_QUANTITY,
   QUERYGOODS_RESET_ALL_BRANDS,
+  QUERYGOODS_RESET_ALL_CATEGORIES,
   QUERYGOODS_SET_BRANDS,
   QUERYGOODS_SET_CATEGORIES,
   QUERYGOODS_SET_CHECKED_BRANDS,
@@ -111,6 +112,10 @@ const resetBrands = (brands: Ibrand[]) => ({
   brands,
   type: QUERYGOODS_RESET_ALL_BRANDS
 })
+const resetCategories = (categories: Icategory[]) => ({
+  categories,
+  type: QUERYGOODS_RESET_ALL_CATEGORIES
+})
 export const setCheckedBrandIds = (ids: number[])=>({
   ids,
   type:QUERYGOODS_SET_CHECKED_BRANDS
@@ -145,9 +150,7 @@ export const enqueryGoods = (
       }
     }
   );
-export const filterCategoryByBrand = (brandIds: number[]) => (
-  dispatch: Dispatch<any>
-): Promise<void> =>
+const filterCategoryByBrand = (brandIds: number[], dispatch: Dispatch<any>) =>
   get(`/distributor/brand-filter-category`, {data: brandIds}, dispatch).then(
     ({ data }) => {
       let categories :any = [];
@@ -158,9 +161,7 @@ export const filterCategoryByBrand = (brandIds: number[]) => (
       dispatch(setCategories(categories|| []));
       }
   );
-export const filterBrandsByCategory = (categoryIds: number[]) => (
-  dispatch: Dispatch<any>
-): Promise<void> =>
+const filterBrandsByCategory = (categoryIds: number[], dispatch: Dispatch<any>) =>
   get(`/distributor/category-filter-brand`, {data: categoryIds}, dispatch).then(
     ({ data }) => {
       let brands :any = [];
@@ -187,11 +188,33 @@ export const filterBrandsByPinying = (charater: string) => (
       dispatch(setBrands((data && data.data) || []));
     }
   );
+  
+
   export const getAllBrands = () => (
     dispatch: Dispatch<any>,
-    getState: () => {}
-  ) =>{
+    getState:() => {}
+  ):void  =>{
     const state :IApplicationState = getState() as IApplicationState;
-    dispatch( resetBrands(state.global.settings.brands || []));
+    const selectCategoryIds = state.enquery.goodsQuery.category_ids;
+    if(_.isEmpty(selectCategoryIds)){
+      dispatch(resetBrands(state.global.settings.brands || []));
+    }else{
+      filterBrandsByCategory(selectCategoryIds, dispatch);
+    }
+    
   }
+  export const getAllCategories = () => (
+    dispatch: Dispatch<any>,
+    getState:() => {}
+  ):void  =>{
+    const state :IApplicationState = getState() as IApplicationState;
+    const selectBrandIds = state.enquery.goodsQuery.brand_ids;
+    if(_.isEmpty(selectBrandIds)){
+      dispatch(resetCategories(state.global.settings.categories || []))
+    }else{
+      filterCategoryByBrand(selectBrandIds, dispatch);
+    }
+    
+  }
+    
     

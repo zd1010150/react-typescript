@@ -93,14 +93,13 @@ const mapStateToProps = (state: IApplicationState) => ({
 });
 const mapDispatchToProps = (dispatch: Dispatch<any>) => {
   return {
+    deRegisterLoginUserDispatch: () => dispatch(deRegisterLoginUser()),
     getDetailDispatch: () => dispatch(getDetail()),
     updatePwdDispatch: (
       formData: IupdatePwdFormData,
       successMessage: string,
       cb: () => {}
-    ) => dispatch(updatePwd(formData, successMessage, cb)),
-    // tslint:disable-next-line:object-literal-sort-keys
-    deRegisterLoginUserDispatch: () => dispatch(deRegisterLoginUser())
+    ) => dispatch(updatePwd(formData, successMessage, cb))
   };
 };
 const ChangePwdComponent = withRouter(

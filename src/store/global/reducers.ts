@@ -72,6 +72,7 @@ const mappingState = (state: Iglobalsetting, serverGlobalSettings: any) => {
         id: b.id,
         name_en: b.name,
         name_zh: b.name_zh,
+        name_zh_pinyin: b.name_zh_pinyin,
         url: b.logo_url
       }))
     });
